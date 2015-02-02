@@ -8,11 +8,13 @@
 
 #import "HomeViewController.h"
 #import "UIColor+Custom.h"
+#import "DTCUtil.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *mainTableView;
+@property (strong, nonatomic) IBOutlet UIView *topContainer;
 @property (strong, nonatomic) IBOutlet UIButton *logoButton;
-@property (strong, nonatomic) IBOutlet UIView *headerContainer;
+@property (strong, nonatomic) IBOutlet UIView *middleContainer;
 @property (strong, nonatomic) IBOutlet UIButton *conferenceTitle;
 @property (strong, nonatomic) IBOutlet UIButton *conferenceDate;
 @property (strong, nonatomic) IBOutlet UIButton *conferenceLocation;
@@ -26,8 +28,26 @@
     
     self.mainTableView.delegate = self;
     self.mainTableView.dataSource = self;
+    self.mainTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.mainTableView.backgroundColor = [UIColor orangeColorSun];
     
-    self.headerContainer.backgroundColor = [UIColor orangeColorSun];
+    self.topContainer.backgroundColor = [UIColor whiteColor];
+    self.middleContainer.backgroundColor = [UIColor orangeColorSun];
+    
+    self.conferenceTitle.titleLabel.font = [DTCUtil currentBoldFontWithSize:40];
+    [self.conferenceTitle setTitleColor:[UIColor grayColorVeryDark] forState:UIControlStateNormal];
+    self.conferenceTitle.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.conferenceTitle.titleLabel.textAlignment = NSTextAlignmentCenter;
+    
+    self.conferenceDate.titleLabel.font = [DTCUtil currentBoldFontWithSize:18];
+    [self.conferenceDate setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.conferenceDate.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.conferenceDate.titleLabel.textAlignment = NSTextAlignmentRight;//NSTextAlignmentCenter;
+    
+    self.conferenceLocation.titleLabel.font = [DTCUtil currentBoldFontWithSize:18];
+    [self.conferenceLocation setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.conferenceLocation.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.conferenceLocation.titleLabel.textAlignment = NSTextAlignmentRight;//NSTextAlignmentCenter;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -37,6 +57,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.backgroundColor = [UIColor orangeColorSun];
     return cell;
 }
 
