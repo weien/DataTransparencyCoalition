@@ -15,7 +15,6 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[UITabBar appearance] setTintColor:[UIColor orangeColorSun]];
     [[UITabBar appearance] setBarTintColor:[UIColor grayColorVeryDark]];
