@@ -7,8 +7,9 @@
 //
 
 #import "HomeViewController.h"
+#import "UIColor+Custom.h"
 
-@interface HomeViewController ()
+@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *mainTableView;
 @property (strong, nonatomic) IBOutlet UIButton *logoButton;
 @property (strong, nonatomic) IBOutlet UIView *headerContainer;
@@ -22,12 +23,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    self.mainTableView.delegate = self;
+    self.mainTableView.dataSource = self;
+    
+    self.headerContainer.backgroundColor = [UIColor orangeColorSun];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    return cell;
 }
 
 @end
