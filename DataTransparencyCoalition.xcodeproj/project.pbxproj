@@ -15,6 +15,13 @@
 		646718D61A7FE6D40067C433 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646718D51A7FE6D40067C433 /* Images.xcassets */; };
 		646718D91A7FE6D40067C433 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 646718D71A7FE6D40067C433 /* LaunchScreen.xib */; };
 		646718E51A7FE6D40067C433 /* DataTransparencyCoalitionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 646718E41A7FE6D40067C433 /* DataTransparencyCoalitionTests.m */; };
+		64FE12271A8026F7005767EA /* gloriola_bold_it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12211A8026F7005767EA /* gloriola_bold_it.ttf */; };
+		64FE12281A8026F7005767EA /* gloriola_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12221A8026F7005767EA /* gloriola_bold.ttf */; };
+		64FE12291A8026F7005767EA /* gloriola_regular_it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12231A8026F7005767EA /* gloriola_regular_it.ttf */; };
+		64FE122A1A8026F7005767EA /* gloriola_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12241A8026F7005767EA /* gloriola_regular.ttf */; };
+		64FE122B1A8026F7005767EA /* gloriola_semibold_it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12251A8026F7005767EA /* gloriola_semibold_it.ttf */; };
+		64FE122C1A8026F7005767EA /* gloriola_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12261A8026F7005767EA /* gloriola_semibold.ttf */; };
+		64FE122F1A8027ED005767EA /* DTCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE122E1A8027ED005767EA /* DTCUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +50,14 @@
 		646718DE1A7FE6D40067C433 /* DataTransparencyCoalitionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataTransparencyCoalitionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		646718E31A7FE6D40067C433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		646718E41A7FE6D40067C433 /* DataTransparencyCoalitionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataTransparencyCoalitionTests.m; sourceTree = "<group>"; };
+		64FE12211A8026F7005767EA /* gloriola_bold_it.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_bold_it.ttf; sourceTree = "<group>"; };
+		64FE12221A8026F7005767EA /* gloriola_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_bold.ttf; sourceTree = "<group>"; };
+		64FE12231A8026F7005767EA /* gloriola_regular_it.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_regular_it.ttf; sourceTree = "<group>"; };
+		64FE12241A8026F7005767EA /* gloriola_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_regular.ttf; sourceTree = "<group>"; };
+		64FE12251A8026F7005767EA /* gloriola_semibold_it.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_semibold_it.ttf; sourceTree = "<group>"; };
+		64FE12261A8026F7005767EA /* gloriola_semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_semibold.ttf; sourceTree = "<group>"; };
+		64FE122D1A8027ED005767EA /* DTCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCUtil.h; sourceTree = "<group>"; };
+		64FE122E1A8027ED005767EA /* DTCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +158,12 @@
 		64A4DF0F1A7FFB8F0071E55B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				64FE12211A8026F7005767EA /* gloriola_bold_it.ttf */,
+				64FE12221A8026F7005767EA /* gloriola_bold.ttf */,
+				64FE12231A8026F7005767EA /* gloriola_regular_it.ttf */,
+				64FE12241A8026F7005767EA /* gloriola_regular.ttf */,
+				64FE12251A8026F7005767EA /* gloriola_semibold_it.ttf */,
+				64FE12261A8026F7005767EA /* gloriola_semibold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -152,6 +173,8 @@
 			children = (
 				6418D79E1A801DD80057C998 /* UIColor+Custom.h */,
 				6418D79F1A801DD80057C998 /* UIColor+Custom.m */,
+				64FE122D1A8027ED005767EA /* DTCUtil.h */,
+				64FE122E1A8027ED005767EA /* DTCUtil.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -237,9 +260,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64FE122C1A8026F7005767EA /* gloriola_semibold.ttf in Resources */,
+				64FE122A1A8026F7005767EA /* gloriola_regular.ttf in Resources */,
 				646718D41A7FE6D40067C433 /* Main.storyboard in Resources */,
+				64FE12291A8026F7005767EA /* gloriola_regular_it.ttf in Resources */,
+				64FE12271A8026F7005767EA /* gloriola_bold_it.ttf in Resources */,
 				646718D91A7FE6D40067C433 /* LaunchScreen.xib in Resources */,
 				646718D61A7FE6D40067C433 /* Images.xcassets in Resources */,
+				64FE12281A8026F7005767EA /* gloriola_bold.ttf in Resources */,
+				64FE122B1A8026F7005767EA /* gloriola_semibold_it.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +286,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64FE122F1A8027ED005767EA /* DTCUtil.m in Sources */,
 				646718D11A7FE6D40067C433 /* HomeViewController.m in Sources */,
 				646718CE1A7FE6D40067C433 /* AppDelegate.m in Sources */,
 				6418D7A01A801DD80057C998 /* UIColor+Custom.m in Sources */,
