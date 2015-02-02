@@ -9,6 +9,12 @@
 #import "HomeViewController.h"
 
 @interface HomeViewController ()
+@property (strong, nonatomic) IBOutlet UITableView *mainTableView;
+@property (strong, nonatomic) IBOutlet UIButton *logoButton;
+@property (strong, nonatomic) IBOutlet UIView *headerContainer;
+@property (strong, nonatomic) IBOutlet UIButton *conferenceTitle;
+@property (strong, nonatomic) IBOutlet UIButton *conferenceDate;
+@property (strong, nonatomic) IBOutlet UIButton *conferenceLocation;
 
 @end
 

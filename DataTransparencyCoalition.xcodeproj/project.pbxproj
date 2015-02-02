@@ -81,6 +81,7 @@
 		646718C71A7FE6D40067C433 /* DataTransparencyCoalition */ = {
 			isa = PBXGroup;
 			children = (
+				64A4DF101A801A6C0071E55B /* Util */,
 				64A4DF0F1A7FFB8F0071E55B /* Resources */,
 				64A4DF0E1A7FFB8A0071E55B /* Vendor */,
 				64A4DF0D1A7FFB840071E55B /* Frameworks */,
@@ -141,6 +142,13 @@
 			children = (
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		64A4DF101A801A6C0071E55B /* Util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -128,6 +128,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ncq-9k-l8j"/>
+                    <connections>
+                        <outlet property="conferenceDate" destination="zBB-ba-Nr8" id="KnY-u3-pvm"/>
+                        <outlet property="conferenceLocation" destination="uw0-Lh-4V0" id="H8m-vD-BHo"/>
+                        <outlet property="conferenceTitle" destination="OFN-HZ-MFk" id="scS-jb-Kah"/>
+                        <outlet property="headerContainer" destination="qfR-Nl-uCm" id="ldw-e2-64f"/>
+                        <outlet property="logoButton" destination="FOo-Bk-xD7" id="f7U-wE-lno"/>
+                        <outlet property="mainTableView" destination="BOo-yY-5l8" id="Itx-aC-sPb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Umr-kK-s47" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
