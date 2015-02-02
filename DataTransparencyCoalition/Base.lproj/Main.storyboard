@@ -48,10 +48,10 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewf-bg-t5s">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOo-Bk-xD7">
-                                                    <rect key="frame" x="212" y="0.0" width="176" height="100"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOo-Bk-xD7">
+                                                    <rect key="frame" x="194" y="0.0" width="212" height="120"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="Fgg-5G-UbE"/>
                                                         <constraint firstAttribute="width" secondItem="FOo-Bk-xD7" secondAttribute="height" multiplier="763:434" id="KUK-Rb-2z1"/>
@@ -70,15 +70,15 @@
                                             <constraints>
                                                 <constraint firstItem="FOo-Bk-xD7" firstAttribute="top" secondItem="ewf-bg-t5s" secondAttribute="top" id="A2s-aI-840"/>
                                                 <constraint firstAttribute="centerX" secondItem="FOo-Bk-xD7" secondAttribute="centerX" id="HJ1-za-piT"/>
-                                                <constraint firstAttribute="height" constant="100" id="Hkb-0S-Bgk"/>
+                                                <constraint firstAttribute="height" constant="120" id="Hkb-0S-Bgk"/>
                                                 <constraint firstAttribute="bottom" secondItem="FOo-Bk-xD7" secondAttribute="bottom" id="ph8-X7-0y0"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfR-Nl-uCm">
-                                            <rect key="frame" x="0.0" y="100" width="600" height="100"/>
+                                            <rect key="frame" x="0.0" y="120" width="600" height="80"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OFN-HZ-MFk">
-                                                    <rect key="frame" x="10" y="0.0" width="580" height="40"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OFN-HZ-MFk">
+                                                    <rect key="frame" x="30" y="0.0" width="540" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="bda-T6-uMn"/>
                                                     </constraints>
@@ -115,13 +115,13 @@
                                                 <constraint firstItem="uw0-Lh-4V0" firstAttribute="leading" secondItem="qfR-Nl-uCm" secondAttribute="leading" constant="10" id="2C0-am-zEI"/>
                                                 <constraint firstAttribute="trailing" secondItem="uw0-Lh-4V0" secondAttribute="trailing" constant="10" id="3c5-df-1b9"/>
                                                 <constraint firstItem="OFN-HZ-MFk" firstAttribute="top" secondItem="qfR-Nl-uCm" secondAttribute="top" id="Bdw-qX-gwg"/>
-                                                <constraint firstAttribute="trailing" secondItem="OFN-HZ-MFk" secondAttribute="trailing" constant="10" id="G4G-aR-3o1"/>
+                                                <constraint firstAttribute="trailing" secondItem="OFN-HZ-MFk" secondAttribute="trailing" constant="30" id="G4G-aR-3o1"/>
                                                 <constraint firstItem="uw0-Lh-4V0" firstAttribute="top" secondItem="zBB-ba-Nr8" secondAttribute="bottom" id="H0x-ej-asd"/>
                                                 <constraint firstAttribute="trailing" secondItem="zBB-ba-Nr8" secondAttribute="trailing" constant="30" id="SUa-iV-Ft0"/>
                                                 <constraint firstItem="zBB-ba-Nr8" firstAttribute="leading" secondItem="uw0-Lh-4V0" secondAttribute="leading" id="XvU-5h-gqs"/>
                                                 <constraint firstItem="zBB-ba-Nr8" firstAttribute="trailing" secondItem="uw0-Lh-4V0" secondAttribute="trailing" id="lHc-2B-n6R"/>
                                                 <constraint firstItem="zBB-ba-Nr8" firstAttribute="leading" secondItem="qfR-Nl-uCm" secondAttribute="leading" constant="30" id="m2t-g0-bqB"/>
-                                                <constraint firstItem="OFN-HZ-MFk" firstAttribute="leading" secondItem="qfR-Nl-uCm" secondAttribute="leading" constant="10" id="pPS-Ta-lGR"/>
+                                                <constraint firstItem="OFN-HZ-MFk" firstAttribute="leading" secondItem="qfR-Nl-uCm" secondAttribute="leading" constant="30" id="pPS-Ta-lGR"/>
                                                 <constraint firstItem="zBB-ba-Nr8" firstAttribute="top" secondItem="OFN-HZ-MFk" secondAttribute="bottom" id="rx7-Fd-UTX"/>
                                             </constraints>
                                             <variation key="default">

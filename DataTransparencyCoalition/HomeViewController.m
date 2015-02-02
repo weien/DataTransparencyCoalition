@@ -37,7 +37,7 @@
     self.conferenceTitle.titleLabel.font = [DTCUtil currentBoldFontWithSize:40];
     [self.conferenceTitle setTitleColor:[UIColor grayColorVeryDark] forState:UIControlStateNormal];
     self.conferenceTitle.titleLabel.adjustsFontSizeToFitWidth = YES;
-    self.conferenceTitle.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.conferenceTitle.titleLabel.textAlignment = NSTextAlignmentRight;
     
     self.conferenceDate.titleLabel.font = [DTCUtil currentBoldFontWithSize:18];
     [self.conferenceDate setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -49,7 +49,7 @@
     self.conferenceLocation.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.conferenceLocation.titleLabel.textAlignment = NSTextAlignmentRight;//NSTextAlignmentCenter;
 
-    self.title = @"#Conference";
+    self.navigationItem.title = @"#Conference";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
