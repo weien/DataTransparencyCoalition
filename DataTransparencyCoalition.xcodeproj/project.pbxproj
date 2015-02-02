@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6418D7A01A801DD80057C998 /* UIColor+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 6418D79F1A801DD80057C998 /* UIColor+Custom.m */; };
 		646718CB1A7FE6D40067C433 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 646718CA1A7FE6D40067C433 /* main.m */; };
 		646718CE1A7FE6D40067C433 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 646718CD1A7FE6D40067C433 /* AppDelegate.m */; };
 		646718D11A7FE6D40067C433 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 646718D01A7FE6D40067C433 /* HomeViewController.m */; };
@@ -27,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6418D79E1A801DD80057C998 /* UIColor+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Custom.h"; sourceTree = "<group>"; };
+		6418D79F1A801DD80057C998 /* UIColor+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Custom.m"; sourceTree = "<group>"; };
 		646718C51A7FE6D40067C433 /* DataCoalition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataCoalition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		646718C91A7FE6D40067C433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		646718CA1A7FE6D40067C433 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -147,6 +150,8 @@
 		64A4DF101A801A6C0071E55B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				6418D79E1A801DD80057C998 /* UIColor+Custom.h */,
+				6418D79F1A801DD80057C998 /* UIColor+Custom.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 			files = (
 				646718D11A7FE6D40067C433 /* HomeViewController.m in Sources */,
 				646718CE1A7FE6D40067C433 /* AppDelegate.m in Sources */,
+				6418D7A01A801DD80057C998 /* UIColor+Custom.m in Sources */,
 				646718CB1A7FE6D40067C433 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
