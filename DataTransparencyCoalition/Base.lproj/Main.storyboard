@@ -162,11 +162,11 @@
             </objects>
             <point key="canvasLocation" x="1904" y="2134"/>
         </scene>
-        <!--Item-->
+        <!--Sponsors-->
         <scene sceneID="QNS-TT-Ujs">
             <objects>
                 <navigationController id="qSr-wa-e2m" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="2GW-3r-W56"/>
+                    <tabBarItem key="tabBarItem" title="Sponsors" image="sponsors_icon" id="2GW-3r-W56"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="s79-mi-5w1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -179,11 +179,11 @@
             </objects>
             <point key="canvasLocation" x="1174" y="2134"/>
         </scene>
-        <!--Item-->
+        <!--Tweets-->
         <scene sceneID="q1G-kF-1CQ">
             <objects>
                 <navigationController id="Dl8-gZ-iU4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="wIw-tS-teO"/>
+                    <tabBarItem key="tabBarItem" title="Tweets" image="tweets_icon" id="wIw-tS-teO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TFf-ty-iBP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -196,11 +196,11 @@
             </objects>
             <point key="canvasLocation" x="1174" y="1462"/>
         </scene>
-        <!--Item-->
+        <!--Speakers-->
         <scene sceneID="eGT-tI-uX3">
             <objects>
                 <navigationController id="EvD-bb-YpR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="3QM-GT-0hr"/>
+                    <tabBarItem key="tabBarItem" title="Speakers" image="speakers_icon" id="3QM-GT-0hr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kbd-Z0-drE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -213,11 +213,11 @@
             </objects>
             <point key="canvasLocation" x="1174" y="784"/>
         </scene>
-        <!--Item-->
+        <!--Program-->
         <scene sceneID="rDu-un-rqj">
             <objects>
                 <navigationController id="6WO-TK-lHk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="PE9-ni-7Bw"/>
+                    <tabBarItem key="tabBarItem" title="Program" image="program_icon" id="PE9-ni-7Bw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MPY-Yj-gZQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -230,11 +230,11 @@
             </objects>
             <point key="canvasLocation" x="1174" y="88"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="mG4-zY-1Bw">
             <objects>
                 <navigationController id="DXd-cv-tbY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="o6h-Yv-OkW"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home_icon" id="o6h-Yv-OkW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aRL-L3-9UW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -248,4 +248,11 @@
             <point key="canvasLocation" x="1174" y="-600"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="home_icon" width="28" height="27"/>
+        <image name="program_icon" width="26" height="28"/>
+        <image name="speakers_icon" width="30" height="30"/>
+        <image name="sponsors_icon" width="38" height="28"/>
+        <image name="tweets_icon" width="30" height="24"/>
+    </resources>
 </document>
