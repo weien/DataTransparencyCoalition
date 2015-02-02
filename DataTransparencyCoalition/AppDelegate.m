@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "UIColor+Custom.h"
+#import <Parse/Parse.h>
+#import "PrivateKeys.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +18,10 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Parse setApplicationId:kPARSE_APPLICATION_ID
+                  clientKey:kPARSE_CLIENT_KEY];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     [[UITabBar appearance] setTintColor:[UIColor orangeColorSun]];
     [[UITabBar appearance] setBarTintColor:[UIColor grayColorVeryDark]];
     
