@@ -48,6 +48,8 @@
     [self.conferenceLocation setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.conferenceLocation.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.conferenceLocation.titleLabel.textAlignment = NSTextAlignmentRight;//NSTextAlignmentCenter;
+
+    self.title = @"#Conference";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
