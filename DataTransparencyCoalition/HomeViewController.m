@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Data Transparency Coalition. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "HomeViewController.h"
 
-@interface BaseViewController ()
+@interface HomeViewController ()
 
 @end
 
-@implementation BaseViewController
+@implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
