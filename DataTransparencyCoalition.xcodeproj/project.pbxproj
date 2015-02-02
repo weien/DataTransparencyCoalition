@@ -22,6 +22,7 @@
 		64FE122B1A8026F7005767EA /* gloriola_semibold_it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12251A8026F7005767EA /* gloriola_semibold_it.ttf */; };
 		64FE122C1A8026F7005767EA /* gloriola_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12261A8026F7005767EA /* gloriola_semibold.ttf */; };
 		64FE122F1A8027ED005767EA /* DTCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE122E1A8027ED005767EA /* DTCUtil.m */; };
+		64FE12321A803156005767EA /* PrivateKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE12311A803156005767EA /* PrivateKeys.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		64FE12261A8026F7005767EA /* gloriola_semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_semibold.ttf; sourceTree = "<group>"; };
 		64FE122D1A8027ED005767EA /* DTCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCUtil.h; sourceTree = "<group>"; };
 		64FE122E1A8027ED005767EA /* DTCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCUtil.m; sourceTree = "<group>"; };
+		64FE12301A803156005767EA /* PrivateKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateKeys.h; sourceTree = "<group>"; };
+		64FE12311A803156005767EA /* PrivateKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateKeys.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,8 @@
 				6418D79F1A801DD80057C998 /* UIColor+Custom.m */,
 				64FE122D1A8027ED005767EA /* DTCUtil.h */,
 				64FE122E1A8027ED005767EA /* DTCUtil.m */,
+				64FE12301A803156005767EA /* PrivateKeys.h */,
+				64FE12311A803156005767EA /* PrivateKeys.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -291,6 +296,7 @@
 				646718CE1A7FE6D40067C433 /* AppDelegate.m in Sources */,
 				6418D7A01A801DD80057C998 /* UIColor+Custom.m in Sources */,
 				646718CB1A7FE6D40067C433 /* main.m in Sources */,
+				64FE12321A803156005767EA /* PrivateKeys.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
