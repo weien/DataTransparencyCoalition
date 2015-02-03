@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface ParseUtil : NSObject
-
++ (ParseUtil*) sharedInstance;
+- (NSArray*) retrieveMetaData;
 @end
