@@ -26,7 +26,7 @@
     [[UITabBar appearance] setTintColor:[UIColor orangeColorSun]];
     [[UITabBar appearance] setBarTintColor:[UIColor grayColorVeryDark]];
     
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[DTCUtil currentMainFontWithSize:21]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[DTCUtil currentBoldFontWithSize:21]}];
     [[UINavigationBar appearance] setTintColor:[UIColor orangeColorSun]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor grayColorVeryDark]];
     
