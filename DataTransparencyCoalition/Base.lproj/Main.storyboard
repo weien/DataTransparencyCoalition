@@ -243,7 +243,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egK-BU-HW0">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
@@ -251,11 +251,20 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="egK-BU-HW0" secondAttribute="trailing" id="5hT-2l-gir"/>
                             <constraint firstItem="oPB-qV-bAe" firstAttribute="top" secondItem="egK-BU-HW0" secondAttribute="bottom" id="6G2-Wh-eaM"/>
+                            <constraint firstAttribute="bottom" secondItem="egK-BU-HW0" secondAttribute="bottom" id="Sht-HV-nq4"/>
                             <constraint firstItem="egK-BU-HW0" firstAttribute="top" secondItem="FaN-9N-IYk" secondAttribute="top" id="ZdF-jI-ic3"/>
                             <constraint firstItem="egK-BU-HW0" firstAttribute="leading" secondItem="FaN-9N-IYk" secondAttribute="leading" id="tGF-oo-1BJ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6G2-Wh-eaM"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="A0D-PK-Uel"/>
+                    <connections>
+                        <outlet property="mainWebView" destination="egK-BU-HW0" id="xR9-04-JGW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="73V-ae-PhM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
