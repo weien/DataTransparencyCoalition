@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yoW-CE-0cW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GZw-ZG-SQR">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -8,7 +9,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="I4D-RG-OVq">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="yoW-CE-0cW" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="ConferenceTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="yoW-CE-0cW" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="65s-zv-Jw6">
@@ -49,8 +50,8 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewf-bg-t5s">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOo-Bk-xD7">
-                                                    <rect key="frame" x="194" y="0.0" width="212" height="120"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOo-Bk-xD7">
+                                                    <rect key="frame" x="195" y="0.0" width="210" height="120"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="Fgg-5G-UbE"/>
                                                         <constraint firstAttribute="width" secondItem="FOo-Bk-xD7" secondAttribute="height" multiplier="763:434" id="KUK-Rb-2z1"/>
@@ -350,6 +351,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="38L-TJ-aRb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1174" y="88"/>
+        </scene>
+        <!--Decider View Controller-->
+        <scene sceneID="48k-du-ncy">
+            <objects>
+                <viewController id="GZw-ZG-SQR" customClass="DeciderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CsX-Um-Jkx"/>
+                        <viewControllerLayoutGuide type="bottom" id="eae-c3-NPf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qfe-3Y-JM9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HUg-4Y-fcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="418" y="-150"/>
         </scene>
         <!--Home-->
         <scene sceneID="mG4-zY-1Bw">

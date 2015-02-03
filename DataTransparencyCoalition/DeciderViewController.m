@@ -7,7 +7,14 @@
 //
 
 #import "DeciderViewController.h"
+#import "ParseWebService.h"
 
 @implementation DeciderViewController
+
+- (void)viewDidLoad {
+//    if (![DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata]) {
+        [[ParseWebService sharedInstance] retrieveMetaData];
+//    }
+}
 
 @end
