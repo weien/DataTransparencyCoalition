@@ -37,6 +37,7 @@
 		64FE124C1A803230005767EA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64FE124B1A803230005767EA /* libz.dylib */; };
 		64FE124E1A803239005767EA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64FE124D1A803239005767EA /* libsqlite3.dylib */; };
 		64FE12511A804168005767EA /* ParseWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE12501A804168005767EA /* ParseWebService.m */; };
+		64FE12551A806CF3005767EA /* DeciderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE12541A806CF3005767EA /* DeciderViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		64FE124F1A804168005767EA /* ParseWebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseWebService.h; sourceTree = "<group>"; };
 		64FE12501A804168005767EA /* ParseWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseWebService.m; sourceTree = "<group>"; };
 		64FE12521A8062C4005767EA /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		64FE12531A806CF3005767EA /* DeciderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeciderViewController.h; sourceTree = "<group>"; };
+		64FE12541A806CF3005767EA /* DeciderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeciderViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +154,8 @@
 				646718CD1A7FE6D40067C433 /* AppDelegate.m */,
 				646718CF1A7FE6D40067C433 /* HomeViewController.h */,
 				646718D01A7FE6D40067C433 /* HomeViewController.m */,
+				64FE12531A806CF3005767EA /* DeciderViewController.h */,
+				64FE12541A806CF3005767EA /* DeciderViewController.m */,
 				646718D21A7FE6D40067C433 /* Main.storyboard */,
 				646718D51A7FE6D40067C433 /* Images.xcassets */,
 				646718D71A7FE6D40067C433 /* LaunchScreen.xib */,
@@ -355,6 +360,7 @@
 				64FE12511A804168005767EA /* ParseWebService.m in Sources */,
 				646718D11A7FE6D40067C433 /* HomeViewController.m in Sources */,
 				646718CE1A7FE6D40067C433 /* AppDelegate.m in Sources */,
+				64FE12551A806CF3005767EA /* DeciderViewController.m in Sources */,
 				6418D7A01A801DD80057C998 /* UIColor+Custom.m in Sources */,
 				646718CB1A7FE6D40067C433 /* main.m in Sources */,
 			);
