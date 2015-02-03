@@ -90,6 +90,7 @@
 		64FE124D1A803239005767EA /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		64FE124F1A804168005767EA /* ParseUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseUtil.h; sourceTree = "<group>"; };
 		64FE12501A804168005767EA /* ParseUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseUtil.m; sourceTree = "<group>"; };
+		64FE12521A8062C4005767EA /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +238,7 @@
 				64FE12301A803156005767EA /* PrivateKeys.h */,
 				64FE124F1A804168005767EA /* ParseUtil.h */,
 				64FE12501A804168005767EA /* ParseUtil.m */,
+				64FE12521A8062C4005767EA /* Constants.h */,
 			);
 			name = Util;
 			sourceTree = "<group>";
