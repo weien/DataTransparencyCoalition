@@ -51,12 +51,13 @@
 
 - (NSArray*) retrieveProgramDataForConference:(NSString*)conferenceId {
     PFQuery *query = [PFQuery queryWithClassName:@"Program"];
-    [query whereKey:@"conference" equalTo:conferenceId];
+    PFObject *pointerToConference = [PFObject objectWithoutDataWithClassName:@"Conference" objectId:conferenceId];
+    [query whereKey:@"conference" equalTo:pointerToConference];
     
     NSError* error = nil;
     NSArray* dataFromParse = [query findObjects:&error];
     if (error) {
-        NSLog(@"Error fetching metadata: %@", error);
+        NSLog(@"Error fetching program data: %@", error);
     }
     
     NSMutableArray* returnArr = [NSMutableArray array];

@@ -69,7 +69,10 @@
     NSError* error = nil;
     NSString *destinationPath = [self destinationPathWithComponent:component];
     NSData *plistData = [NSData dataWithContentsOfFile:destinationPath];
-    NSPropertyListSerialization* serializedPlist = [NSPropertyListSerialization propertyListWithData:plistData options:NSPropertyListImmutable format:0 error:&error];
+    NSPropertyListSerialization* serializedPlist = nil;
+    if (plistData) {
+        serializedPlist = [NSPropertyListSerialization propertyListWithData:plistData options:NSPropertyListImmutable format:0 error:&error];
+    }
     
     return serializedPlist; //this could be... ANYTHING 8D
 //    return [NSDictionary dictionaryWithContentsOfFile:destinationPath];
