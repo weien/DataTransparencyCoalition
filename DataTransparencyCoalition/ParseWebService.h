@@ -10,5 +10,5 @@
 
 @interface ParseWebService : NSObject
 + (ParseWebService*) sharedInstance;
-- (NSArray*) retrieveMetaData;
+- (NSDictionary*) retrieveMetaData;
 @end

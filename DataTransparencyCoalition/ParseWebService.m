@@ -20,7 +20,7 @@
     return sharedParseUtil;
 }
 
-- (NSArray*) retrieveMetaData {
+- (NSDictionary*) retrieveMetaData {
     PFQuery *query = [PFQuery queryWithClassName:@"Metadata"];
     [query includeKey:@"currentConference"];
     
@@ -30,16 +30,22 @@
         NSLog(@"Error fetching metadata: %@", error);
     }
     
+    NSMutableDictionary* returnDict = [NSMutableDictionary dictionary];
     if (metadata[@"conferenceModeEnabled"]) {
         PFObject* conference = metadata[@"currentConference"];
         NSLog(@"conference is %@", conference);
+        
+        for (NSString * key in [conference allKeys]) {
+            [returnDict setObject:[conference objectForKey:key] forKey:key];
+        }
+        [returnDict setObject:@(YES) forKey:@"conferenceModeEnabled"];
     }
     else {
         //For future development
-        NSLog(@"Conference mode disabled.");
+        [returnDict setObject:@(NO) forKey:@"conferenceModeEnabled"];
     }
     
-    return nil;
+    return returnDict;
 }
 
 @end
