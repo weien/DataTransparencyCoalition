@@ -36,7 +36,7 @@
 		64FE124A1A803226005767EA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64FE12411A803226005767EA /* SystemConfiguration.framework */; };
 		64FE124C1A803230005767EA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64FE124B1A803230005767EA /* libz.dylib */; };
 		64FE124E1A803239005767EA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64FE124D1A803239005767EA /* libsqlite3.dylib */; };
-		64FE12511A804168005767EA /* ParseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE12501A804168005767EA /* ParseUtil.m */; };
+		64FE12511A804168005767EA /* ParseWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE12501A804168005767EA /* ParseWebService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,8 +88,8 @@
 		64FE12411A803226005767EA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		64FE124B1A803230005767EA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		64FE124D1A803239005767EA /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		64FE124F1A804168005767EA /* ParseUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseUtil.h; sourceTree = "<group>"; };
-		64FE12501A804168005767EA /* ParseUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseUtil.m; sourceTree = "<group>"; };
+		64FE124F1A804168005767EA /* ParseWebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseWebService.h; sourceTree = "<group>"; };
+		64FE12501A804168005767EA /* ParseWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseWebService.m; sourceTree = "<group>"; };
 		64FE12521A8062C4005767EA /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -236,8 +236,8 @@
 				64FE122D1A8027ED005767EA /* DTCUtil.h */,
 				64FE122E1A8027ED005767EA /* DTCUtil.m */,
 				64FE12301A803156005767EA /* PrivateKeys.h */,
-				64FE124F1A804168005767EA /* ParseUtil.h */,
-				64FE12501A804168005767EA /* ParseUtil.m */,
+				64FE124F1A804168005767EA /* ParseWebService.h */,
+				64FE12501A804168005767EA /* ParseWebService.m */,
 				64FE12521A8062C4005767EA /* Constants.h */,
 			);
 			name = Util;
@@ -352,7 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64FE122F1A8027ED005767EA /* DTCUtil.m in Sources */,
-				64FE12511A804168005767EA /* ParseUtil.m in Sources */,
+				64FE12511A804168005767EA /* ParseWebService.m in Sources */,
 				646718D11A7FE6D40067C433 /* HomeViewController.m in Sources */,
 				646718CE1A7FE6D40067C433 /* AppDelegate.m in Sources */,
 				6418D7A01A801DD80057C998 /* UIColor+Custom.m in Sources */,

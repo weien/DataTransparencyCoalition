@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ParseUtil : NSObject
-+ (ParseUtil*) sharedInstance;
+@interface ParseWebService : NSObject
++ (ParseWebService*) sharedInstance;
 - (NSArray*) retrieveMetaData;
 @end

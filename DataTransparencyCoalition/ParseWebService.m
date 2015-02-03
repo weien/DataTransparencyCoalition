@@ -6,12 +6,13 @@
 //  Copyright (c) 2015 Data Transparency Coalition. All rights reserved.
 //
 
-#import "ParseUtil.h"
+#import "ParseWebService.h"
 #import <Parse/Parse.h>
+#import "DTCUtil.h"
 
-@implementation ParseUtil
-+ (ParseUtil*) sharedInstance {
-    static ParseUtil *sharedParseUtil = nil;
+@implementation ParseWebService
++ (ParseWebService*) sharedInstance {
+    static ParseWebService *sharedParseUtil = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedParseUtil = [self new];
