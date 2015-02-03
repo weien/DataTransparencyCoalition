@@ -35,7 +35,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
             if (metadata[@"conferenceModeEnabled"]) {
-                [DTCUtil saveDataToPlistWithComponent:kPlistComponentForConferenceMetadata andDictionaryOfInfo:metadata];
+                [DTCUtil saveDataToPlistWithComponent:kPlistComponentForConferenceMetadata andInfo:metadata];
                 UIViewController* newVC = [[DTCUtil currentStoryboard] instantiateViewControllerWithIdentifier:@"ConferenceTabBarController"];
                 newVC.transitioningDelegate = self;
                 newVC.modalPresentationStyle = UIModalPresentationCustom;
