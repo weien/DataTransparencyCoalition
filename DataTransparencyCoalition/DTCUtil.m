@@ -32,4 +32,32 @@
  "GloriolaStd-Italic",
  "GloriolaStd-SemiBold"
  */
+
+#pragma mark - plists
++ (void) saveDataToPlistWithComponent:(NSString*)component andDictionaryOfInfo:(NSDictionary*)info {
+    NSString *destinationPath = [self destinationPathWithComponent:component];
+    [info writeToFile:destinationPath atomically:YES];
+}
+
++ (NSDictionary*) plistDataWithComponent:(NSString*)component {
+    NSString *destinationPath = [self destinationPathWithComponent:component];
+    return [NSDictionary dictionaryWithContentsOfFile:destinationPath];
+}
+
++ (NSString*) destinationPathWithComponent:(NSString*)component {
+    NSString *destinationPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    destinationPath = [destinationPath stringByAppendingPathComponent:component];
+    return destinationPath;
+}
+
+//
+//+ (void) updateCurrentUserImageWithImage:(UIImage*)image {
+//    NSString* key = [kLocalProfileImageDataPrefix stringByAppendingString:[self currentUser][@"email"]];
+//    [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(image) forKey:key];
+//}
+//
+//+ (UIImage*) currentUserImage {
+//    NSString* key = [kLocalProfileImageDataPrefix stringByAppendingString:[self currentUser][@"email"]];
+//    return [UIImage imageWithData:[[NSUserDefaults standardUserDefaults] dataForKey:key]];
+//}
 @end

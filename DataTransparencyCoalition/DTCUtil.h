@@ -15,4 +15,8 @@
 + (UIFont*) currentItalicFontWithSize:(float)size;
 
 + (UIStoryboard*) currentStoryboard;
+
+//plists
++ (void) saveDataToPlistWithComponent:(NSString*)component andDictionaryOfInfo:(NSDictionary*)info;
++ (NSDictionary*) plistDataWithComponent:(NSString*)component;
 @end
