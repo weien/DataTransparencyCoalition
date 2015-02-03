@@ -6,4 +6,4 @@
 //  Copyright (c) 2015 Data Transparency Coalition. All rights reserved.
 //
 
-#define kConferenceMetadataComponent @"conference_metadata.plist"
+#define kPlistComponentForConferenceMetadata @"conference_metadata.plist"
