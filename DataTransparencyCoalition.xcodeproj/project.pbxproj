@@ -17,6 +17,7 @@
 		646718E51A7FE6D40067C433 /* DataTransparencyCoalitionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 646718E41A7FE6D40067C433 /* DataTransparencyCoalitionTests.m */; };
 		64D1F47C1A80867800DB6174 /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F47B1A80867800DB6174 /* TweetsViewController.m */; };
 		64D1F4831A811D6500DB6174 /* SpeakersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F4821A811D6500DB6174 /* SpeakersViewController.m */; };
+		64D1F4861A812C9000DB6174 /* ProgramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F4851A812C9000DB6174 /* ProgramViewController.m */; };
 		64FE12271A8026F7005767EA /* gloriola_bold_it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12211A8026F7005767EA /* gloriola_bold_it.ttf */; };
 		64FE12281A8026F7005767EA /* gloriola_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12221A8026F7005767EA /* gloriola_bold.ttf */; };
 		64FE12291A8026F7005767EA /* gloriola_regular_it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12231A8026F7005767EA /* gloriola_regular_it.ttf */; };
@@ -74,6 +75,8 @@
 		64D1F47B1A80867800DB6174 /* TweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
 		64D1F4811A811D6500DB6174 /* SpeakersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakersViewController.h; sourceTree = "<group>"; };
 		64D1F4821A811D6500DB6174 /* SpeakersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakersViewController.m; sourceTree = "<group>"; };
+		64D1F4841A812C9000DB6174 /* ProgramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramViewController.h; sourceTree = "<group>"; };
+		64D1F4851A812C9000DB6174 /* ProgramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramViewController.m; sourceTree = "<group>"; };
 		64FE12211A8026F7005767EA /* gloriola_bold_it.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_bold_it.ttf; sourceTree = "<group>"; };
 		64FE12221A8026F7005767EA /* gloriola_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_bold.ttf; sourceTree = "<group>"; };
 		64FE12231A8026F7005767EA /* gloriola_regular_it.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_regular_it.ttf; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				646718CD1A7FE6D40067C433 /* AppDelegate.m */,
 				646718CF1A7FE6D40067C433 /* HomeViewController.h */,
 				646718D01A7FE6D40067C433 /* HomeViewController.m */,
+				64D1F4841A812C9000DB6174 /* ProgramViewController.h */,
+				64D1F4851A812C9000DB6174 /* ProgramViewController.m */,
 				64D1F4811A811D6500DB6174 /* SpeakersViewController.h */,
 				64D1F4821A811D6500DB6174 /* SpeakersViewController.m */,
 				64D1F47A1A80867800DB6174 /* TweetsViewController.h */,
@@ -393,6 +398,7 @@
 				64FE12551A806CF3005767EA /* DeciderViewController.m in Sources */,
 				64D1F47C1A80867800DB6174 /* TweetsViewController.m in Sources */,
 				6418D7A01A801DD80057C998 /* UIColor+Custom.m in Sources */,
+				64D1F4861A812C9000DB6174 /* ProgramViewController.m in Sources */,
 				64FE125B1A807A4D005767EA /* TLTransitionAnimator.m in Sources */,
 				646718CB1A7FE6D40067C433 /* main.m in Sources */,
 			);
