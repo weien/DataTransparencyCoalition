@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "UIColor+Custom.h"
 #import "DTCUtil.h"
+#import "Constants.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *mainTableView;
@@ -48,7 +49,11 @@
     [self.conferenceLocation setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.conferenceLocation.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.conferenceLocation.titleLabel.textAlignment = NSTextAlignmentRight;//NSTextAlignmentCenter;
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     self.navigationItem.title = @"#Conference";
 }
 
