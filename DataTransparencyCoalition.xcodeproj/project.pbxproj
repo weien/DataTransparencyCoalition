@@ -39,6 +39,7 @@
 		64FE12511A804168005767EA /* ParseWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE12501A804168005767EA /* ParseWebService.m */; };
 		64FE12551A806CF3005767EA /* DeciderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE12541A806CF3005767EA /* DeciderViewController.m */; };
 		64FE12581A806E37005767EA /* UIViewController+DTC.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE12571A806E37005767EA /* UIViewController+DTC.m */; };
+		64FE125B1A807A4D005767EA /* TLTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE125A1A807A4D005767EA /* TLTransitionAnimator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,8 @@
 		64FE12541A806CF3005767EA /* DeciderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeciderViewController.m; sourceTree = "<group>"; };
 		64FE12561A806E37005767EA /* UIViewController+DTC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DTC.h"; sourceTree = "<group>"; };
 		64FE12571A806E37005767EA /* UIViewController+DTC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DTC.m"; sourceTree = "<group>"; };
+		64FE12591A807A4D005767EA /* TLTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTransitionAnimator.h; sourceTree = "<group>"; };
+		64FE125A1A807A4D005767EA /* TLTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTransitionAnimator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +162,8 @@
 				646718D01A7FE6D40067C433 /* HomeViewController.m */,
 				64FE12531A806CF3005767EA /* DeciderViewController.h */,
 				64FE12541A806CF3005767EA /* DeciderViewController.m */,
+				64FE12591A807A4D005767EA /* TLTransitionAnimator.h */,
+				64FE125A1A807A4D005767EA /* TLTransitionAnimator.m */,
 				646718D21A7FE6D40067C433 /* Main.storyboard */,
 				646718D51A7FE6D40067C433 /* Images.xcassets */,
 				646718D71A7FE6D40067C433 /* LaunchScreen.xib */,
@@ -368,6 +373,7 @@
 				64FE12581A806E37005767EA /* UIViewController+DTC.m in Sources */,
 				64FE12551A806CF3005767EA /* DeciderViewController.m in Sources */,
 				6418D7A01A801DD80057C998 /* UIColor+Custom.m in Sources */,
+				64FE125B1A807A4D005767EA /* TLTransitionAnimator.m in Sources */,
 				646718CB1A7FE6D40067C433 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
