@@ -17,6 +17,6 @@
 + (UIStoryboard*) currentStoryboard;
 
 //plists
-+ (void) saveDataToPlistWithComponent:(NSString*)component andDictionaryOfInfo:(NSDictionary*)info;
-+ (NSDictionary*) plistDataWithComponent:(NSString*)component;
++ (void) saveDataToPlistWithComponent:(NSString*)component andInfo:(id)info;
++ (id) plistDataWithComponent:(NSString*)component;
 @end

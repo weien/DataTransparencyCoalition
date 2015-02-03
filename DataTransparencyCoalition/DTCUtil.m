@@ -34,14 +34,19 @@
  */
 
 #pragma mark - plists
-+ (void) saveDataToPlistWithComponent:(NSString*)component andDictionaryOfInfo:(NSDictionary*)info {
++ (void) saveDataToPlistWithComponent:(NSString*)component andInfo:(id)info {
     NSString *destinationPath = [self destinationPathWithComponent:component];
     [info writeToFile:destinationPath atomically:YES];
 }
 
-+ (NSDictionary*) plistDataWithComponent:(NSString*)component {
++ (id) plistDataWithComponent:(NSString*)component {
+    NSError* error = nil;
     NSString *destinationPath = [self destinationPathWithComponent:component];
-    return [NSDictionary dictionaryWithContentsOfFile:destinationPath];
+    NSData *plistData = [NSData dataWithContentsOfFile:destinationPath];
+    NSPropertyListSerialization* serializedPlist = [NSPropertyListSerialization propertyListWithData:plistData options:NSPropertyListImmutable format:0 error:&error];
+    
+    return serializedPlist; //this could be... ANYTHING 8D
+//    return [NSDictionary dictionaryWithContentsOfFile:destinationPath];
 }
 
 + (NSString*) destinationPathWithComponent:(NSString*)component {
