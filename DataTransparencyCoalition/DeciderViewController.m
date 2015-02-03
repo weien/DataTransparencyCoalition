@@ -8,13 +8,91 @@
 
 #import "DeciderViewController.h"
 #import "ParseWebService.h"
+#import "UIViewController+DTC.h"
+#import "Constants.h"
+#import "DTCUtil.h"
+#import "UIColor+Custom.h"
+
+@interface TLTransitionAnimator : NSObject <UIViewControllerAnimatedTransitioning>
+@end
+@implementation TLTransitionAnimator
+
+- (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
+    return 0.2f;
+}
+
+- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
+    UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    
+    CGRect toVCStartingFrame = CGRectMake(CGRectGetWidth(fromViewController.view.frame), 0, CGRectGetWidth(fromViewController.view.frame), CGRectGetHeight(fromViewController.view.frame));
+
+    CGRect toVCEndingFrame = fromViewController.view.frame;
+    
+    fromViewController.view.userInteractionEnabled = NO;
+    
+    [transitionContext.containerView addSubview:fromViewController.view];
+    [transitionContext.containerView addSubview:toViewController.view];
+    
+    toViewController.view.alpha = 0;
+    toViewController.view.frame = toVCStartingFrame;
+    
+    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:.5 options:0 animations:^{
+        toViewController.view.frame = toVCEndingFrame;
+        toViewController.view.alpha = 1;
+    } completion:^(BOOL finished) {
+        [transitionContext completeTransition:YES];
+    }];
+}
+
+@end
+
+@interface DeciderViewController() <UIViewControllerTransitioningDelegate>
+@property (strong, nonatomic) UIActivityIndicatorView* spinner;
+@end
 
 @implementation DeciderViewController
 
 - (void)viewDidLoad {
-//    if (![DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata]) {
-        [[ParseWebService sharedInstance] retrieveMetaData];
-//    }
+    [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor orangeColorSun];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    self.spinner = [self startSpinner:self.spinner inView:self.view];
+    dispatch_async(dispatch_queue_create("decideMetaData", NULL), ^{
+        NSDictionary* metadata = [[ParseWebService sharedInstance] retrieveMetaData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self stopSpinner:self.spinner];
+            if (metadata[@"conferenceModeEnabled"]) {
+                [DTCUtil saveDataToPlistWithComponent:kPlistComponentForConferenceMetadata andDictionaryOfInfo:metadata];
+                UIViewController* newVC = [[DTCUtil currentStoryboard] instantiateViewControllerWithIdentifier:@"ConferenceTabBarController"];
+                newVC.transitioningDelegate = self;
+                newVC.modalPresentationStyle = UIModalPresentationCustom;
+                [self presentViewController:newVC animated:YES completion:nil];
+            }
+            else {
+                
+            }
+        });
+    });
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source {
+    TLTransitionAnimator *animator = [TLTransitionAnimator new];
+    return animator;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    TLTransitionAnimator *animator = [TLTransitionAnimator new];
+    return animator;
+}
 @end
+
+
+
