@@ -21,6 +21,13 @@
     [super viewDidLoad];
     self.conferenceMetadata = [DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata];
     [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.conferenceMetadata[@"tweetURL"]]]];
+    
+    //use a custom web lib instead of UIWEbView
+    //try https://github.com/dfmuir/KINWebBrowser
+    //or https://github.com/kmikael/PBWebViewController
+    
+    //or maybe even
+    //https://dev.twitter.com/twitter-kit/ios/show-tweets
 }
 
 - (void)viewWillAppear:(BOOL)animated {
