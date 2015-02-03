@@ -10,6 +10,7 @@
 #import "UIColor+Custom.h"
 #import <Parse/Parse.h>
 #import "PrivateKeys.h"
+#import "DTCUtil.h"
 
 @interface AppDelegate ()
 
@@ -25,7 +26,7 @@
     [[UITabBar appearance] setTintColor:[UIColor orangeColorSun]];
     [[UITabBar appearance] setBarTintColor:[UIColor grayColorVeryDark]];
     
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor], NSFontAttributeName:[DTCUtil currentMainFontWithSize:21]}];
     [[UINavigationBar appearance] setTintColor:[UIColor orangeColorSun]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor grayColorVeryDark]];
     
