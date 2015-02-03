@@ -7,3 +7,4 @@
 //
 
 #define kPlistComponentForConferenceMetadata @"conference_metadata.plist"
+#define kPlistComponentForCurrentProgramData @"current_program_metadata.plist"

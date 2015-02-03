@@ -10,10 +10,13 @@
 #import "UIColor+Custom.h"
 #import "DTCUtil.h"
 #import "Constants.h"
+#import "ParseWebService.h"
+#import "UIViewController+DTC.h"
 
 @interface ProgramViewController() <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *mainTableView;
 
+@property (strong, nonatomic) UIActivityIndicatorView* spinner;
 @property (strong, nonatomic) NSArray *programData;
 
 @end
@@ -25,6 +28,21 @@
     self.mainTableView.delegate = self;
     self.mainTableView.dataSource = self;
     self.mainTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    self.programData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentProgramData];
+    if (!self.programData) {
+        self.spinner = [self startSpinner:self.spinner inView:self.view];
+    }
+    dispatch_async(dispatch_queue_create("getProgramData", NULL), ^{
+        NSArray* programDataFromParse = [[ParseWebService sharedInstance] retrieveProgramDataForConference:[DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self stopSpinner:self.spinner];
+            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentProgramData andInfo:programDataFromParse];
+            self.programData = programDataFromParse;
+            [self.mainTableView reloadData];
+        });
+    });
+    
 
 }
 
