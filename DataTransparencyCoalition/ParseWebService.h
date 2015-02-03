@@ -11,4 +11,5 @@
 @interface ParseWebService : NSObject
 + (ParseWebService*) sharedInstance;
 - (NSDictionary*) retrieveMetaData;
+- (NSArray*) retrieveProgramDataForConference:(NSString*)conferenceId;
 @end

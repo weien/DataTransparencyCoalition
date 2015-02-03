@@ -39,6 +39,7 @@
             [returnDict setObject:[conference objectForKey:key] forKey:key];
         }
         [returnDict setObject:@(YES) forKey:@"conferenceModeEnabled"];
+        [returnDict setObject:conference.objectId forKey:@"conferenceId"];
     }
     else {
         //For future development
@@ -46,6 +47,28 @@
     }
     
     return returnDict;
+}
+
+- (NSArray*) retrieveProgramDataForConference:(NSString*)conferenceId {
+    PFQuery *query = [PFQuery queryWithClassName:@"Program"];
+    [query whereKey:@"conference" equalTo:conferenceId];
+    
+    NSError* error = nil;
+    NSArray* dataFromParse = [query findObjects:&error];
+    if (error) {
+        NSLog(@"Error fetching metadata: %@", error);
+    }
+    
+    NSMutableArray* returnArr = [NSMutableArray array];
+    for (PFObject* obj in dataFromParse) {
+        NSMutableDictionary* dictToAdd = [NSMutableDictionary dictionary];
+        for (NSString * key in [obj allKeys]) {
+            [dictToAdd setObject:[obj objectForKey:key] forKey:key];
+        }
+        [returnArr addObject:dictToAdd];
+    }
+    
+    return returnArr;
 }
 
 @end
