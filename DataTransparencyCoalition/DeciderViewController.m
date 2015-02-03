@@ -48,6 +48,7 @@
     });
 }
 
+//thanks http://www.teehanlax.com/blog/custom-uiviewcontroller-transitions/
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                   presentingController:(UIViewController *)presenting
                                                                       sourceController:(UIViewController *)source {

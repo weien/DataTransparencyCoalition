@@ -10,5 +10,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TLTransitionAnimator : NSObject <UIViewControllerAnimatedTransitioning>
-
+//thanks http://www.teehanlax.com/blog/custom-uiviewcontroller-transitions/
 @end
