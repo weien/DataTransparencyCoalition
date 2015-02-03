@@ -60,8 +60,14 @@
     
     self.navigationItem.title = self.conferenceMetadata[@"hashtag"];
     [self.conferenceTitle setTitle:[self.conferenceMetadata[@"name"] uppercaseString] forState:UIControlStateNormal];
-    [self.conferenceDate setTitle:self.conferenceMetadata[@"date"] forState:UIControlStateNormal];
     [self.conferenceLocation setTitle:self.conferenceMetadata[@"location"] forState:UIControlStateNormal];
+    
+    NSDate* conferenceDate = self.conferenceMetadata[@"date"];
+    NSDateFormatter* dateFormatter = [DTCUtil sharedDateFormatter];
+    dateFormatter.dateFormat = @"MMMM dd";
+    NSString* dateSuffix = [DTCUtil daySuffixForDate:conferenceDate];
+    NSString* conferenceDateString = [NSString stringWithFormat:@"%@%@", [dateFormatter stringFromDate:conferenceDate], dateSuffix];
+    [self.conferenceDate setTitle:conferenceDateString forState:UIControlStateNormal];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

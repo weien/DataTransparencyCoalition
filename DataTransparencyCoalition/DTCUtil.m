@@ -21,10 +21,6 @@
     return [UIFont fontWithName:@"GloriolaStd-Italic" size:size];
 }
 
-+ (UIStoryboard*) currentStoryboard {
-    return [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-}
-
 /*    "GloriolaStd-Bold",
  "GloriolaStd-BoldItalic",
  "GloriolaStd-SemiBoldItalic",
@@ -32,6 +28,36 @@
  "GloriolaStd-Italic",
  "GloriolaStd-SemiBold"
  */
+
++ (UIStoryboard*) currentStoryboard {
+    return [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+}
+
+#pragma mark - dates
++ (NSDateFormatter*) sharedDateFormatter {
+    NSMutableDictionary* dictionary = [[NSThread currentThread] threadDictionary];
+    NSDateFormatter* dateFormatter = [dictionary objectForKey:@"SharedDateFormatter"];
+    if (dateFormatter == nil) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dictionary setObject:dateFormatter forKey:@"SharedDateFormatter"];
+    }
+    return dateFormatter;
+}
+
+//thanks http://stackoverflow.com/a/23273686/2284713
++ (NSString *)daySuffixForDate:(NSDate *)date {
+    NSInteger day_of_month = [[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:date] day];
+    switch (day_of_month) {
+        case 1:
+        case 21:
+        case 31: return @"st";
+        case 2:
+        case 22: return @"nd";
+        case 3:
+        case 23: return @"rd";
+        default: return @"th";
+    }
+}
 
 #pragma mark - plists
 + (void) saveDataToPlistWithComponent:(NSString*)component andInfo:(id)info {

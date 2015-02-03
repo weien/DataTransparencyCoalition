@@ -16,6 +16,10 @@
 
 + (UIStoryboard*) currentStoryboard;
 
+//dates
++ (NSDateFormatter*) sharedDateFormatter;
++ (NSString *)daySuffixForDate:(NSDate *)date;
+
 //plists
 + (void) saveDataToPlistWithComponent:(NSString*)component andInfo:(id)info;
 + (id) plistDataWithComponent:(NSString*)component;
