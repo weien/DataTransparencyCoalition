@@ -8,6 +8,11 @@
 
 #import "SpeakersViewController.h"
 
+@interface SpeakersViewController()
+@property (strong, nonatomic) IBOutlet UITableView *mainTableView;
+
+@end
+
 @implementation SpeakersViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
