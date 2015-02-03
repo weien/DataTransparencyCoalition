@@ -11,7 +11,7 @@
 @implementation TLTransitionAnimator
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
-    return 0.2f;
+    return 0.3f;
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
