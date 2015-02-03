@@ -33,7 +33,7 @@
     NSMutableDictionary* returnDict = [NSMutableDictionary dictionary];
     if (metadata[@"conferenceModeEnabled"]) {
         PFObject* conference = metadata[@"currentConference"];
-        NSLog(@"conference is %@", conference);
+        //NSLog(@"conference is %@", conference);
         
         for (NSString * key in [conference allKeys]) {
             [returnDict setObject:[conference objectForKey:key] forKey:key];
