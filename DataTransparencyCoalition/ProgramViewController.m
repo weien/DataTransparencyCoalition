@@ -49,19 +49,21 @@
             for (NSString* eventName in uniqueEventNames) {
                 NSArray* matchingItems = [programDataFromParse filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(eventName == %@)", eventName]];
                 NSArray* sortedMatchingItems = [matchingItems sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"speakerName" ascending:YES]]];
-                NSArray* peopleInSection = [NSArray array];
+                NSMutableArray* peopleInSection = [NSMutableArray array];
                 
                 NSArray* normalSpeakers = [sortedMatchingItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(isSponsor == nil && isSupport == nil)"]];
                 NSArray* supportSpeakers = [sortedMatchingItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(isSupport == YES)"]];
                 NSArray* sponsorSpeakers = [sortedMatchingItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(isSponsor == YES)"]];
-                
-                peopleInSection = [normalSpeakers arrayByAddingObjectsFromArray:supportSpeakers];
+
+                peopleInSection = [[normalSpeakers arrayByAddingObjectsFromArray:supportSpeakers] mutableCopy]; //combine, with normal speakers first
                 
                 ProgramSection* section = [ProgramSection new];
-                section.sectionItems = peopleInSection;
                 section.sectionTime = [peopleInSection firstObject][@"time"];
                 section.sectionName = eventName;
                 section.sectionSponsor = [sponsorSpeakers firstObject][@"speakerName"];
+                //remove any empty speakers (e.g. no speaker for "Registration")
+                [peopleInSection removeObjectsInArray:[peopleInSection filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(speakerName == nil)"]]];
+                section.sectionItems = peopleInSection;
                 
                 [sectionsToDisplay addObject:section];
             }
