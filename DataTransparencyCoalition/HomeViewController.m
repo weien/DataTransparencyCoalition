@@ -20,6 +20,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *conferenceDate;
 @property (strong, nonatomic) IBOutlet UIButton *conferenceLocation;
 
+@property (strong, nonatomic) NSDictionary *conferenceMetadata;
+
 @end
 
 @implementation HomeViewController
@@ -40,21 +42,26 @@
     self.conferenceTitle.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.conferenceTitle.titleLabel.textAlignment = NSTextAlignmentRight;
     
-    self.conferenceDate.titleLabel.font = [DTCUtil currentBoldFontWithSize:18];
+    self.conferenceDate.titleLabel.font = [DTCUtil currentBoldFontWithSize:15];
     [self.conferenceDate setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.conferenceDate.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.conferenceDate.titleLabel.textAlignment = NSTextAlignmentRight;//NSTextAlignmentCenter;
     
-    self.conferenceLocation.titleLabel.font = [DTCUtil currentBoldFontWithSize:18];
+    self.conferenceLocation.titleLabel.font = [DTCUtil currentBoldFontWithSize:15];
     [self.conferenceLocation setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.conferenceLocation.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.conferenceLocation.titleLabel.textAlignment = NSTextAlignmentRight;//NSTextAlignmentCenter;
+    
+    self.conferenceMetadata = [DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.navigationItem.title = @"#Conference";
+    self.navigationItem.title = self.conferenceMetadata[@"hashtag"];
+    [self.conferenceTitle setTitle:[self.conferenceMetadata[@"name"] uppercaseString] forState:UIControlStateNormal];
+    [self.conferenceDate setTitle:self.conferenceMetadata[@"date"] forState:UIControlStateNormal];
+    [self.conferenceLocation setTitle:self.conferenceMetadata[@"location"] forState:UIControlStateNormal];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
