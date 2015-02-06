@@ -15,6 +15,7 @@
 		646718D61A7FE6D40067C433 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646718D51A7FE6D40067C433 /* Images.xcassets */; };
 		646718D91A7FE6D40067C433 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 646718D71A7FE6D40067C433 /* LaunchScreen.xib */; };
 		646718E51A7FE6D40067C433 /* DataTransparencyCoalitionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 646718E41A7FE6D40067C433 /* DataTransparencyCoalitionTests.m */; };
+		64A00CF21A85659E00A19F1E /* CustomProgramCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A00CF11A85659E00A19F1E /* CustomProgramCell.m */; };
 		64D1F47C1A80867800DB6174 /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F47B1A80867800DB6174 /* TweetsViewController.m */; };
 		64D1F4831A811D6500DB6174 /* SpeakersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F4821A811D6500DB6174 /* SpeakersViewController.m */; };
 		64D1F4861A812C9000DB6174 /* ProgramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F4851A812C9000DB6174 /* ProgramViewController.m */; };
@@ -72,6 +73,8 @@
 		646718DE1A7FE6D40067C433 /* DataTransparencyCoalitionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataTransparencyCoalitionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		646718E31A7FE6D40067C433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		646718E41A7FE6D40067C433 /* DataTransparencyCoalitionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataTransparencyCoalitionTests.m; sourceTree = "<group>"; };
+		64A00CF01A85659E00A19F1E /* CustomProgramCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomProgramCell.h; sourceTree = "<group>"; };
+		64A00CF11A85659E00A19F1E /* CustomProgramCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomProgramCell.m; sourceTree = "<group>"; };
 		64D1F47A1A80867800DB6174 /* TweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
 		64D1F47B1A80867800DB6174 /* TweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
 		64D1F4811A811D6500DB6174 /* SpeakersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakersViewController.h; sourceTree = "<group>"; };
@@ -169,6 +172,7 @@
 				64FE12331A8031C4005767EA /* FrameworksHistory */,
 				64D1F47D1A80870800DB6174 /* Setup */,
 				64A4DF101A801A6C0071E55B /* Util */,
+				64A00CEF1A85657B00A19F1E /* Views */,
 				646718CC1A7FE6D40067C433 /* AppDelegate.h */,
 				646718CD1A7FE6D40067C433 /* AppDelegate.m */,
 				646718CF1A7FE6D40067C433 /* HomeViewController.h */,
@@ -218,6 +222,15 @@
 				646718E31A7FE6D40067C433 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		64A00CEF1A85657B00A19F1E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				64A00CF01A85659E00A19F1E /* CustomProgramCell.h */,
+				64A00CF11A85659E00A19F1E /* CustomProgramCell.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		64A4DF0D1A7FFB840071E55B /* Frameworks */ = {
@@ -413,6 +426,7 @@
 				6418D7A01A801DD80057C998 /* UIColor+Custom.m in Sources */,
 				64D1F4861A812C9000DB6174 /* ProgramViewController.m in Sources */,
 				64FE125B1A807A4D005767EA /* TLTransitionAnimator.m in Sources */,
+				64A00CF21A85659E00A19F1E /* CustomProgramCell.m in Sources */,
 				646718CB1A7FE6D40067C433 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

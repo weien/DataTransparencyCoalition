@@ -13,6 +13,7 @@
 #import "ParseWebService.h"
 #import "UIViewController+DTC.h"
 #import "ProgramSection.h"
+#import "CustomProgramCell.h"
 
 #define kProgramSectionHeight 50
 
@@ -32,6 +33,7 @@
     self.mainTableView.delegate = self;
     self.mainTableView.dataSource = self;
     self.mainTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    //self.mainTableView.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
     
     self.programData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentProgramData];
     if (!self.programData) {
@@ -90,7 +92,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CustomProgramCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     ProgramSection* currentSection = self.sectionData[indexPath.section];
     NSDictionary* currentSpeaker = currentSection.sectionItems[indexPath.row];
@@ -104,14 +106,14 @@
     style.headIndent = 10;
     [attributedString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [speakerText length])];
     
-    int fontSize = 12;
+    int fontSize = 14;
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor grayColorVeryDark] range:NSMakeRange(0, [speakerText length])];
     [attributedString addAttribute:NSFontAttributeName value:[DTCUtil currentMainFontWithSize:fontSize] range:NSMakeRange(0, [speakerText length])];
 //    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColorSun] range:[sectionText rangeOfString:sectionDateString]];
-    [attributedString addAttribute:NSFontAttributeName value:[DTCUtil currentMainFontWithSize:fontSize] range:[speakerText rangeOfString:speakerName]];
+    [attributedString addAttribute:NSFontAttributeName value:[DTCUtil currentBoldFontWithSize:fontSize] range:[speakerText rangeOfString:speakerName]];
     [attributedString addAttribute:NSFontAttributeName value:[DTCUtil currentMainFontWithSize:fontSize] range:[speakerText rangeOfString:speakerTitles]];
     
-    cell.textLabel.attributedText = attributedString;
+    cell.mainLabel.attributedText = attributedString;
 
     return cell;
 }
