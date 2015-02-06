@@ -29,6 +29,8 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    //TODO: We should check somewhere if it's a new conference; if so, wipe out the old conference data
+    
     self.spinner = [self startSpinner:self.spinner inView:self.view];
     dispatch_async(dispatch_queue_create("decideMetaData", NULL), ^{
         NSDictionary* metadata = [[ParseWebService sharedInstance] retrieveMetaData];
