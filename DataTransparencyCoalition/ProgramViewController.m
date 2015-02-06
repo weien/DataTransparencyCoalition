@@ -88,7 +88,6 @@
     }
 }
 
-
 #pragma mark - cells
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     ProgramSection* currentSection = self.sectionData[section];
@@ -174,7 +173,6 @@
     [sectionAttributedString addAttribute:NSFontAttributeName value:[DTCUtil currentBoldFontWithSize:sectionHeaderFontSize] range:[sectionText rangeOfString:sectionDateString]];
     [sectionAttributedString addAttribute:NSFontAttributeName value:[DTCUtil currentBoldFontWithSize:sectionHeaderFontSize] range:[sectionText rangeOfString:currentSection.sectionName]];
     [sectionAttributedString addAttribute:NSFontAttributeName value:[DTCUtil currentItalicFontWithSize:sectionHeaderFontSize] range:[sectionText rangeOfString:sponsorText]];
-    
     
     //TODO: http://stackoverflow.com/a/15399767/2284713 for dynamic sizing of these headers
     UIView* sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.frame), kProgramSectionHeight)];
