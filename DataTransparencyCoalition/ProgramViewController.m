@@ -14,7 +14,7 @@
 #import "UIViewController+DTC.h"
 #import "ProgramSection.h"
 
-#define kProgramSectionHeight 44
+#define kProgramSectionHeight 50
 
 @interface ProgramViewController() <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *mainTableView;
@@ -105,30 +105,31 @@
     NSDateFormatter* dateFormatter = [DTCUtil sharedDateFormatter];
     dateFormatter.dateFormat = @"h:mm a";
     NSString* sectionDateString = [dateFormatter stringFromDate:currentSection.sectionTime];
-    NSString* sectionText = [NSString stringWithFormat:@"%@ %@", sectionDateString, currentSection.sectionName];
+    NSString* sponsorText = @"";
 
     if (currentSection.sectionSponsor) {
-        sectionText = [NSString stringWithFormat:@"%@ %@", sectionText, currentSection.sectionSponsor];
+        sponsorText = [NSString stringWithFormat:@" sponsored by %@", currentSection.sectionSponsor];
     }
+    
+    NSString* sectionText = [NSString stringWithFormat:@"%@ %@%@", sectionDateString, currentSection.sectionName, sponsorText];
     NSMutableAttributedString* sectionAttributedString = [[NSMutableAttributedString alloc] initWithString:sectionText];
     NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
-    style.lineSpacing = -5;
+//    style.lineSpacing = 0;
     style.headIndent = 10;
     [sectionAttributedString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [sectionText length])];
 
-    int sectionHeaderFontSize = 12;
+    int sectionHeaderFontSize = 14;
+    [sectionAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor grayColorVeryDark] range:NSMakeRange(0, [sectionText length])];
+    [sectionAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColorSun] range:[sectionText rangeOfString:sectionDateString]];
     [sectionAttributedString addAttribute:NSFontAttributeName value:[DTCUtil currentBoldFontWithSize:sectionHeaderFontSize] range:[sectionText rangeOfString:sectionDateString]];
     [sectionAttributedString addAttribute:NSFontAttributeName value:[DTCUtil currentBoldFontWithSize:sectionHeaderFontSize] range:[sectionText rangeOfString:currentSection.sectionName]];
-    if (currentSection.sectionSponsor) {
-        [sectionAttributedString addAttribute:NSFontAttributeName value:[DTCUtil currentBoldFontWithSize:sectionHeaderFontSize] range:[sectionText rangeOfString:currentSection.sectionSponsor]];
-    }
+    [sectionAttributedString addAttribute:NSFontAttributeName value:[DTCUtil currentItalicFontWithSize:sectionHeaderFontSize] range:[sectionText rangeOfString:sponsorText]];
     
     UIView* sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.frame), kProgramSectionHeight)];
     sectionHeader.backgroundColor = [UIColor grayColorVeryLight];
     
     UILabel *sectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, CGRectGetWidth(sectionHeader.frame)-20, CGRectGetHeight(sectionHeader.frame))];
     sectionLabel.attributedText = sectionAttributedString;
-    sectionLabel.textColor = [UIColor grayColorVeryDark];
     sectionLabel.numberOfLines = 0;
     sectionLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [sectionHeader addSubview:sectionLabel];
