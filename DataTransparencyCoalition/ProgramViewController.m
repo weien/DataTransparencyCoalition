@@ -14,6 +14,8 @@
 #import "UIViewController+DTC.h"
 #import "ProgramSection.h"
 
+#define kProgramSectionHeight 44
+
 @interface ProgramViewController() <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *mainTableView;
 
@@ -100,16 +102,42 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     ProgramSection* currentSection = self.sectionData[section];
+    NSDateFormatter* dateFormatter = [DTCUtil sharedDateFormatter];
+    dateFormatter.dateFormat = @"h:mm a";
+    NSString* sectionDateString = [dateFormatter stringFromDate:currentSection.sectionTime];
+    NSString* sectionText = [NSString stringWithFormat:@"%@ %@", sectionDateString, currentSection.sectionName];
+
+    if (currentSection.sectionSponsor) {
+        sectionText = [NSString stringWithFormat:@"%@ %@", sectionText, currentSection.sectionSponsor];
+    }
+    NSMutableAttributedString* sectionAttributedString = [[NSMutableAttributedString alloc] initWithString:sectionText];
+    NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
+    style.lineSpacing = -5;
+    style.headIndent = 10;
+    [sectionAttributedString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [sectionText length])];
+
+    int sectionHeaderFontSize = 12;
+    [sectionAttributedString addAttribute:NSFontAttributeName value:[DTCUtil currentBoldFontWithSize:sectionHeaderFontSize] range:[sectionText rangeOfString:sectionDateString]];
+    [sectionAttributedString addAttribute:NSFontAttributeName value:[DTCUtil currentBoldFontWithSize:sectionHeaderFontSize] range:[sectionText rangeOfString:currentSection.sectionName]];
+    if (currentSection.sectionSponsor) {
+        [sectionAttributedString addAttribute:NSFontAttributeName value:[DTCUtil currentBoldFontWithSize:sectionHeaderFontSize] range:[sectionText rangeOfString:currentSection.sectionSponsor]];
+    }
     
-    UILabel *sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
-    sectionHeader.backgroundColor = [UIColor greenColor];
-    sectionHeader.text = currentSection.sectionName;
+    UIView* sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.frame), kProgramSectionHeight)];
+    sectionHeader.backgroundColor = [UIColor grayColorVeryLight];
+    
+    UILabel *sectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, CGRectGetWidth(sectionHeader.frame)-20, CGRectGetHeight(sectionHeader.frame))];
+    sectionLabel.attributedText = sectionAttributedString;
+    sectionLabel.textColor = [UIColor grayColorVeryDark];
+    sectionLabel.numberOfLines = 0;
+    sectionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [sectionHeader addSubview:sectionLabel];
     
     return sectionHeader;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 40;
+    return kProgramSectionHeight;
 }
 
 @end
