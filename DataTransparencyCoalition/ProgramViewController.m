@@ -34,7 +34,6 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.mainTableView.rowHeight = UITableViewAutomaticDimension;
-    //self.mainTableView.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
     self.mainTableView.backgroundColor = [UIColor grayColorVeryLight];
     
     self.programData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentProgramData];
@@ -79,9 +78,16 @@
             [self.mainTableView reloadData];
         });
     });
-    
-
 }
+
+//thanks https://gist.github.com/maicki/8d7b1cfb31733df51406
+- (void)viewDidLayoutSubviews {
+    self.mainTableView.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
+    if ([self.mainTableView respondsToSelector:@selector(layoutMargins)]) {
+        self.mainTableView.layoutMargins = UIEdgeInsetsMake(0, 10, 0, 0);
+    }
+}
+
 
 #pragma mark - cells
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -99,6 +105,12 @@
     cell.mainLabel.attributedText = [self attributedStringForCellWithData:currentSpeaker];
 //    cell.layer.borderColor = [UIColor purpleColor].CGColor;
 //    cell.layer.borderWidth = 1;
+    
+    //thanks https://gist.github.com/maicki/8d7b1cfb31733df51406
+    cell.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
+    if ([cell respondsToSelector:@selector(layoutMargins)]) {
+        cell.layoutMargins = UIEdgeInsetsMake(0, 10, 0, 0);
+    }
 
     return cell;
 }
