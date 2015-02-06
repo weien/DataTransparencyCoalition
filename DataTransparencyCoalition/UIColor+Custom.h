@@ -10,6 +10,8 @@
 
 @interface UIColor (Custom)
 + (UIColor*) orangeColorSun;
++ (UIColor*) orangeColorTacao;
 + (UIColor*) grayColorVeryLight;
 + (UIColor*) grayColorVeryDark;
++ (UIColor*) blueColorBlueDeFrance;
 @end
