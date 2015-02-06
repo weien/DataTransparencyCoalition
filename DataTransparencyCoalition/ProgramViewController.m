@@ -33,7 +33,9 @@
     self.mainTableView.delegate = self;
     self.mainTableView.dataSource = self;
     self.mainTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.mainTableView.rowHeight = UITableViewAutomaticDimension;
     //self.mainTableView.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
+    self.mainTableView.backgroundColor = [UIColor grayColorVeryLight];
     
     self.programData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentProgramData];
     if (!self.programData) {
@@ -81,10 +83,7 @@
 
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.sectionData.count;
-}
-
+#pragma mark - cells
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     ProgramSection* currentSection = self.sectionData[section];
     return currentSection.sectionItems.count;
@@ -96,8 +95,27 @@
     
     ProgramSection* currentSection = self.sectionData[indexPath.section];
     NSDictionary* currentSpeaker = currentSection.sectionItems[indexPath.row];
-    NSString* speakerName = currentSpeaker[@"speakerName"];
-    NSString* speakerTitles = currentSpeaker[@"speakerTitles"];
+    
+    cell.mainLabel.attributedText = [self attributedStringForCellWithData:currentSpeaker];
+//    cell.layer.borderColor = [UIColor purpleColor].CGColor;
+//    cell.layer.borderWidth = 1;
+
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ProgramSection* currentSection = self.sectionData[indexPath.section];
+    NSDictionary* currentSpeaker = currentSection.sectionItems[indexPath.row];
+    
+    CGRect paragraphRect = [[self attributedStringForCellWithData:currentSpeaker] boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.view.frame)-20, CGFLOAT_MAX)
+                                 options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                 context:nil];
+    return CGRectGetHeight(paragraphRect)+20+1; //+1 to avoid rounding errors
+}
+
+- (NSAttributedString*) attributedStringForCellWithData:(NSDictionary*)cellData {
+    NSString* speakerName = cellData[@"speakerName"];
+    NSString* speakerTitles = cellData[@"speakerTitles"];
     
     NSString* speakerText = [NSString stringWithFormat:@"%@, %@", speakerName, speakerTitles];
     NSMutableAttributedString* attributedString = [[NSMutableAttributedString alloc] initWithString:speakerText];
@@ -109,13 +127,15 @@
     int fontSize = 14;
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor grayColorVeryDark] range:NSMakeRange(0, [speakerText length])];
     [attributedString addAttribute:NSFontAttributeName value:[DTCUtil currentMainFontWithSize:fontSize] range:NSMakeRange(0, [speakerText length])];
-//    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColorSun] range:[sectionText rangeOfString:sectionDateString]];
     [attributedString addAttribute:NSFontAttributeName value:[DTCUtil currentBoldFontWithSize:fontSize] range:[speakerText rangeOfString:speakerName]];
     [attributedString addAttribute:NSFontAttributeName value:[DTCUtil currentMainFontWithSize:fontSize] range:[speakerText rangeOfString:speakerTitles]];
     
-    cell.mainLabel.attributedText = attributedString;
+    return attributedString;
+}
 
-    return cell;
+#pragma mark - sections
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.sectionData.count;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
