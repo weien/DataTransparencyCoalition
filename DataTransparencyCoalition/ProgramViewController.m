@@ -94,8 +94,24 @@
     
     ProgramSection* currentSection = self.sectionData[indexPath.section];
     NSDictionary* currentSpeaker = currentSection.sectionItems[indexPath.row];
+    NSString* speakerName = currentSpeaker[@"speakerName"];
+    NSString* speakerTitles = currentSpeaker[@"speakerTitles"];
     
-    cell.textLabel.text = currentSpeaker[@"speakerName"];
+    NSString* speakerText = [NSString stringWithFormat:@"%@, %@", speakerName, speakerTitles];
+    NSMutableAttributedString* attributedString = [[NSMutableAttributedString alloc] initWithString:speakerText];
+    NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
+    //    style.lineSpacing = 0;
+    style.headIndent = 10;
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [speakerText length])];
+    
+    int fontSize = 12;
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor grayColorVeryDark] range:NSMakeRange(0, [speakerText length])];
+    [attributedString addAttribute:NSFontAttributeName value:[DTCUtil currentMainFontWithSize:fontSize] range:NSMakeRange(0, [speakerText length])];
+//    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColorSun] range:[sectionText rangeOfString:sectionDateString]];
+    [attributedString addAttribute:NSFontAttributeName value:[DTCUtil currentMainFontWithSize:fontSize] range:[speakerText rangeOfString:speakerName]];
+    [attributedString addAttribute:NSFontAttributeName value:[DTCUtil currentMainFontWithSize:fontSize] range:[speakerText rangeOfString:speakerTitles]];
+    
+    cell.textLabel.attributedText = attributedString;
 
     return cell;
 }
@@ -125,6 +141,8 @@
     [sectionAttributedString addAttribute:NSFontAttributeName value:[DTCUtil currentBoldFontWithSize:sectionHeaderFontSize] range:[sectionText rangeOfString:currentSection.sectionName]];
     [sectionAttributedString addAttribute:NSFontAttributeName value:[DTCUtil currentItalicFontWithSize:sectionHeaderFontSize] range:[sectionText rangeOfString:sponsorText]];
     
+    
+    //TODO: http://stackoverflow.com/a/15399767/2284713 for dynamic sizing of these headers
     UIView* sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.frame), kProgramSectionHeight)];
     sectionHeader.backgroundColor = [UIColor grayColorVeryLight];
     
@@ -139,6 +157,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return kProgramSectionHeight;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
