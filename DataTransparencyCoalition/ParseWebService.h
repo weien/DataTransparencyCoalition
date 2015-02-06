@@ -12,4 +12,5 @@
 + (ParseWebService*) sharedInstance;
 - (NSDictionary*) retrieveMetaData;
 - (NSArray*) retrieveProgramDataForConference:(NSString*)conferenceId;
+- (NSArray*) retrieveSpeakersDataForConference:(NSString*)conferenceId;
 @end

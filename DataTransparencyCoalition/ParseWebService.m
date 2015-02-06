@@ -72,4 +72,27 @@
     return returnArr;
 }
 
+- (NSArray*) retrieveSpeakersDataForConference:(NSString*)conferenceId {
+    PFQuery *query = [PFQuery queryWithClassName:@"Speakers"];
+    PFObject *pointerToConference = [PFObject objectWithoutDataWithClassName:@"Conference" objectId:conferenceId];
+    [query whereKey:@"conference" equalTo:pointerToConference];
+    
+    NSError* error = nil;
+    NSArray* dataFromParse = [query findObjects:&error];
+    if (error) {
+        NSLog(@"Error fetching speaker data: %@", error);
+    }
+    
+    NSMutableArray* returnArr = [NSMutableArray array];
+    for (PFObject* obj in dataFromParse) {
+        NSMutableDictionary* dictToAdd = [NSMutableDictionary dictionary];
+        for (NSString * key in [obj allKeys]) {
+            [dictToAdd setObject:[obj objectForKey:key] forKey:key];
+        }
+        [returnArr addObject:dictToAdd];
+    }
+    
+    return returnArr;
+}
+
 @end
