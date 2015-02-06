@@ -16,6 +16,7 @@
 		646718D91A7FE6D40067C433 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 646718D71A7FE6D40067C433 /* LaunchScreen.xib */; };
 		646718E51A7FE6D40067C433 /* DataTransparencyCoalitionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 646718E41A7FE6D40067C433 /* DataTransparencyCoalitionTests.m */; };
 		64A00CF21A85659E00A19F1E /* CustomProgramCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A00CF11A85659E00A19F1E /* CustomProgramCell.m */; };
+		64A00CF51A857B8D00A19F1E /* CustomSpeakerTileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A00CF41A857B8D00A19F1E /* CustomSpeakerTileCell.m */; };
 		64D1F47C1A80867800DB6174 /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F47B1A80867800DB6174 /* TweetsViewController.m */; };
 		64D1F4831A811D6500DB6174 /* SpeakersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F4821A811D6500DB6174 /* SpeakersViewController.m */; };
 		64D1F4861A812C9000DB6174 /* ProgramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F4851A812C9000DB6174 /* ProgramViewController.m */; };
@@ -75,6 +76,8 @@
 		646718E41A7FE6D40067C433 /* DataTransparencyCoalitionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataTransparencyCoalitionTests.m; sourceTree = "<group>"; };
 		64A00CF01A85659E00A19F1E /* CustomProgramCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomProgramCell.h; sourceTree = "<group>"; };
 		64A00CF11A85659E00A19F1E /* CustomProgramCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomProgramCell.m; sourceTree = "<group>"; };
+		64A00CF31A857B8D00A19F1E /* CustomSpeakerTileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSpeakerTileCell.h; sourceTree = "<group>"; };
+		64A00CF41A857B8D00A19F1E /* CustomSpeakerTileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSpeakerTileCell.m; sourceTree = "<group>"; };
 		64D1F47A1A80867800DB6174 /* TweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
 		64D1F47B1A80867800DB6174 /* TweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
 		64D1F4811A811D6500DB6174 /* SpeakersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakersViewController.h; sourceTree = "<group>"; };
@@ -229,6 +232,8 @@
 			children = (
 				64A00CF01A85659E00A19F1E /* CustomProgramCell.h */,
 				64A00CF11A85659E00A19F1E /* CustomProgramCell.m */,
+				64A00CF31A857B8D00A19F1E /* CustomSpeakerTileCell.h */,
+				64A00CF41A857B8D00A19F1E /* CustomSpeakerTileCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				64FE12511A804168005767EA /* ParseWebService.m in Sources */,
 				646718D11A7FE6D40067C433 /* HomeViewController.m in Sources */,
 				646718CE1A7FE6D40067C433 /* AppDelegate.m in Sources */,
+				64A00CF51A857B8D00A19F1E /* CustomSpeakerTileCell.m in Sources */,
 				64FE12581A806E37005767EA /* UIViewController+DTC.m in Sources */,
 				64FE12551A806CF3005767EA /* DeciderViewController.m in Sources */,
 				64D1F47C1A80867800DB6174 /* TweetsViewController.m in Sources */,
