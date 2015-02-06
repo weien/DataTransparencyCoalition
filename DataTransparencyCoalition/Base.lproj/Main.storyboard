@@ -441,6 +441,11 @@
                                             <constraint firstItem="mLS-Er-pTs" firstAttribute="top" secondItem="HuE-te-rkp" secondAttribute="bottom" id="u8t-zd-fNT"/>
                                             <constraint firstAttribute="bottom" secondItem="M8k-yi-cOt" secondAttribute="bottom" id="xlE-F9-ivR"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="speakerImage" destination="HuE-te-rkp" id="bsQ-Aa-pja"/>
+                                            <outlet property="speakerName" destination="mLS-Er-pTs" id="4z5-W5-KbT"/>
+                                            <outlet property="speakerTitle" destination="M8k-yi-cOt" id="2JU-et-g4y"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -454,6 +459,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lee-hY-wTz"/>
+                    <connections>
+                        <outlet property="mainCollectionView" destination="QGb-OR-BA9" id="TEo-Vv-yxR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpc-EO-aIg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

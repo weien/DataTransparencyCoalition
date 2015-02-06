@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomSpeakerTileCell : UICollectionViewCell
+@property (strong, nonatomic) IBOutlet UIImageView *speakerImage;
+@property (strong, nonatomic) IBOutlet UILabel *speakerName;
+@property (strong, nonatomic) IBOutlet UILabel *speakerTitle;
 
 @end
