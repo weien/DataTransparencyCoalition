@@ -14,6 +14,7 @@
 #import "UIViewController+DTC.h"
 #import "ProgramSection.h"
 #import "CustomProgramCell.h"
+#import "IndividualViewController.h"
 
 #define kProgramSectionHeight 50
 
@@ -23,6 +24,8 @@
 @property (strong, nonatomic) UIActivityIndicatorView* spinner;
 @property (strong, nonatomic) NSArray *programData;
 @property (strong, nonatomic) NSArray *sectionData;
+@property (strong, nonatomic) NSArray *speakersData;
+@property (strong, nonatomic) IndividualViewController *individualVC;
 
 @end
 
@@ -196,6 +199,45 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    ProgramSection* currentSection = self.sectionData[indexPath.section];
+    NSDictionary* currentSpeaker = currentSection.sectionItems[indexPath.row];
+    NSString* speakerName = currentSpeaker[@"speakerName"];
+    
+    self.speakersData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentSpeakersData];
+    if (!self.speakersData) {
+        self.spinner = [self startSpinner:self.spinner inView:self.view];
+        dispatch_async(dispatch_queue_create("getSpeakersDataFromProgram", NULL), ^{
+            NSArray* speakersDataFromParse = [[ParseWebService sharedInstance] retrieveSpeakersDataForConference:[DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self stopSpinner:self.spinner];
+                
+                [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
+                self.speakersData = speakersDataFromParse;
+                [self attemptToViewSpeakerWithName:speakerName];
+            });
+        });
+    }
+    else {
+        [self attemptToViewSpeakerWithName:speakerName];
+    }
+}
+
+- (void) attemptToViewSpeakerWithName:(NSString*)name {
+//    NSArray* matchingItems = [self.speakersData filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(eventName == %@)", eventName]];
+    for (NSDictionary* speaker in self.speakersData) {
+        NSString* combinedSpeakerName = [NSString stringWithFormat:@"%@ %@", speaker[@"firstName"], speaker[@"lastName"]];
+        if ([combinedSpeakerName isEqualToString:name]) {
+            if (!self.individualVC) {
+                NSString* identifier = @"IndividualViewController";
+                UIStoryboard* storyboard = [DTCUtil currentStoryboard];
+                self.individualVC = [storyboard instantiateViewControllerWithIdentifier:identifier];
+            }
+            self.individualVC.speakerData = speaker;
+            self.individualVC.speakerImage = nil;
+            [self.navigationController pushViewController:self.individualVC animated:YES];
+        }
+    }
 }
 
 @end
