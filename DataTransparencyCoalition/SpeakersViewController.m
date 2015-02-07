@@ -80,17 +80,6 @@
     cell.speakerName.text = [[NSString stringWithFormat:@"%@ %@", currentData[@"firstName"], currentData[@"lastName"]] uppercaseString];
     cell.speakerTitle.text = currentData[@"title"];
     
-    cell.speakerImage.clipsToBounds = NO;
-    cell.speakerImage.layer.cornerRadius = CGRectGetWidth(cell.speakerImage.frame)/2;
-    cell.speakerImage.layer.masksToBounds = YES;
-    cell.speakerImage.layer.borderWidth = 5.0f;
-    cell.speakerImage.layer.borderColor = [UIColor grayColorThunder].CGColor;
-    
-    cell.speakerName.font = [DTCUtil currentBoldFontWithSize:14];
-    cell.speakerName.textColor = [UIColor grayColorVeryDark];
-    cell.speakerTitle.font = [DTCUtil currentMainFontWithSize:12];
-    cell.speakerTitle.textColor = [UIColor blueColorBlueDeFrance];
-    
     return cell;
 }
 
@@ -105,6 +94,6 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+
 }
 @end
