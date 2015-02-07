@@ -8,6 +8,12 @@
 
 #import "IndividualViewController.h"
 
+@interface IndividualViewController()
+@property (strong, nonatomic) IBOutlet UITextView *mainTextView;
+@property (strong, nonatomic) IBOutlet UIImageView *mainImageView;
+
+@end
+
 @implementation IndividualViewController
 
 @end

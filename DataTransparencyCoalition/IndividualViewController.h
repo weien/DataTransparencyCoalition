@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface IndividualViewController : UIViewController
-
+@property (nonatomic, strong) NSDictionary* speakerData;
+@property (nonatomic, strong) UIImage* speakerImage;
 @end
