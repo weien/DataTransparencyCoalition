@@ -38,7 +38,7 @@
     self.mainCollectionView.backgroundColor = [UIColor grayColorVeryLight];
     
     float cellWidth = CGRectGetWidth(self.view.frame)/2;
-    self.customLayout.itemSize = CGSizeMake(cellWidth, cellWidth*1.1);
+    self.customLayout.itemSize = CGSizeMake(cellWidth, cellWidth*1.05);
     self.customLayout.minimumInteritemSpacing = 0;
     self.customLayout.minimumLineSpacing = 0;
     
