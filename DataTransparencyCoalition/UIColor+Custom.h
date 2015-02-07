@@ -12,6 +12,8 @@
 + (UIColor*) orangeColorSun;
 + (UIColor*) orangeColorTacao;
 + (UIColor*) grayColorVeryLight;
++ (UIColor*) grayColorMountainMist;
++ (UIColor*) grayColorThunder;
 + (UIColor*) grayColorVeryDark;
 + (UIColor*) blueColorBlueDeFrance;
 @end

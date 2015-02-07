@@ -21,6 +21,14 @@
     return [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
 }
 
++ (UIColor*) grayColorMountainMist {
+    return [UIColor colorWithRed:146/255.0 green:146/255.0 blue:146/255.0 alpha:255/255.0];
+}
+
++ (UIColor*) grayColorThunder {
+    return [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1];
+}
+
 + (UIColor*) grayColorVeryDark {
     return [UIColor colorWithRed:0.18 green:0.2 blue:0.21 alpha:1];
 }
