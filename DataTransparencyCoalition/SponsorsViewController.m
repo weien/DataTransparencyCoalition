@@ -14,4 +14,10 @@
 
 @implementation SponsorsViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.navigationItem.title = @"Program";
+}
+
 @end

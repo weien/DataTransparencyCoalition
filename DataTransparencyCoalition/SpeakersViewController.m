@@ -28,6 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"Speakers";
+    
     self.mainCollectionView.delegate = self;
     self.mainCollectionView.dataSource = self;
     self.mainCollectionView.backgroundColor = [UIColor grayColorVeryLight];
