@@ -48,9 +48,10 @@
         NSArray* speakersDataFromParse = [[ParseWebService sharedInstance] retrieveSpeakersDataForConference:[DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
-            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
+            NSArray* sortedSpeakers = [speakersDataFromParse sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES]]];
+            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSpeakersData andInfo:sortedSpeakers];
             
-            self.speakersData = speakersDataFromParse;
+            self.speakersData = sortedSpeakers;
             [self.mainCollectionView reloadData];
         });
     });
@@ -74,7 +75,7 @@
         }
     }];
     
-    cell.speakerName.text = [currentData[@"name"] uppercaseString];
+    cell.speakerName.text = [[NSString stringWithFormat:@"%@ %@", currentData[@"firstName"], currentData[@"lastName"]] uppercaseString];
     cell.speakerTitle.text = currentData[@"title"];
     
     cell.speakerImage.clipsToBounds = NO;
