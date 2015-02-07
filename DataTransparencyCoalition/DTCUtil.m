@@ -70,7 +70,7 @@
 }
 
 + (id) plistDataWithComponent:(NSString*)component {
-    NSError* error = nil;
+//    NSError* error = nil;
     NSString *destinationPath = [self destinationPathWithComponent:component];
     NSData *plistData = [NSData dataWithContentsOfFile:destinationPath];
 //    NSPropertyListSerialization* serializedPlist = nil;
@@ -83,7 +83,6 @@
     }
     
     return returnData; //this could be... ANYTHING 8D
-//    return [NSDictionary dictionaryWithContentsOfFile:destinationPath];
 }
 
 + (NSString*) destinationPathWithComponent:(NSString*)component {
