@@ -41,8 +41,6 @@
     self.customLayout.itemSize = CGSizeMake(cellWidth, cellWidth*1.1);
     self.customLayout.minimumInteritemSpacing = 0;
     self.customLayout.minimumLineSpacing = 0;
-
-    //for individual speaker pages, use textview so we can get free URL detection
     
     self.speakersData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentSpeakersData];
     if (!self.speakersData) {
