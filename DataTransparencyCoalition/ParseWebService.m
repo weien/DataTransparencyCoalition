@@ -64,7 +64,14 @@
     for (PFObject* obj in dataFromParse) {
         NSMutableDictionary* dictToAdd = [NSMutableDictionary dictionary];
         for (NSString * key in [obj allKeys]) {
-            [dictToAdd setObject:[obj objectForKey:key] forKey:key];
+            id subObj = [obj objectForKey:key];
+            if ([subObj isKindOfClass:[PFObject class]]) {
+                PFObject* pfObj = (PFObject*)subObj;
+                [dictToAdd setObject:pfObj.objectId forKey:key];
+            }
+            else {
+                [dictToAdd setObject:[obj objectForKey:key] forKey:key];
+            }
         }
         [returnArr addObject:dictToAdd];
     }
@@ -87,7 +94,18 @@
     for (PFObject* obj in dataFromParse) {
         NSMutableDictionary* dictToAdd = [NSMutableDictionary dictionary];
         for (NSString * key in [obj allKeys]) {
-            [dictToAdd setObject:[obj objectForKey:key] forKey:key];
+            id subObj = [obj objectForKey:key];
+            if ([subObj isKindOfClass:[PFObject class]]) {
+                PFObject* pfObj = (PFObject*)subObj;
+                [dictToAdd setObject:pfObj.objectId forKey:key];
+            }
+            else if ([subObj isKindOfClass:[PFFile class]]) {
+                PFFile* pfFile = (PFFile*)subObj;
+                [dictToAdd setObject:pfFile.url forKey:key];
+            }
+            else {
+                [dictToAdd setObject:[obj objectForKey:key] forKey:key];
+            }
         }
         [returnArr addObject:dictToAdd];
     }

@@ -61,20 +61,28 @@
 
 #pragma mark - plists
 + (void) saveDataToPlistWithComponent:(NSString*)component andInfo:(id)info {
+    NSData* dataToSave = [NSKeyedArchiver archivedDataWithRootObject:info];
     NSString *destinationPath = [self destinationPathWithComponent:component];
-    [info writeToFile:destinationPath atomically:YES];
+    BOOL success = [dataToSave writeToFile:destinationPath atomically:YES];
+    if (!success) {
+        NSLog(@"Write to file failed for %@!", component);
+    }
 }
 
 + (id) plistDataWithComponent:(NSString*)component {
     NSError* error = nil;
     NSString *destinationPath = [self destinationPathWithComponent:component];
     NSData *plistData = [NSData dataWithContentsOfFile:destinationPath];
-    NSPropertyListSerialization* serializedPlist = nil;
+//    NSPropertyListSerialization* serializedPlist = nil;
+//    if (plistData) {
+//        serializedPlist = [NSPropertyListSerialization propertyListWithData:plistData options:NSPropertyListImmutable format:0 error:&error];
+//    }
+    id returnData = nil;
     if (plistData) {
-        serializedPlist = [NSPropertyListSerialization propertyListWithData:plistData options:NSPropertyListImmutable format:0 error:&error];
+        returnData = [NSKeyedUnarchiver unarchiveObjectWithData:plistData];
     }
     
-    return serializedPlist; //this could be... ANYTHING 8D
+    return returnData; //this could be... ANYTHING 8D
 //    return [NSDictionary dictionaryWithContentsOfFile:destinationPath];
 }
 
