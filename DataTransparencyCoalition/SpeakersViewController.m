@@ -18,6 +18,7 @@
 
 @interface SpeakersViewController() <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UICollectionView *mainCollectionView;
+@property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *customLayout;
 @property (strong, nonatomic) UIActivityIndicatorView* spinner;
 @property (strong, nonatomic) NSArray *speakersData;
 
@@ -29,7 +30,11 @@
     
     self.mainCollectionView.delegate = self;
     self.mainCollectionView.dataSource = self;
-    self.mainCollectionView.backgroundColor = [UIColor whiteColor];
+    self.mainCollectionView.backgroundColor = [UIColor grayColorVeryLight];
+    
+    self.customLayout.itemSize = CGSizeMake(CGRectGetWidth(self.view.frame)/2, CGRectGetWidth(self.view.frame)/2);
+    self.customLayout.minimumInteritemSpacing = 0;
+    self.customLayout.minimumLineSpacing = 0;
 
     //for individual speaker pages, use textview so we can get free URL detection
     
@@ -71,13 +76,23 @@
     cell.speakerName.text = currentData[@"name"];
     cell.speakerTitle.text = currentData[@"title"];
     
+    cell.speakerImage.clipsToBounds = NO;
     cell.speakerImage.layer.cornerRadius = CGRectGetWidth(cell.speakerImage.frame)/2;
     cell.speakerImage.layer.masksToBounds = YES;
-    cell.speakerImage.layer.borderWidth = 10;
-    cell.speakerImage.layer.borderColor = [UIColor grayColorVeryLight].CGColor;
-    
+    cell.speakerImage.layer.borderWidth = 5.0f;
+    cell.speakerImage.layer.borderColor = [UIColor grayColorThunder].CGColor;
     
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    CustomSpeakerTileCell *cell = (CustomSpeakerTileCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    cell.speakerImage.layer.borderColor = [UIColor grayColorMountainMist].CGColor;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    CustomSpeakerTileCell *cell = (CustomSpeakerTileCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    cell.speakerImage.layer.borderColor = [UIColor grayColorThunder].CGColor;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
