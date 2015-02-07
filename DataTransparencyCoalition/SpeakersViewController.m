@@ -14,14 +14,16 @@
 #import "UIViewController+DTC.h"
 #import "CustomSpeakerTileCell.h"
 #import "UIImageView+WebCache.h"
+#import "IndividualViewController.h"
 
-#import <Parse/Parse.h>
+//#import <Parse/Parse.h>
 
 @interface SpeakersViewController() <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UICollectionView *mainCollectionView;
 @property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *customLayout;
 @property (strong, nonatomic) UIActivityIndicatorView* spinner;
 @property (strong, nonatomic) NSArray *speakersData;
+@property (strong, nonatomic) IndividualViewController *individualVC;
 
 @end
 
@@ -114,6 +116,16 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
+    NSDictionary* currentData = self.speakersData[[indexPath row]];
+    CustomSpeakerTileCell* currentCell = (CustomSpeakerTileCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    
+    if (!self.individualVC) {
+        NSString* identifier = @"IndividualViewController";
+        UIStoryboard* storyboard = [DTCUtil currentStoryboard];
+        self.individualVC = [storyboard instantiateViewControllerWithIdentifier:identifier];
+    }
+    self.individualVC.speakerData = currentData;
+    self.individualVC.speakerImage = currentCell.speakerImage.image;
+    [self.navigationController pushViewController:self.individualVC animated:YES];
 }
 @end

@@ -241,7 +241,7 @@
         <!--Individual View Controller-->
         <scene sceneID="2Gx-jt-EOP">
             <objects>
-                <viewController id="Kf9-Aa-71r" customClass="IndividualViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="IndividualViewController" id="Kf9-Aa-71r" customClass="IndividualViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pg0-yy-2Kv"/>
                         <viewControllerLayoutGuide type="bottom" id="X7c-8a-Ukv"/>
@@ -249,37 +249,8 @@
                     <view key="view" contentMode="scaleToFill" id="0VN-Dd-WcH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDE-jR-f3e">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="845-od-iht">
-                                <rect key="frame" x="0.0" y="64" width="110" height="110"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="110" id="7A1-oq-wMx"/>
-                                    <constraint firstAttribute="height" constant="110" id="Q9z-EI-eNA"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="XDE-jR-f3e" secondAttribute="bottom" id="3es-mn-hbg"/>
-                            <constraint firstItem="XDE-jR-f3e" firstAttribute="leading" secondItem="0VN-Dd-WcH" secondAttribute="leading" id="KHn-N4-sYL"/>
-                            <constraint firstItem="845-od-iht" firstAttribute="leading" secondItem="0VN-Dd-WcH" secondAttribute="leading" id="OKy-21-U3p"/>
-                            <constraint firstItem="845-od-iht" firstAttribute="top" secondItem="pg0-yy-2Kv" secondAttribute="bottom" id="Sme-bi-1hQ"/>
-                            <constraint firstAttribute="trailing" secondItem="XDE-jR-f3e" secondAttribute="trailing" id="azc-22-iu5"/>
-                            <constraint firstItem="XDE-jR-f3e" firstAttribute="top" secondItem="0VN-Dd-WcH" secondAttribute="top" id="un8-r5-ryl"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="mainImageView" destination="845-od-iht" id="jEm-ic-IMr"/>
-                        <outlet property="mainTextView" destination="XDE-jR-f3e" id="k3S-pz-4cq"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wX0-up-I2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -598,6 +569,6 @@
         <image name="tweets_icon" width="30" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OXo-rV-7m0"/>
+        <segue reference="Did-A5-lnx"/>
     </inferredMetricsTieBreakers>
 </document>
