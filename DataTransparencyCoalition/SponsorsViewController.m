@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Program";
+    self.navigationItem.title = @"Sponsors";
 }
 
 @end
