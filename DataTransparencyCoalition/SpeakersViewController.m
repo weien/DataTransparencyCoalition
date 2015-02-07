@@ -32,7 +32,8 @@
     self.mainCollectionView.dataSource = self;
     self.mainCollectionView.backgroundColor = [UIColor grayColorVeryLight];
     
-    self.customLayout.itemSize = CGSizeMake(CGRectGetWidth(self.view.frame)/2, CGRectGetWidth(self.view.frame)/2);
+    float cellWidth = CGRectGetWidth(self.view.frame)/2;
+    self.customLayout.itemSize = CGSizeMake(cellWidth, cellWidth*1.1);
     self.customLayout.minimumInteritemSpacing = 0;
     self.customLayout.minimumLineSpacing = 0;
 
@@ -73,7 +74,7 @@
         }
     }];
     
-    cell.speakerName.text = currentData[@"name"];
+    cell.speakerName.text = [currentData[@"name"] uppercaseString];
     cell.speakerTitle.text = currentData[@"title"];
     
     cell.speakerImage.clipsToBounds = NO;
@@ -81,6 +82,11 @@
     cell.speakerImage.layer.masksToBounds = YES;
     cell.speakerImage.layer.borderWidth = 5.0f;
     cell.speakerImage.layer.borderColor = [UIColor grayColorThunder].CGColor;
+    
+    cell.speakerName.font = [DTCUtil currentBoldFontWithSize:14];
+    cell.speakerName.textColor = [UIColor grayColorVeryDark];
+    cell.speakerTitle.font = [DTCUtil currentMainFontWithSize:12];
+    cell.speakerTitle.textColor = [UIColor blueColorBlueDeFrance];
     
     return cell;
 }
