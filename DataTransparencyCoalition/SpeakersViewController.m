@@ -13,6 +13,7 @@
 #import "ParseWebService.h"
 #import "UIViewController+DTC.h"
 #import "CustomSpeakerTileCell.h"
+#import "UIImageView+WebCache.h"
 
 #import <Parse/Parse.h>
 
@@ -67,15 +68,34 @@
     CustomSpeakerTileCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     NSDictionary* currentData = self.speakersData[[indexPath row]];
     
-    PFFile* speakerImageFile = currentData[@"picture"];
-    [speakerImageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if (!error) {
-            cell.speakerImage.image = [UIImage imageWithData:data];
-        }
-        else {
-            NSLog(@"Error downloading speaker image: %@", error);
-        }
-    }];
+    cell.speakerImage.image = nil;
+    
+    NSString* speakerURL = currentData[@"picture"];
+//    dispatch_async(dispatch_queue_create("getPicture", NULL), ^{
+//        NSData* pictureData = [NSData dataWithContentsOfURL:[NSURL URLWithString:speakerURL]];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            CustomSpeakerTileCell* updateCell = (CustomSpeakerTileCell*)[collectionView cellForItemAtIndexPath:indexPath];
+//            if (updateCell) {
+//                cell.speakerImage.image = [UIImage imageWithData:pictureData];
+//            }
+//        });
+//    });
+    
+    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:speakerURL] options:SDWebImageRetryFailed
+                                                   progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                                   }
+                                                  completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                                      cell.speakerImage.image = image;
+                                                  }];
+    
+//    [speakerImageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+//        if (!error) {
+//            cell.speakerImage.image = [UIImage imageWithData:data];
+//        }
+//        else {
+//            NSLog(@"Error downloading speaker image: %@", error);
+//        }
+//    }];
     
     cell.speakerName.text = [[NSString stringWithFormat:@"%@ %@", currentData[@"firstName"], currentData[@"lastName"]] uppercaseString];
     cell.speakerTitle.text = currentData[@"title"];
