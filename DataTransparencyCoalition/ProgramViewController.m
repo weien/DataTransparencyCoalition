@@ -44,59 +44,68 @@
     
     self.programData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentProgramData];
     if (!self.programData) {
+        //spinner, then go get the data
         self.spinner = [self startSpinner:self.spinner inView:self.view];
+    }
+    else {
+        //display the data we have, but still go get the data
+        [self sortAndDisplayData];
     }
     dispatch_async(dispatch_queue_create("getProgramData", NULL), ^{
         NSArray* programDataFromParse = [[ParseWebService sharedInstance] retrieveProgramDataForConference:[DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
             [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentProgramData andInfo:programDataFromParse];
-            
-            //TODO: everything following, we may want to move into a separate method, that's also called after pulling this data from plist
-            
-            NSArray* allEventNames = [programDataFromParse valueForKey:@"eventName"];
-            NSArray* uniqueEventNames = [[NSSet setWithArray:allEventNames] allObjects];
-            
-            NSMutableArray* sectionsToDisplay = [NSMutableArray array];
-            for (NSString* eventName in uniqueEventNames) {
-                NSArray* matchingItems = [programDataFromParse filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(eventName == %@)", eventName]];
-                NSArray* sortedMatchingItems = [matchingItems sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"speakerName" ascending:YES]]];
-                NSMutableArray* peopleInSection = [NSMutableArray array];
-                
-                NSArray* normalSpeakers = [sortedMatchingItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(isSponsor == nil && isSupport == nil)"]];
-                NSArray* supportSpeakers = [sortedMatchingItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(isSupport == YES)"]];
-                NSArray* sponsorSpeakers = [sortedMatchingItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(isSponsor == YES)"]];
-
-                peopleInSection = [[normalSpeakers arrayByAddingObjectsFromArray:supportSpeakers] mutableCopy]; //combine, with normal speakers first
-                
-                ProgramSection* section = [ProgramSection new];
-                section.sectionTime = [peopleInSection firstObject][@"time"];
-                section.sectionName = eventName;
-                section.sectionSponsor = [sponsorSpeakers firstObject][@"speakerName"];
-                //remove any empty speakers (e.g. no speaker for "Registration")
-                [peopleInSection removeObjectsInArray:[peopleInSection filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(speakerName == nil)"]]];
-                section.sectionItems = peopleInSection;
-                
-                [sectionsToDisplay addObject:section];
-            }
-            sectionsToDisplay = [[sectionsToDisplay sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"sectionTime" ascending:YES]]] mutableCopy];
-            
-            self.sectionData = sectionsToDisplay;
-            [self.mainTableView reloadData];
-            
-            //pull speakerData, too
-            self.speakersData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentSpeakersData];
-            if (!self.speakersData) {
-                dispatch_async(dispatch_queue_create("getSpeakersDataFromProgram", NULL), ^{
-                    NSArray* speakersDataFromParse = [[ParseWebService sharedInstance] retrieveSpeakersDataForConference:[DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
-                        self.speakersData = speakersDataFromParse;
-                    });
-                });
-            }
+            self.programData = programDataFromParse;
+            [self sortAndDisplayData];
         });
     });
+    
+    //pull speakerData, too
+    self.speakersData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentSpeakersData];
+    if (!self.speakersData) {
+        dispatch_async(dispatch_queue_create("getSpeakersDataFromProgram", NULL), ^{
+            NSArray* speakersDataFromParse = [[ParseWebService sharedInstance] retrieveSpeakersDataForConference:[DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
+                self.speakersData = speakersDataFromParse;
+            });
+        });
+    }
+
+}
+
+- (void) sortAndDisplayData {
+    NSArray* programDataFromParse = self.programData;
+    NSArray* allEventNames = [programDataFromParse valueForKey:@"eventName"];
+    NSArray* uniqueEventNames = [[NSSet setWithArray:allEventNames] allObjects];
+    
+    NSMutableArray* sectionsToDisplay = [NSMutableArray array];
+    for (NSString* eventName in uniqueEventNames) {
+        NSArray* matchingItems = [programDataFromParse filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(eventName == %@)", eventName]];
+        NSArray* sortedMatchingItems = [matchingItems sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"speakerName" ascending:YES]]];
+        NSMutableArray* peopleInSection = [NSMutableArray array];
+        
+        NSArray* normalSpeakers = [sortedMatchingItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(isSponsor == nil && isSupport == nil)"]];
+        NSArray* supportSpeakers = [sortedMatchingItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(isSupport == YES)"]];
+        NSArray* sponsorSpeakers = [sortedMatchingItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(isSponsor == YES)"]];
+        
+        peopleInSection = [[normalSpeakers arrayByAddingObjectsFromArray:supportSpeakers] mutableCopy]; //combine, with normal speakers first
+        
+        ProgramSection* section = [ProgramSection new];
+        section.sectionTime = [peopleInSection firstObject][@"time"];
+        section.sectionName = eventName;
+        section.sectionSponsor = [sponsorSpeakers firstObject][@"speakerName"];
+        //remove any empty speakers (e.g. no speaker for "Registration")
+        [peopleInSection removeObjectsInArray:[peopleInSection filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(speakerName == nil)"]]];
+        section.sectionItems = peopleInSection;
+        
+        [sectionsToDisplay addObject:section];
+    }
+    sectionsToDisplay = [[sectionsToDisplay sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"sectionTime" ascending:YES]]] mutableCopy];
+    
+    self.sectionData = sectionsToDisplay;
+    [self.mainTableView reloadData];
 }
 
 //thanks https://gist.github.com/maicki/8d7b1cfb31733df51406
