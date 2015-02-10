@@ -98,7 +98,7 @@
     return self.homeData.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     CustomHomeCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.backgroundColor = [UIColor orangeColorSun];
@@ -123,6 +123,18 @@
 
     NSDictionary* currentData = self.homeData[indexPath.row];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:currentData[@"url"]]];
+}
+
+- (IBAction)dtcLogoTapped:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.conferenceMetadata[@"coalitionURL"]]];
+}
+
+- (IBAction)conferenceTitleTapped:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.conferenceMetadata[@"conferenceURL"]]];
+}
+
+- (IBAction)conferenceLocationTapped:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.conferenceMetadata[@"mapURL"]]];
 }
 
 @end
