@@ -15,6 +15,7 @@
 #import "UIImageView+WebCache.h"
 #import "CustomSponsorTileCell.h"
 #import "SponsorSection.h"
+#import "CustomSponsorHeaderView.h"
 
 @interface SponsorsViewController() <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UICollectionView *mainCollectionView;
@@ -34,7 +35,11 @@
     
     self.mainCollectionView.delegate = self;
     self.mainCollectionView.dataSource = self;
-    self.mainCollectionView.backgroundColor = [UIColor grayColorVeryLight];
+    self.mainCollectionView.backgroundColor = [UIColor whiteColor];
+    
+    self.customLayout.minimumInteritemSpacing = 10;
+    self.customLayout.minimumLineSpacing = 10;
+    self.customLayout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
     
     self.sponsorsData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentSponsorsData];
     if (!self.sponsorsData) {
@@ -85,7 +90,6 @@
     NSDictionary* currentData = currentSection.sectionItems[indexPath.row];
     
     cell.sponsorImage.image = nil;
-    
     NSString* sponsorURL = currentData[@"picture"];
 
     [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:sponsorURL] options:SDWebImageRetryFailed
@@ -100,12 +104,15 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     SponsorSection* currentSection = self.sectionData[indexPath.section];
     
-    UICollectionReusableView *reusableView = nil;
+    UICollectionReusableView* reusableView = nil;
+    
     if (kind == UICollectionElementKindSectionHeader) {
-        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CustomSectionHeader" forIndexPath:indexPath];
-        UILabel* categoryTitle = [[UILabel alloc] initWithFrame:headerView.frame];
-        categoryTitle.text = currentSection.sectionName;
-        [headerView addSubview:categoryTitle];
+        CustomSponsorHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CustomSectionHeader" forIndexPath:indexPath];
+        headerView.categoryTitle.text = currentSection.sectionName;
+        
+        headerView.categoryTitle.backgroundColor = [UIColor grayColorVeryLight];
+        headerView.categoryTitle.textColor = [UIColor grayColorVeryDark];
+        headerView.categoryTitle.font = [DTCUtil currentBoldFontWithSize:18];
         
         reusableView = headerView;
     }
@@ -113,5 +120,16 @@
     return reusableView;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    SponsorSection* currentSection = self.sectionData[indexPath.section];
+    
+    CGSize tileSize = CGSizeMake(CGRectGetWidth(self.view.frame), 60);
+    
+    if (currentSection.sectionItems.count > 1) {
+        tileSize = CGSizeMake(CGRectGetWidth(self.view.frame)/2-20, 40);
+    }
+
+    return tileSize;
+}
 
 @end

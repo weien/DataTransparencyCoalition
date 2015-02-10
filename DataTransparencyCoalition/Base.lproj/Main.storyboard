@@ -535,9 +535,26 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CustomSectionHeader" id="KJ2-Si-dlH">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CustomSectionHeader" id="KJ2-Si-dlH" customClass="CustomSponsorHeaderView">
                                     <rect key="frame" x="0.0" y="64" width="600" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRX-uM-BBG">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.94509803920000002" green="0.47058823529999999" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="zRX-uM-BBG" secondAttribute="trailing" id="FXZ-Lh-ek4"/>
+                                        <constraint firstAttribute="bottom" secondItem="zRX-uM-BBG" secondAttribute="bottom" id="QKx-dF-411"/>
+                                        <constraint firstItem="zRX-uM-BBG" firstAttribute="top" secondItem="KJ2-Si-dlH" secondAttribute="top" id="YDt-Gv-9w6"/>
+                                        <constraint firstItem="zRX-uM-BBG" firstAttribute="leading" secondItem="KJ2-Si-dlH" secondAttribute="leading" id="vr1-Rf-WeP"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="categoryTitle" destination="zRX-uM-BBG" id="Oo0-gj-7jB"/>
+                                    </connections>
                                 </collectionReusableView>
                             </collectionView>
                         </subviews>

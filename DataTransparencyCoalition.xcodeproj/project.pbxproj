@@ -41,6 +41,7 @@
 		64D1F48E1A814F9400DB6174 /* ProgramSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F48D1A814F9400DB6174 /* ProgramSection.m */; };
 		64D5325E1A89BCB800617708 /* CustomSponsorTileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D5325D1A89BCB800617708 /* CustomSponsorTileCell.m */; };
 		64D532611A89C1D000617708 /* SponsorSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D532601A89C1D000617708 /* SponsorSection.m */; };
+		64D532721A8AA1C000617708 /* CustomSponsorHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D532711A8AA1C000617708 /* CustomSponsorHeaderView.m */; };
 		64FE12271A8026F7005767EA /* gloriola_bold_it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12211A8026F7005767EA /* gloriola_bold_it.ttf */; };
 		64FE12281A8026F7005767EA /* gloriola_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12221A8026F7005767EA /* gloriola_bold.ttf */; };
 		64FE12291A8026F7005767EA /* gloriola_regular_it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12231A8026F7005767EA /* gloriola_regular_it.ttf */; };
@@ -146,6 +147,8 @@
 		64D5325D1A89BCB800617708 /* CustomSponsorTileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSponsorTileCell.m; sourceTree = "<group>"; };
 		64D5325F1A89C1D000617708 /* SponsorSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SponsorSection.h; sourceTree = "<group>"; };
 		64D532601A89C1D000617708 /* SponsorSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SponsorSection.m; sourceTree = "<group>"; };
+		64D532701A8AA1C000617708 /* CustomSponsorHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSponsorHeaderView.h; sourceTree = "<group>"; };
+		64D532711A8AA1C000617708 /* CustomSponsorHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSponsorHeaderView.m; sourceTree = "<group>"; };
 		64FE12211A8026F7005767EA /* gloriola_bold_it.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_bold_it.ttf; sourceTree = "<group>"; };
 		64FE12221A8026F7005767EA /* gloriola_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_bold.ttf; sourceTree = "<group>"; };
 		64FE12231A8026F7005767EA /* gloriola_regular_it.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_regular_it.ttf; sourceTree = "<group>"; };
@@ -298,6 +301,8 @@
 				64A00CF41A857B8D00A19F1E /* CustomSpeakerTileCell.m */,
 				64D5325C1A89BCB800617708 /* CustomSponsorTileCell.h */,
 				64D5325D1A89BCB800617708 /* CustomSponsorTileCell.m */,
+				64D532701A8AA1C000617708 /* CustomSponsorHeaderView.h */,
+				64D532711A8AA1C000617708 /* CustomSponsorHeaderView.m */,
 			);
 			name = "Views and Objects";
 			sourceTree = "<group>";
@@ -546,6 +551,7 @@
 				6418D7A01A801DD80057C998 /* UIColor+Custom.m in Sources */,
 				64A00D251A85AE1C00A19F1E /* UIImageView+HighlightedWebCache.m in Sources */,
 				64A00D1D1A85AE1C00A19F1E /* SDWebImageDownloader.m in Sources */,
+				64D532721A8AA1C000617708 /* CustomSponsorHeaderView.m in Sources */,
 				64A00D201A85AE1C00A19F1E /* SDWebImagePrefetcher.m in Sources */,
 				64D1F4861A812C9000DB6174 /* ProgramViewController.m in Sources */,
 				64A00D1A1A85AE1C00A19F1E /* SDImageCache.m in Sources */,
