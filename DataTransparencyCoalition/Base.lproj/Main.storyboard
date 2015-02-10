@@ -502,22 +502,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uYt-gB-b1K">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hTS-K1-Fnc">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mLp-Ib-rJ7">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="hCb-Qv-nXv">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="uYt-gB-b1K" secondAttribute="bottom" id="8mw-nc-7t9"/>
-                            <constraint firstAttribute="trailing" secondItem="uYt-gB-b1K" secondAttribute="trailing" id="OQM-wT-aTZ"/>
-                            <constraint firstItem="uYt-gB-b1K" firstAttribute="leading" secondItem="0ya-zJ-XJA" secondAttribute="leading" id="W3r-Tz-ae0"/>
-                            <constraint firstItem="uYt-gB-b1K" firstAttribute="top" secondItem="0ya-zJ-XJA" secondAttribute="top" id="vxI-dN-Elb"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZET-0n-yn6"/>
                     <connections>
-                        <outlet property="mainTableView" destination="uYt-gB-b1K" id="Ka8-7i-WnU"/>
+                        <outlet property="customLayout" destination="mLp-Ib-rJ7" id="vfy-ZB-5Gb"/>
+                        <outlet property="mainCollectionView" destination="hTS-K1-Fnc" id="Sfu-3H-2ZI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QQV-qa-twe" userLabel="First Responder" sceneMemberID="firstResponder"/>
