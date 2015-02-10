@@ -51,7 +51,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
             [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentProgramData andInfo:programDataFromParse];
-            //self.programData = programDataFromParse;
+            
+            //TODO: everything following, we may want to move into a separate method, that's also called after pulling this data from plist
             
             NSArray* allEventNames = [programDataFromParse valueForKey:@"eventName"];
             NSArray* uniqueEventNames = [[NSSet setWithArray:allEventNames] allObjects];

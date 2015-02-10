@@ -502,7 +502,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hTS-K1-Fnc">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hTS-K1-Fnc">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mLp-Ib-rJ7">
                                     <size key="itemSize" width="50" height="50"/>
@@ -511,19 +511,39 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="hCb-Qv-nXv">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="hCb-Qv-nXv" customClass="CustomSponsorTileCell">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cdN-MT-Vip">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="cdN-MT-Vip" firstAttribute="top" secondItem="hCb-Qv-nXv" secondAttribute="top" id="MnY-ox-Bte"/>
+                                            <constraint firstAttribute="bottom" secondItem="cdN-MT-Vip" secondAttribute="bottom" id="PuB-PQ-7uf"/>
+                                            <constraint firstItem="cdN-MT-Vip" firstAttribute="leading" secondItem="hCb-Qv-nXv" secondAttribute="leading" id="U4H-La-apL"/>
+                                            <constraint firstAttribute="trailing" secondItem="cdN-MT-Vip" secondAttribute="trailing" id="c9V-RJ-JbQ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="sponsorImage" destination="cdN-MT-Vip" id="MmE-lv-Hxf"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="hTS-K1-Fnc" secondAttribute="trailing" id="63m-ME-Mwz"/>
+                            <constraint firstAttribute="bottom" secondItem="hTS-K1-Fnc" secondAttribute="bottom" id="goz-vg-Z0Y"/>
+                            <constraint firstItem="hTS-K1-Fnc" firstAttribute="top" secondItem="0ya-zJ-XJA" secondAttribute="top" id="o12-pY-sZJ"/>
+                            <constraint firstItem="hTS-K1-Fnc" firstAttribute="leading" secondItem="0ya-zJ-XJA" secondAttribute="leading" id="pWZ-4p-cng"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZET-0n-yn6"/>
                     <connections>

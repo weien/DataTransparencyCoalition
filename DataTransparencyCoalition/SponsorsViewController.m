@@ -33,7 +33,24 @@
     self.mainCollectionView.delegate = self;
     self.mainCollectionView.dataSource = self;
     self.mainCollectionView.backgroundColor = [UIColor grayColorVeryLight];
-
+    
+    self.sponsorsData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentSponsorsData];
+    if (!self.sponsorsData) {
+        self.spinner = [self startSpinner:self.spinner inView:self.view];
+    }
+    
+    dispatch_async(dispatch_queue_create("getSponsorsData", NULL), ^{
+        NSArray* sponsorsDataFromParse = [[ParseWebService sharedInstance] retrieveSponsorsDataForConference:[DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self stopSpinner:self.spinner];
+            
+            
+//            NSArray* sortedSpeakers = [sponsorsDataFromParse sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES]]];
+//            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSponsorsData andInfo:sortedSpeakers];
+//            self.sponsorsData = sortedSpeakers;
+            [self.mainCollectionView reloadData];
+        });
+    });
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
