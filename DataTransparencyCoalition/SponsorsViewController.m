@@ -132,4 +132,11 @@
     return tileSize;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    SponsorSection* currentSection = self.sectionData[indexPath.section];
+    NSDictionary* currentData = currentSection.sectionItems[indexPath.row];
+
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:currentData[@"url"]]];
+}
+
 @end
