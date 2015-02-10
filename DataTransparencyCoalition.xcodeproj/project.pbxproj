@@ -40,6 +40,7 @@
 		64D1F4891A812E2200DB6174 /* SponsorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F4881A812E2200DB6174 /* SponsorsViewController.m */; };
 		64D1F48E1A814F9400DB6174 /* ProgramSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F48D1A814F9400DB6174 /* ProgramSection.m */; };
 		64D5325E1A89BCB800617708 /* CustomSponsorTileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D5325D1A89BCB800617708 /* CustomSponsorTileCell.m */; };
+		64D532611A89C1D000617708 /* SponsorSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D532601A89C1D000617708 /* SponsorSection.m */; };
 		64FE12271A8026F7005767EA /* gloriola_bold_it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12211A8026F7005767EA /* gloriola_bold_it.ttf */; };
 		64FE12281A8026F7005767EA /* gloriola_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12221A8026F7005767EA /* gloriola_bold.ttf */; };
 		64FE12291A8026F7005767EA /* gloriola_regular_it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12231A8026F7005767EA /* gloriola_regular_it.ttf */; };
@@ -143,6 +144,8 @@
 		64D1F48D1A814F9400DB6174 /* ProgramSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramSection.m; sourceTree = "<group>"; };
 		64D5325C1A89BCB800617708 /* CustomSponsorTileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSponsorTileCell.h; sourceTree = "<group>"; };
 		64D5325D1A89BCB800617708 /* CustomSponsorTileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSponsorTileCell.m; sourceTree = "<group>"; };
+		64D5325F1A89C1D000617708 /* SponsorSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SponsorSection.h; sourceTree = "<group>"; };
+		64D532601A89C1D000617708 /* SponsorSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SponsorSection.m; sourceTree = "<group>"; };
 		64FE12211A8026F7005767EA /* gloriola_bold_it.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_bold_it.ttf; sourceTree = "<group>"; };
 		64FE12221A8026F7005767EA /* gloriola_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_bold.ttf; sourceTree = "<group>"; };
 		64FE12231A8026F7005767EA /* gloriola_regular_it.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_regular_it.ttf; sourceTree = "<group>"; };
@@ -230,15 +233,13 @@
 				64FE12331A8031C4005767EA /* FrameworksHistory */,
 				64D1F47D1A80870800DB6174 /* Setup */,
 				64A4DF101A801A6C0071E55B /* Util */,
-				64A00CEF1A85657B00A19F1E /* Views */,
+				64A00CEF1A85657B00A19F1E /* Views and Objects */,
 				646718CC1A7FE6D40067C433 /* AppDelegate.h */,
 				646718CD1A7FE6D40067C433 /* AppDelegate.m */,
 				646718CF1A7FE6D40067C433 /* HomeViewController.h */,
 				646718D01A7FE6D40067C433 /* HomeViewController.m */,
 				64D1F4841A812C9000DB6174 /* ProgramViewController.h */,
 				64D1F4851A812C9000DB6174 /* ProgramViewController.m */,
-				64D1F48C1A814F9400DB6174 /* ProgramSection.h */,
-				64D1F48D1A814F9400DB6174 /* ProgramSection.m */,
 				64D1F4811A811D6500DB6174 /* SpeakersViewController.h */,
 				64D1F4821A811D6500DB6174 /* SpeakersViewController.m */,
 				64D1F47A1A80867800DB6174 /* TweetsViewController.h */,
@@ -284,9 +285,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		64A00CEF1A85657B00A19F1E /* Views */ = {
+		64A00CEF1A85657B00A19F1E /* Views and Objects */ = {
 			isa = PBXGroup;
 			children = (
+				64D5325F1A89C1D000617708 /* SponsorSection.h */,
+				64D532601A89C1D000617708 /* SponsorSection.m */,
+				64D1F48C1A814F9400DB6174 /* ProgramSection.h */,
+				64D1F48D1A814F9400DB6174 /* ProgramSection.m */,
 				64A00CF01A85659E00A19F1E /* CustomProgramCell.h */,
 				64A00CF11A85659E00A19F1E /* CustomProgramCell.m */,
 				64A00CF31A857B8D00A19F1E /* CustomSpeakerTileCell.h */,
@@ -294,7 +299,7 @@
 				64D5325C1A89BCB800617708 /* CustomSponsorTileCell.h */,
 				64D5325D1A89BCB800617708 /* CustomSponsorTileCell.m */,
 			);
-			name = Views;
+			name = "Views and Objects";
 			sourceTree = "<group>";
 		};
 		64A00CF61A85AE1C00A19F1E /* SDWebImage */ = {
@@ -552,6 +557,7 @@
 				64A00D1B1A85AE1C00A19F1E /* SDWebImageCompat.m in Sources */,
 				64A00CF21A85659E00A19F1E /* CustomProgramCell.m in Sources */,
 				646718CB1A7FE6D40067C433 /* main.m in Sources */,
+				64D532611A89C1D000617708 /* SponsorSection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
