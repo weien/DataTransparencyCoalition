@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "ParseWebService.h"
 #import "UIViewController+DTC.h"
+#import "CustomHomeCell.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *mainTableView;
@@ -37,6 +38,7 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.mainTableView.backgroundColor = [UIColor orangeColorSun];
+    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.topContainer.backgroundColor = [UIColor whiteColor];
     self.middleContainer.backgroundColor = [UIColor orangeColorSun];
@@ -98,9 +100,29 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CustomHomeCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.backgroundColor = [UIColor orangeColorSun];
+    
+    NSDictionary* currentData = self.homeData[indexPath.row];
+    
+    cell.itemTitle.backgroundColor = [UIColor whiteColor];
+    cell.itemTitle.textColor = [UIColor grayColorVeryDark];
+    cell.itemTitle.font = [DTCUtil currentBoldFontWithSize:15];
+    cell.itemTitle.layer.shadowColor = [UIColor grayColorVeryDark].CGColor;
+    cell.itemTitle.layer.shadowOffset = CGSizeMake(0.5, 2);
+    cell.itemTitle.layer.shadowRadius = 1;
+    cell.itemTitle.layer.shadowOpacity = 1;
+    
+    cell.itemTitle.text = [currentData[@"title"] uppercaseString];
+    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    NSDictionary* currentData = self.homeData[indexPath.row];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:currentData[@"url"]]];
 }
 
 @end
