@@ -13,4 +13,5 @@
 - (NSDictionary*) retrieveMetaData;
 - (NSArray*) retrieveProgramDataForConference:(NSString*)conferenceId;
 - (NSArray*) retrieveSpeakersDataForConference:(NSString*)conferenceId;
+- (NSArray*) retrieveSponsorsDataForConference:(NSString*)conferenceId;
 @end
