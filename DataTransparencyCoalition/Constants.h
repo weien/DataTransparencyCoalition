@@ -7,6 +7,7 @@
 //
 
 #define kPlistComponentForConferenceMetadata @"conference_metadata.plist"
+#define kPlistComponentForCurrentHomeData @"current_home_metadata.plist"
 #define kPlistComponentForCurrentProgramData @"current_program_metadata.plist"
 #define kPlistComponentForCurrentSpeakersData @"current_speakers_metadata.plist"
 #define kPlistComponentForCurrentSponsorsData @"current_sponsors_metadata.plist"

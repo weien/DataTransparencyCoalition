@@ -49,6 +49,40 @@
     return returnDict;
 }
 
+- (NSArray*) retrieveHomeDataForConference:(NSString*)conferenceId {
+    PFQuery *query = [PFQuery queryWithClassName:@"Home"];
+    PFObject *pointerToConference = [PFObject objectWithoutDataWithClassName:@"Conference" objectId:conferenceId];
+    [query whereKey:@"conference" equalTo:pointerToConference];
+    
+    NSError* error = nil;
+    NSArray* dataFromParse = [query findObjects:&error];
+    if (error) {
+        NSLog(@"Error fetching home data: %@", error);
+    }
+    
+    NSMutableArray* returnArr = [NSMutableArray array];
+    for (PFObject* obj in dataFromParse) {
+        NSMutableDictionary* dictToAdd = [NSMutableDictionary dictionary];
+        for (NSString * key in [obj allKeys]) {
+            id subObj = [obj objectForKey:key];
+            if ([subObj isKindOfClass:[PFObject class]]) {
+                PFObject* pfObj = (PFObject*)subObj;
+                [dictToAdd setObject:pfObj.objectId forKey:key];
+            }
+            else if ([subObj isKindOfClass:[PFFile class]]) {
+                PFFile* pfFile = (PFFile*)subObj;
+                [dictToAdd setObject:pfFile.url forKey:key];
+            }
+            else {
+                [dictToAdd setObject:[obj objectForKey:key] forKey:key];
+            }
+        }
+        [returnArr addObject:dictToAdd];
+    }
+    
+    return returnArr;
+}
+
 - (NSArray*) retrieveProgramDataForConference:(NSString*)conferenceId {
     PFQuery *query = [PFQuery queryWithClassName:@"Program"];
     PFObject *pointerToConference = [PFObject objectWithoutDataWithClassName:@"Conference" objectId:conferenceId];

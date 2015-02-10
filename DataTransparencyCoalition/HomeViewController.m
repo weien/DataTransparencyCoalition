@@ -10,6 +10,8 @@
 #import "UIColor+Custom.h"
 #import "DTCUtil.h"
 #import "Constants.h"
+#import "ParseWebService.h"
+#import "UIViewController+DTC.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *mainTableView;
@@ -21,6 +23,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *conferenceLocation;
 
 @property (strong, nonatomic) NSDictionary *conferenceMetadata;
+@property (strong, nonatomic) NSArray *homeData;
+@property (strong, nonatomic) UIActivityIndicatorView* spinner;
 
 @end
 
@@ -53,6 +57,24 @@
     self.conferenceLocation.titleLabel.textAlignment = NSTextAlignmentRight;//NSTextAlignmentCenter;
     
     self.conferenceMetadata = [DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata];
+    
+    self.homeData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentHomeData];
+    if (!self.homeData) {
+        self.spinner = [self startSpinner:self.spinner inView:self.view];
+    }
+    
+    dispatch_async(dispatch_queue_create("getHomeData", NULL), ^{
+        NSArray* homeDataFromParse = [[ParseWebService sharedInstance] retrieveHomeDataForConference:[DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self stopSpinner:self.spinner];
+            NSArray* sortedItems = [homeDataFromParse sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"rank" ascending:YES]]];
+            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSpeakersData andInfo:sortedItems];
+            
+            self.homeData = sortedItems;
+            [self.mainTableView reloadData];
+        });
+    });
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -71,7 +93,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return self.homeData.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
