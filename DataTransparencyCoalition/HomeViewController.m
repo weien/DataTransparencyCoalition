@@ -70,7 +70,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
             NSArray* sortedItems = [homeDataFromParse sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"rank" ascending:YES]]];
-            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSpeakersData andInfo:sortedItems];
+            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentHomeData andInfo:sortedItems];
             
             self.homeData = sortedItems;
             [self.mainTableView reloadData];
