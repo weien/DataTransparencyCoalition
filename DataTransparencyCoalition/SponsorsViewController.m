@@ -14,12 +14,14 @@
 #import "UIViewController+DTC.h"
 #import "UIImageView+WebCache.h"
 #import "CustomSponsorTileCell.h"
+#import "SponsorSection.h"
 
 @interface SponsorsViewController() <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UICollectionView *mainCollectionView;
 @property (strong, nonatomic) IBOutlet UICollectionViewFlowLayout *customLayout;
 @property (strong, nonatomic) UIActivityIndicatorView* spinner;
 @property (strong, nonatomic) NSArray *sponsorsData;
+@property (strong, nonatomic) NSArray *sectionData;
 
 @end
 
@@ -44,22 +46,43 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
             
+            NSArray* allCategories = [sponsorsDataFromParse valueForKey:@"category"];
+            NSArray* uniqueCategories = [[NSSet setWithArray:allCategories] allObjects];
             
-//            NSArray* sortedSpeakers = [sponsorsDataFromParse sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES]]];
-//            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSponsorsData andInfo:sortedSpeakers];
-//            self.sponsorsData = sortedSpeakers;
+            NSMutableArray* categoriesToDisplay = [NSMutableArray array];
+            for (NSString* categoryName in uniqueCategories) {
+                NSArray* matchingItems = [sponsorsDataFromParse filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(category == %@)", categoryName]];
+                NSArray* sortedMatchingItems = [matchingItems sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
+
+                SponsorSection* section = [SponsorSection new];
+                section.sectionName = [sortedMatchingItems firstObject][@"category"];
+                section.sectionRank = [[sortedMatchingItems firstObject][@"categoryRank"] integerValue];
+                section.sectionItems = sortedMatchingItems;
+                
+                [categoriesToDisplay addObject:section];
+            }
+            
+            categoriesToDisplay = [[categoriesToDisplay sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"sectionRank" ascending:YES]]] mutableCopy];
+            self.sectionData = categoriesToDisplay;
             [self.mainCollectionView reloadData];
         });
     });
 }
 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return self.sectionData.count;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.sponsorsData.count;
+    SponsorSection* currentSection = self.sectionData[section];
+    return currentSection.sectionItems.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CustomSponsorTileCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    NSDictionary* currentData = self.sponsorsData[[indexPath row]];
+    
+    SponsorSection* currentSection = self.sectionData[indexPath.section];
+    NSDictionary* currentData = currentSection.sectionItems[indexPath.row];
     
     cell.sponsorImage.image = nil;
     
@@ -72,6 +95,22 @@
                                                       cell.sponsorImage.image = image;
                                                   }];
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    SponsorSection* currentSection = self.sectionData[indexPath.section];
+    
+    UICollectionReusableView *reusableView = nil;
+    if (kind == UICollectionElementKindSectionHeader) {
+        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CustomSectionHeader" forIndexPath:indexPath];
+        UILabel* categoryTitle = [[UILabel alloc] initWithFrame:headerView.frame];
+        categoryTitle.text = currentSection.sectionName;
+        [headerView addSubview:categoryTitle];
+        
+        reusableView = headerView;
+    }
+    
+    return reusableView;
 }
 
 
