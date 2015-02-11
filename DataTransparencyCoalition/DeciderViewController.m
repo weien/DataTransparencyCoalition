@@ -13,6 +13,7 @@
 #import "DTCUtil.h"
 #import "UIColor+Custom.h"
 #import "TLTransitionAnimator.h"
+#import "Reachability.h"
 
 @interface DeciderViewController() <UIViewControllerTransitioningDelegate>
 @property (strong, nonatomic) UIActivityIndicatorView* spinner;
@@ -31,23 +32,42 @@
     
     //TODO: We should check somewhere if it's a new conference; if so, wipe out the old conference data
     
-    self.spinner = [self startSpinner:self.spinner inView:self.view];
-    dispatch_async(dispatch_queue_create("decideMetaData", NULL), ^{
-        NSDictionary* metadata = [[ParseWebService sharedInstance] retrieveMetaData];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self stopSpinner:self.spinner];
-            if (metadata[@"conferenceModeEnabled"]) {
-                [DTCUtil saveDataToPlistWithComponent:kPlistComponentForConferenceMetadata andInfo:metadata];
-                UIViewController* newVC = [[DTCUtil currentStoryboard] instantiateViewControllerWithIdentifier:@"ConferenceTabBarController"];
-                newVC.transitioningDelegate = self;
-                newVC.modalPresentationStyle = UIModalPresentationCustom;
-                [self presentViewController:newVC animated:YES completion:nil];
+    Reachability* reach = [Reachability reachabilityForInternetConnection];
+    if ([reach isReachable]) {
+        self.spinner = [self startSpinner:self.spinner inView:self.view];
+        dispatch_async(dispatch_queue_create("decideMetaData", NULL), ^{
+            NSDictionary* metadata = [[ParseWebService sharedInstance] retrieveMetaData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self stopSpinner:self.spinner];
+                if (metadata[@"conferenceModeEnabled"]) {
+                    [DTCUtil saveDataToPlistWithComponent:kPlistComponentForConferenceMetadata andInfo:metadata];
+                    [self goToConferenceHome];
+                }
+                else {
+                    
+                }
+            });
+        });
+    }
+    else {
+        //we're offline. As long as we have old metadata, just run with that.
+        NSDictionary* oldMetadata = [DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata];
+        if (oldMetadata) {
+            if (oldMetadata[@"conferenceModeEnabled"]) {
+                [self goToConferenceHome];
             }
             else {
                 
             }
-        });
-    });
+        }
+    }
+}
+
+- (void) goToConferenceHome {
+    UIViewController* newVC = [[DTCUtil currentStoryboard] instantiateViewControllerWithIdentifier:@"ConferenceTabBarController"];
+    newVC.transitioningDelegate = self;
+    newVC.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:newVC animated:YES completion:nil];
 }
 
 //thanks http://www.teehanlax.com/blog/custom-uiviewcontroller-transitions/
