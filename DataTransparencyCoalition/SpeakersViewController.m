@@ -46,18 +46,24 @@
     if (!self.speakersData) {
         self.spinner = [self startSpinner:self.spinner inView:self.view];
     }
+    else {
+        [self sortAndDisplayData];
+    }
     
     dispatch_async(dispatch_queue_create("getSpeakersData", NULL), ^{
         NSArray* speakersDataFromParse = [[ParseWebService sharedInstance] retrieveSpeakersDataForConference:[DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
-            NSArray* sortedSpeakers = [speakersDataFromParse sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES]]];
-            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSpeakersData andInfo:sortedSpeakers];
-            
-            self.speakersData = sortedSpeakers;
-            [self.mainCollectionView reloadData];
+            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
+            self.speakersData = speakersDataFromParse;
+            [self sortAndDisplayData];
         });
     });
+}
+
+- (void) sortAndDisplayData {
+    self.speakersData = [self.speakersData sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES]]];
+    [self.mainCollectionView reloadData];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

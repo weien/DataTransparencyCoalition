@@ -64,19 +64,24 @@
     if (!self.homeData) {
         self.spinner = [self startSpinner:self.spinner inView:self.view];
     }
+    else {
+        [self sortAndDisplayData];
+    }
     
     dispatch_async(dispatch_queue_create("getHomeData", NULL), ^{
         NSArray* homeDataFromParse = [[ParseWebService sharedInstance] retrieveHomeDataForConference:[DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
-            NSArray* sortedItems = [homeDataFromParse sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"rank" ascending:YES]]];
-            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentHomeData andInfo:sortedItems];
-            
-            self.homeData = sortedItems;
-            [self.mainTableView reloadData];
+            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentHomeData andInfo:homeDataFromParse];
+            self.homeData = homeDataFromParse;
+            [self sortAndDisplayData];
         });
     });
+}
 
+- (void) sortAndDisplayData {
+    self.homeData = [self.homeData sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"rank" ascending:YES]]];
+    [self.mainTableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

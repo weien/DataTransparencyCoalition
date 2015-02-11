@@ -45,33 +45,41 @@
     if (!self.sponsorsData) {
         self.spinner = [self startSpinner:self.spinner inView:self.view];
     }
+    else {
+        [self sortAndDisplayData];
+    }
     
     dispatch_async(dispatch_queue_create("getSponsorsData", NULL), ^{
         NSArray* sponsorsDataFromParse = [[ParseWebService sharedInstance] retrieveSponsorsDataForConference:[DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
-            
-            NSArray* allCategories = [sponsorsDataFromParse valueForKey:@"category"];
-            NSArray* uniqueCategories = [[NSSet setWithArray:allCategories] allObjects];
-            
-            NSMutableArray* categoriesToDisplay = [NSMutableArray array];
-            for (NSString* categoryName in uniqueCategories) {
-                NSArray* matchingItems = [sponsorsDataFromParse filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(category == %@)", categoryName]];
-                NSArray* sortedMatchingItems = [matchingItems sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
-
-                SponsorSection* section = [SponsorSection new];
-                section.sectionName = [sortedMatchingItems firstObject][@"category"];
-                section.sectionRank = [[sortedMatchingItems firstObject][@"categoryRank"] integerValue];
-                section.sectionItems = sortedMatchingItems;
-                
-                [categoriesToDisplay addObject:section];
-            }
-            
-            categoriesToDisplay = [[categoriesToDisplay sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"sectionRank" ascending:YES]]] mutableCopy];
-            self.sectionData = categoriesToDisplay;
-            [self.mainCollectionView reloadData];
+            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSponsorsData andInfo:sponsorsDataFromParse];
+            self.sponsorsData = sponsorsDataFromParse;
+            [self sortAndDisplayData];
         });
     });
+}
+
+- (void) sortAndDisplayData {
+    NSArray* allCategories = [self.sponsorsData valueForKey:@"category"];
+    NSArray* uniqueCategories = [[NSSet setWithArray:allCategories] allObjects];
+    
+    NSMutableArray* categoriesToDisplay = [NSMutableArray array];
+    for (NSString* categoryName in uniqueCategories) {
+        NSArray* matchingItems = [self.sponsorsData filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(category == %@)", categoryName]];
+        NSArray* sortedMatchingItems = [matchingItems sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
+        
+        SponsorSection* section = [SponsorSection new];
+        section.sectionName = [sortedMatchingItems firstObject][@"category"];
+        section.sectionRank = [[sortedMatchingItems firstObject][@"categoryRank"] integerValue];
+        section.sectionItems = sortedMatchingItems;
+        
+        [categoriesToDisplay addObject:section];
+    }
+    
+    categoriesToDisplay = [[categoriesToDisplay sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"sectionRank" ascending:YES]]] mutableCopy];
+    self.sectionData = categoriesToDisplay;
+    [self.mainCollectionView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -123,7 +131,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     SponsorSection* currentSection = self.sectionData[indexPath.section];
     
-    CGSize tileSize = CGSizeMake(CGRectGetWidth(self.view.frame), 60);
+    CGSize tileSize = CGSizeMake(CGRectGetWidth(self.view.frame)-20, 60);
     
     if (currentSection.sectionItems.count > 1) {
         tileSize = CGSizeMake(CGRectGetWidth(self.view.frame)/2-20, 40);

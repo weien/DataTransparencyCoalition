@@ -72,7 +72,6 @@
             });
         });
     }
-
 }
 
 - (void) sortAndDisplayData {
