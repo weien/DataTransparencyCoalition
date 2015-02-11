@@ -43,6 +43,7 @@
 		64D532611A89C1D000617708 /* SponsorSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D532601A89C1D000617708 /* SponsorSection.m */; };
 		64D532721A8AA1C000617708 /* CustomSponsorHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D532711A8AA1C000617708 /* CustomSponsorHeaderView.m */; };
 		64D532751A8AB17B00617708 /* CustomHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D532741A8AB17B00617708 /* CustomHomeCell.m */; };
+		64D532791A8BD00000617708 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D532781A8BD00000617708 /* Reachability.m */; };
 		64FE12271A8026F7005767EA /* gloriola_bold_it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12211A8026F7005767EA /* gloriola_bold_it.ttf */; };
 		64FE12281A8026F7005767EA /* gloriola_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12221A8026F7005767EA /* gloriola_bold.ttf */; };
 		64FE12291A8026F7005767EA /* gloriola_regular_it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12231A8026F7005767EA /* gloriola_regular_it.ttf */; };
@@ -152,6 +153,8 @@
 		64D532711A8AA1C000617708 /* CustomSponsorHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSponsorHeaderView.m; sourceTree = "<group>"; };
 		64D532731A8AB17B00617708 /* CustomHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomHomeCell.h; sourceTree = "<group>"; };
 		64D532741A8AB17B00617708 /* CustomHomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomHomeCell.m; sourceTree = "<group>"; };
+		64D532771A8BD00000617708 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		64D532781A8BD00000617708 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		64FE12211A8026F7005767EA /* gloriola_bold_it.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_bold_it.ttf; sourceTree = "<group>"; };
 		64FE12221A8026F7005767EA /* gloriola_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_bold.ttf; sourceTree = "<group>"; };
 		64FE12231A8026F7005767EA /* gloriola_regular_it.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_regular_it.ttf; sourceTree = "<group>"; };
@@ -374,6 +377,7 @@
 		64A4DF0E1A7FFB8A0071E55B /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				64D532761A8BCFE700617708 /* Reachability */,
 				64A00CF61A85AE1C00A19F1E /* SDWebImage */,
 			);
 			name = Vendor;
@@ -418,6 +422,15 @@
 				64FE125A1A807A4D005767EA /* TLTransitionAnimator.m */,
 			);
 			name = Setup;
+			sourceTree = "<group>";
+		};
+		64D532761A8BCFE700617708 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				64D532771A8BD00000617708 /* Reachability.h */,
+				64D532781A8BD00000617708 /* Reachability.m */,
+			);
+			name = Reachability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -543,6 +556,7 @@
 				64A00D191A85AE1C00A19F1E /* NSData+ImageContentType.m in Sources */,
 				646718D11A7FE6D40067C433 /* HomeViewController.m in Sources */,
 				646718CE1A7FE6D40067C433 /* AppDelegate.m in Sources */,
+				64D532791A8BD00000617708 /* Reachability.m in Sources */,
 				64A00D2A1A85B43B00A19F1E /* IndividualViewController.m in Sources */,
 				64A00D1C1A85AE1C00A19F1E /* SDWebImageDecoder.m in Sources */,
 				64A00CF51A857B8D00A19F1E /* CustomSpeakerTileCell.m in Sources */,
