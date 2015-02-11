@@ -12,6 +12,7 @@
 #import <ParseCrashReporting/ParseCrashReporting.h>
 #import "PrivateKeys.h"
 #import "DTCUtil.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate ()
 
@@ -20,6 +21,8 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Crashlytics startWithAPIKey:kCRASHLYTICS_API_KEY];
+    
     [ParseCrashReporting enable];
     [Parse setApplicationId:kPARSE_APPLICATION_ID
                   clientKey:kPARSE_CLIENT_KEY];
