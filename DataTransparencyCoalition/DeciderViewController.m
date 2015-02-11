@@ -60,6 +60,15 @@
                 
             }
         }
+        else {
+            UILabel* offlineLabel = [[UILabel alloc] initWithFrame:self.view.frame];
+            offlineLabel.font = [DTCUtil currentMainFontWithSize:20];
+            offlineLabel.numberOfLines = 2;
+            offlineLabel.textAlignment = NSTextAlignmentCenter;
+            offlineLabel.textColor = [UIColor grayColorVeryDark];
+            offlineLabel.text = @"Please check your internet connection.";
+            [self.view addSubview:offlineLabel];
+        }
     }
 }
 
