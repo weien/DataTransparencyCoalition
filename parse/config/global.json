@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "DataCoalition": {
+            "applicationId": "NOlW5XTLutp8qcDLCGvbkNjvbbvBOFMfdpzrWBkN", 
+            "masterKey": "edHKY7gldqk5rmgHMrD2lLeutmSqOC4nTu1gLfZX"
+        }, 
+        "_default": {
+            "link": "DataCoalition"
+        }
+    }
+}
