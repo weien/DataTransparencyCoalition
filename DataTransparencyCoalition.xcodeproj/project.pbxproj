@@ -45,7 +45,6 @@
 		64D532721A8AA1C000617708 /* CustomSponsorHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D532711A8AA1C000617708 /* CustomSponsorHeaderView.m */; };
 		64D532751A8AB17B00617708 /* CustomHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D532741A8AB17B00617708 /* CustomHomeCell.m */; };
 		64D532791A8BD00000617708 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D532781A8BD00000617708 /* Reachability.m */; };
-		64D5327B1A8BD9DF00617708 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D5327A1A8BD9DF00617708 /* ParseCrashReporting.framework */; };
 		64D5327E1A8BDAAE00617708 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D5327D1A8BDAAE00617708 /* StoreKit.framework */; };
 		64D532801A8BDAB800617708 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D5327F1A8BDAB800617708 /* libstdc++.6.dylib */; };
 		64FE12271A8026F7005767EA /* gloriola_bold_it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12211A8026F7005767EA /* gloriola_bold_it.ttf */; };
@@ -160,7 +159,6 @@
 		64D532741A8AB17B00617708 /* CustomHomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomHomeCell.m; sourceTree = "<group>"; };
 		64D532771A8BD00000617708 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		64D532781A8BD00000617708 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		64D5327A1A8BD9DF00617708 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
 		64D5327D1A8BDAAE00617708 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		64D5327F1A8BDAB800617708 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		64FE12211A8026F7005767EA /* gloriola_bold_it.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_bold_it.ttf; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 				64FE124A1A803226005767EA /* SystemConfiguration.framework in Frameworks */,
 				64FE12381A8031F2005767EA /* Parse.framework in Frameworks */,
 				64FE12371A8031F2005767EA /* Bolts.framework in Frameworks */,
-				64D5327B1A8BD9DF00617708 /* ParseCrashReporting.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,7 +379,6 @@
 				64FE123D1A803226005767EA /* MobileCoreServices.framework */,
 				64FE123E1A803226005767EA /* QuartzCore.framework */,
 				64FE123F1A803226005767EA /* Security.framework */,
-				64D5327A1A8BD9DF00617708 /* ParseCrashReporting.framework */,
 				64FE12411A803226005767EA /* SystemConfiguration.framework */,
 				64FE12351A8031F2005767EA /* Bolts.framework */,
 				64FE12361A8031F2005767EA /* Parse.framework */,
