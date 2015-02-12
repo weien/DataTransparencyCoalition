@@ -72,6 +72,8 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CustomSpeakerTileCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    //cell.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    
     NSDictionary* currentData = self.speakersData[[indexPath row]];
     
     cell.speakerImage.image = nil;
@@ -91,7 +93,12 @@
                                                    progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                                    }
                                                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                                      cell.speakerImage.image = image;
+                                                      if (image) {
+                                                          cell.speakerImage.image = image;
+                                                      }
+                                                      if (error) {
+                                                          NSLog(@"Error getting speaker image: %@", error);
+                                                      }
                                                   }];
     
 //    [speakerImageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
