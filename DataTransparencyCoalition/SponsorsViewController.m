@@ -104,7 +104,12 @@
                                                    progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                                    }
                                                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                                      cell.sponsorImage.image = image;
+                                                      if (image) {
+                                                          cell.sponsorImage.image = image;
+                                                      }
+                                                      if (error) {
+                                                          NSLog(@"Error getting sponsor image: %@", error);
+                                                      }
                                                   }];
     return cell;
 }
