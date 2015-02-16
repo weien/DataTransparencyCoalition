@@ -13,6 +13,8 @@
 #import "ParseWebService.h"
 #import "UIViewController+DTC.h"
 #import "CustomHomeCell.h"
+#import "PBWebViewController.h"
+#import "PBSafariActivity.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *mainTableView;
@@ -26,6 +28,7 @@
 @property (strong, nonatomic) NSDictionary *conferenceMetadata;
 @property (strong, nonatomic) NSArray *homeData;
 @property (strong, nonatomic) UIActivityIndicatorView* spinner;
+@property (strong, nonatomic) PBWebViewController* pbwVC;
 
 @end
 
@@ -57,6 +60,10 @@
     [self.conferenceLocation setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.conferenceLocation.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.conferenceLocation.titleLabel.textAlignment = NSTextAlignmentRight;//NSTextAlignmentCenter;
+    
+    self.pbwVC = [PBWebViewController new];
+    PBSafariActivity *activity = [PBSafariActivity new];
+    self.pbwVC.applicationActivities = @[activity];
     
     self.conferenceMetadata = [DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata];
     
@@ -127,19 +134,23 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     NSDictionary* currentData = self.homeData[indexPath.row];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:currentData[@"url"]]];
+    self.pbwVC.URL = [NSURL URLWithString:currentData[@"url"]];
+    [self.navigationController pushViewController:self.pbwVC animated:YES];
 }
 
 - (IBAction)dtcLogoTapped:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.conferenceMetadata[@"coalitionURL"]]];
+    self.pbwVC.URL = [NSURL URLWithString:self.conferenceMetadata[@"coalitionURL"]];
+    [self.navigationController pushViewController:self.pbwVC animated:YES];
 }
 
 - (IBAction)conferenceTitleTapped:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.conferenceMetadata[@"conferenceURL"]]];
+    self.pbwVC.URL = [NSURL URLWithString:self.conferenceMetadata[@"conferenceURL"]];
+    [self.navigationController pushViewController:self.pbwVC animated:YES];
 }
 
 - (IBAction)conferenceLocationTapped:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.conferenceMetadata[@"mapURL"]]];
+    self.pbwVC.URL = [NSURL URLWithString:self.conferenceMetadata[@"mapURL"]];
+    [self.navigationController pushViewController:self.pbwVC animated:YES];
 }
 
 @end

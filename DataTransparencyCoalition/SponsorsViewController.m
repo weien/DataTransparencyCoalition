@@ -16,6 +16,8 @@
 #import "CustomSponsorTileCell.h"
 #import "SponsorSection.h"
 #import "CustomSponsorHeaderView.h"
+#import "PBWebViewController.h"
+#import "PBSafariActivity.h"
 
 @interface SponsorsViewController() <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UICollectionView *mainCollectionView;
@@ -23,6 +25,7 @@
 @property (strong, nonatomic) UIActivityIndicatorView* spinner;
 @property (strong, nonatomic) NSArray *sponsorsData;
 @property (strong, nonatomic) NSArray *sectionData;
+@property (strong, nonatomic) PBWebViewController* pbwVC;
 
 @end
 
@@ -40,6 +43,10 @@
     self.customLayout.minimumInteritemSpacing = 10;
     self.customLayout.minimumLineSpacing = 10;
     self.customLayout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+    
+    self.pbwVC = [PBWebViewController new];
+    PBSafariActivity *activity = [PBSafariActivity new];
+    self.pbwVC.applicationActivities = @[activity];
     
     self.sponsorsData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentSponsorsData];
     if (!self.sponsorsData) {
@@ -149,7 +156,8 @@
     SponsorSection* currentSection = self.sectionData[indexPath.section];
     NSDictionary* currentData = currentSection.sectionItems[indexPath.row];
 
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:currentData[@"url"]]];
+    self.pbwVC.URL = [NSURL URLWithString:currentData[@"url"]];
+    [self.navigationController pushViewController:self.pbwVC animated:YES];
 }
 
 @end

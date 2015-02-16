@@ -10,10 +10,14 @@
 #import "UIColor+Custom.h"
 #import "DTCUtil.h"
 #import "UIImageView+WebCache.h"
+#import "PBWebViewController.h"
+#import "PBSafariActivity.h"
 
-@interface IndividualViewController()
+
+@interface IndividualViewController() <UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UITextView *mainTextView;
 @property (strong, nonatomic) IBOutlet UIImageView *mainImageView;
+@property (strong, nonatomic) PBWebViewController* pbwVC;
 
 @end
 
@@ -43,6 +47,11 @@
     self.mainImageView.layer.masksToBounds = YES;
     self.mainImageView.layer.borderWidth = 5.0f;
     self.mainImageView.layer.borderColor = [UIColor grayColorThunder].CGColor;
+    
+    self.mainTextView.delegate = self;
+    self.pbwVC = [PBWebViewController new];
+    PBSafariActivity *activity = [PBSafariActivity new];
+    self.pbwVC.applicationActivities = @[activity];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,6 +74,13 @@
                                                           self.mainImageView.image = image;
                                                       }];
     }
+}
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
+    self.pbwVC.URL = URL;
+    [self.navigationController pushViewController:self.pbwVC animated:YES];
+    
+    return NO;
 }
 
 @end
