@@ -9,16 +9,26 @@
 #import "TweetsViewController.h"
 #import "DTCUtil.h"
 #import "Constants.h"
+//#import "PBWebViewController.h"
+//#import "PBSafariActivity.h"
 
-@interface TweetsViewController()
+@interface TweetsViewController() //<UIWebViewDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *mainWebView;
 @property (strong, nonatomic) NSDictionary *conferenceMetadata;
+//@property (strong, nonatomic) PBWebViewController* pbwVC;
 
 @end
 
 @implementation TweetsViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    self.mainWebView.delegate = self;
+//    
+//    self.pbwVC = [PBWebViewController new];
+//    PBSafariActivity *activity = [PBSafariActivity new];
+//    self.pbwVC.applicationActivities = @[activity];
+    
     self.conferenceMetadata = [DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata];
     [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.conferenceMetadata[@"tweetURL"]]]];
     
