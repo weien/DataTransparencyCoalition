@@ -47,6 +47,10 @@
 		64D532791A8BD00000617708 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D532781A8BD00000617708 /* Reachability.m */; };
 		64D5327E1A8BDAAE00617708 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D5327D1A8BDAAE00617708 /* StoreKit.framework */; };
 		64D532801A8BDAB800617708 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D5327F1A8BDAB800617708 /* libstdc++.6.dylib */; };
+		64DC38FA1A928E5500842FC7 /* PBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DC38F91A928E5500842FC7 /* PBWebViewController.m */; };
+		64DC39001A928E6100842FC7 /* 782-compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 64DC38FC1A928E6100842FC7 /* 782-compass.png */; };
+		64DC39011A928E6100842FC7 /* 782-compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64DC38FD1A928E6100842FC7 /* 782-compass@2x.png */; };
+		64DC39021A928E6100842FC7 /* PBSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DC38FF1A928E6100842FC7 /* PBSafariActivity.m */; };
 		64FE12271A8026F7005767EA /* gloriola_bold_it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12211A8026F7005767EA /* gloriola_bold_it.ttf */; };
 		64FE12281A8026F7005767EA /* gloriola_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12221A8026F7005767EA /* gloriola_bold.ttf */; };
 		64FE12291A8026F7005767EA /* gloriola_regular_it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64FE12231A8026F7005767EA /* gloriola_regular_it.ttf */; };
@@ -161,6 +165,12 @@
 		64D532781A8BD00000617708 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		64D5327D1A8BDAAE00617708 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		64D5327F1A8BDAB800617708 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
+		64DC38F81A928E5500842FC7 /* PBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBWebViewController.h; sourceTree = "<group>"; };
+		64DC38F91A928E5500842FC7 /* PBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBWebViewController.m; sourceTree = "<group>"; };
+		64DC38FC1A928E6100842FC7 /* 782-compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "782-compass.png"; sourceTree = "<group>"; };
+		64DC38FD1A928E6100842FC7 /* 782-compass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "782-compass@2x.png"; sourceTree = "<group>"; };
+		64DC38FE1A928E6100842FC7 /* PBSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBSafariActivity.h; sourceTree = "<group>"; };
+		64DC38FF1A928E6100842FC7 /* PBSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBSafariActivity.m; sourceTree = "<group>"; };
 		64FE12211A8026F7005767EA /* gloriola_bold_it.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_bold_it.ttf; sourceTree = "<group>"; };
 		64FE12221A8026F7005767EA /* gloriola_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_bold.ttf; sourceTree = "<group>"; };
 		64FE12231A8026F7005767EA /* gloriola_regular_it.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriola_regular_it.ttf; sourceTree = "<group>"; };
@@ -389,6 +399,7 @@
 		64A4DF0E1A7FFB8A0071E55B /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				64DC38F71A928E5500842FC7 /* PBWebViewController */,
 				64D532761A8BCFE700617708 /* Reachability */,
 				64A00CF61A85AE1C00A19F1E /* SDWebImage */,
 			);
@@ -443,6 +454,27 @@
 				64D532781A8BD00000617708 /* Reachability.m */,
 			);
 			name = Reachability;
+			sourceTree = "<group>";
+		};
+		64DC38F71A928E5500842FC7 /* PBWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				64DC38FB1A928E6100842FC7 /* PBSafariActivity */,
+				64DC38F81A928E5500842FC7 /* PBWebViewController.h */,
+				64DC38F91A928E5500842FC7 /* PBWebViewController.m */,
+			);
+			path = PBWebViewController;
+			sourceTree = "<group>";
+		};
+		64DC38FB1A928E6100842FC7 /* PBSafariActivity */ = {
+			isa = PBXGroup;
+			children = (
+				64DC38FC1A928E6100842FC7 /* 782-compass.png */,
+				64DC38FD1A928E6100842FC7 /* 782-compass@2x.png */,
+				64DC38FE1A928E6100842FC7 /* PBSafariActivity.h */,
+				64DC38FF1A928E6100842FC7 /* PBSafariActivity.m */,
+			);
+			path = PBSafariActivity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -537,6 +569,7 @@
 				64FE12341A8031C4005767EA /* FrameworksHistory in Resources */,
 				64FE122C1A8026F7005767EA /* gloriola_semibold.ttf in Resources */,
 				64FE122A1A8026F7005767EA /* gloriola_regular.ttf in Resources */,
+				64DC39001A928E6100842FC7 /* 782-compass.png in Resources */,
 				646718D41A7FE6D40067C433 /* Main.storyboard in Resources */,
 				64FE12291A8026F7005767EA /* gloriola_regular_it.ttf in Resources */,
 				64FE12271A8026F7005767EA /* gloriola_bold_it.ttf in Resources */,
@@ -544,6 +577,7 @@
 				646718D61A7FE6D40067C433 /* Images.xcassets in Resources */,
 				64FE12281A8026F7005767EA /* gloriola_bold.ttf in Resources */,
 				64FE122B1A8026F7005767EA /* gloriola_semibold_it.ttf in Resources */,
+				64DC39011A928E6100842FC7 /* 782-compass@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +631,7 @@
 				64FE122F1A8027ED005767EA /* DTCUtil.m in Sources */,
 				64D1F48E1A814F9400DB6174 /* ProgramSection.m in Sources */,
 				64FE12511A804168005767EA /* ParseWebService.m in Sources */,
+				64DC38FA1A928E5500842FC7 /* PBWebViewController.m in Sources */,
 				64D5325E1A89BCB800617708 /* CustomSponsorTileCell.m in Sources */,
 				64A00D241A85AE1C00A19F1E /* UIImage+WebP.m in Sources */,
 				64A00D191A85AE1C00A19F1E /* NSData+ImageContentType.m in Sources */,
@@ -625,6 +660,7 @@
 				64A00D181A85AE1C00A19F1E /* MKAnnotationView+WebCache.m in Sources */,
 				64A00D231A85AE1C00A19F1E /* UIImage+MultiFormat.m in Sources */,
 				64A00D271A85AE1C00A19F1E /* UIView+WebCacheOperation.m in Sources */,
+				64DC39021A928E6100842FC7 /* PBSafariActivity.m in Sources */,
 				64A00D1B1A85AE1C00A19F1E /* SDWebImageCompat.m in Sources */,
 				64A00CF21A85659E00A19F1E /* CustomProgramCell.m in Sources */,
 				646718CB1A7FE6D40067C433 /* main.m in Sources */,
