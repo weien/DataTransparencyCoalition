@@ -13,6 +13,8 @@
 #import "PBWebViewController.h"
 #import "PBSafariActivity.h"
 
+#define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+
 
 @interface IndividualViewController() <UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UITextView *mainTextView;
@@ -28,12 +30,9 @@
     
     self.mainTextView.backgroundColor = [UIColor grayColorVeryLight];
     
-    self.mainTextView = [[UITextView alloc] initWithFrame:self.view.frame];
-    [self.view addSubview:self.mainTextView];
-    
-    self.mainImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 140, 140)];
+    self.mainImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 140, 140)];
     [self.mainTextView addSubview:self.mainImageView];
-     
+    
     //thanks http://stackoverflow.com/a/20033752/2284713
     UIBezierPath * imgRect = [UIBezierPath bezierPathWithRect:self.mainImageView.frame];
     self.mainTextView.textContainer.exclusionPaths = @[imgRect];
@@ -56,6 +55,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     
     self.title = [NSString stringWithFormat:@"%@ %@", self.speakerData[@"firstName"], self.speakerData[@"lastName"]];
     
