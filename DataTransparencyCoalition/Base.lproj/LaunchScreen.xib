@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,10 +11,38 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" red=".961" green=".549" blue=".22" alpha="1" colorSpace="calibratedRGB"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LJR-A8-qNG">
+                    <rect key="frame" x="0.0" y="170" width="480" height="140"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dtc_logo" translatesAutoresizingMaskIntoConstraints="NO" id="kZF-E7-WQU">
+                            <rect key="frame" x="117" y="0.0" width="246" height="140"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="kZF-E7-WQU" secondAttribute="height" multiplier="762:434" id="DTF-Di-ihM"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="centerX" secondItem="kZF-E7-WQU" secondAttribute="centerX" id="5dH-IL-bN1"/>
+                        <constraint firstItem="kZF-E7-WQU" firstAttribute="top" secondItem="LJR-A8-qNG" secondAttribute="top" id="7kU-wG-QGM"/>
+                        <constraint firstAttribute="height" constant="140" id="Ttr-en-9Ou"/>
+                        <constraint firstAttribute="bottom" secondItem="kZF-E7-WQU" secondAttribute="bottom" id="eId-Jc-URI"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.96099999999999997" green="0.54900000000000004" blue="0.22" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="LJR-A8-qNG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Pwo-77-RPn"/>
+                <constraint firstAttribute="trailing" secondItem="LJR-A8-qNG" secondAttribute="trailing" id="sPo-zc-usY"/>
+                <constraint firstAttribute="centerY" secondItem="LJR-A8-qNG" secondAttribute="centerY" id="sev-Yb-ztK"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
+    <resources>
+        <image name="dtc_logo" width="762" height="434"/>
+    </resources>
 </document>
