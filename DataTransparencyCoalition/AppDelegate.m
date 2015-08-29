@@ -12,6 +12,9 @@
 #import "PrivateKeys.h"
 #import "DTCUtil.h"
 #import <Crashlytics/Crashlytics.h>
+#import <Fabric/Fabric.h>
+#import <TwitterKit/TwitterKit.h>
+
 
 @interface AppDelegate ()
 
@@ -20,7 +23,8 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Crashlytics startWithAPIKey:kCRASHLYTICS_API_KEY];
+    //[Crashlytics startWithAPIKey:kCRASHLYTICS_API_KEY];
+    [Fabric with:@[[Crashlytics class], [Twitter class]]];
     
     [Parse setApplicationId:kPARSE_APPLICATION_ID
                   clientKey:kPARSE_CLIENT_KEY];

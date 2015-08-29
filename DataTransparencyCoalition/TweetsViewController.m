@@ -11,6 +11,8 @@
 #import "Constants.h"
 //#import "PBWebViewController.h"
 //#import "PBSafariActivity.h"
+#import <TwitterKit/TwitterKit.h>
+
 
 @interface TweetsViewController() //<UIWebViewDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *mainWebView;
@@ -38,6 +40,13 @@
     
     //or maybe even
     //https://dev.twitter.com/twitter-kit/ios/show-tweets
+    [[Twitter sharedInstance] logInGuestWithCompletion:^(TWTRGuestSession *guestSession, NSError *error) {
+        [[[Twitter sharedInstance] APIClient] loadTweetWithID:@"20" completion:^(TWTRTweet *tweet, NSError *error) {
+            TWTRTweetView *tweetView = [[TWTRTweetView alloc] initWithTweet:tweet style:TWTRTweetViewStyleRegular];
+            [self.view addSubview:tweetView];
+        }];
+    }];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {

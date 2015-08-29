@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		6415134E1A8C131F00538CEA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6415134D1A8C131F00538CEA /* Crashlytics.framework */; };
 		6418D7A01A801DD80057C998 /* UIColor+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 6418D79F1A801DD80057C998 /* UIColor+Custom.m */; };
+		64230D661B912CD9007F0ED9 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64230D651B912CD9007F0ED9 /* Fabric.framework */; };
+		64230D6A1B912FCB007F0ED9 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64230D671B912FCB007F0ED9 /* TwitterKit.framework */; };
+		64230D6B1B912FCB007F0ED9 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64230D681B912FCB007F0ED9 /* TwitterKitResources.bundle */; };
+		64230D6C1B912FCB007F0ED9 /* TwitterCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64230D691B912FCB007F0ED9 /* TwitterCore.framework */; };
 		646718CB1A7FE6D40067C433 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 646718CA1A7FE6D40067C433 /* main.m */; };
 		646718CE1A7FE6D40067C433 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 646718CD1A7FE6D40067C433 /* AppDelegate.m */; };
 		646718D11A7FE6D40067C433 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 646718D01A7FE6D40067C433 /* HomeViewController.m */; };
@@ -91,6 +95,10 @@
 		6415134D1A8C131F00538CEA /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		6418D79E1A801DD80057C998 /* UIColor+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Custom.h"; sourceTree = "<group>"; };
 		6418D79F1A801DD80057C998 /* UIColor+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Custom.m"; sourceTree = "<group>"; };
+		64230D651B912CD9007F0ED9 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		64230D671B912FCB007F0ED9 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = SOURCE_ROOT; };
+		64230D681B912FCB007F0ED9 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = SOURCE_ROOT; };
+		64230D691B912FCB007F0ED9 /* TwitterCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterCore.framework; sourceTree = SOURCE_ROOT; };
 		646718C51A7FE6D40067C433 /* DataCoalition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataCoalition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		646718C91A7FE6D40067C433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		646718CA1A7FE6D40067C433 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -212,6 +220,7 @@
 				64D532801A8BDAB800617708 /* libstdc++.6.dylib in Frameworks */,
 				64D5327E1A8BDAAE00617708 /* StoreKit.framework in Frameworks */,
 				64FE124E1A803239005767EA /* libsqlite3.dylib in Frameworks */,
+				64230D661B912CD9007F0ED9 /* Fabric.framework in Frameworks */,
 				64FE124C1A803230005767EA /* libz.dylib in Frameworks */,
 				64FE12421A803226005767EA /* AudioToolbox.framework in Frameworks */,
 				64FE12431A803226005767EA /* CFNetwork.framework in Frameworks */,
@@ -221,6 +230,8 @@
 				64FE12471A803226005767EA /* QuartzCore.framework in Frameworks */,
 				6415134E1A8C131F00538CEA /* Crashlytics.framework in Frameworks */,
 				64FE12481A803226005767EA /* Security.framework in Frameworks */,
+				64230D6C1B912FCB007F0ED9 /* TwitterCore.framework in Frameworks */,
+				64230D6A1B912FCB007F0ED9 /* TwitterKit.framework in Frameworks */,
 				64FE124A1A803226005767EA /* SystemConfiguration.framework in Frameworks */,
 				64FE12381A8031F2005767EA /* Parse.framework in Frameworks */,
 				64FE12371A8031F2005767EA /* Bolts.framework in Frameworks */,
@@ -377,6 +388,10 @@
 		64A4DF0D1A7FFB840071E55B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64230D671B912FCB007F0ED9 /* TwitterKit.framework */,
+				64230D681B912FCB007F0ED9 /* TwitterKitResources.bundle */,
+				64230D691B912FCB007F0ED9 /* TwitterCore.framework */,
+				64230D651B912CD9007F0ED9 /* Fabric.framework */,
 				6415134D1A8C131F00538CEA /* Crashlytics.framework */,
 				64D5327D1A8BDAAE00617708 /* StoreKit.framework */,
 				64D5327F1A8BDAB800617708 /* libstdc++.6.dylib */,
@@ -568,6 +583,7 @@
 			files = (
 				64FE12341A8031C4005767EA /* FrameworksHistory in Resources */,
 				64FE122C1A8026F7005767EA /* gloriola_semibold.ttf in Resources */,
+				64230D6B1B912FCB007F0ED9 /* TwitterKitResources.bundle in Resources */,
 				64FE122A1A8026F7005767EA /* gloriola_regular.ttf in Resources */,
 				64DC39001A928E6100842FC7 /* 782-compass.png in Resources */,
 				646718D41A7FE6D40067C433 /* Main.storyboard in Resources */,
@@ -603,7 +619,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run f8325a280442dcfe187c30777d83465e38bea645 19a4157fc0a6bc3e9a253f2e81dee58ba51e07499b347e76eb1ac1045f378222";
+			shellScript = "./Fabric.framework/run f8325a280442dcfe187c30777d83465e38bea645 19a4157fc0a6bc3e9a253f2e81dee58ba51e07499b347e76eb1ac1045f378222";
 		};
 		64D5327C1A8BDA5D00617708 /* Parse Crash Symbols Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -795,6 +811,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DataTransparencyCoalition",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DataTransparencyCoalition/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -814,6 +831,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DataTransparencyCoalition",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DataTransparencyCoalition/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
