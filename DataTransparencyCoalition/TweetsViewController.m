@@ -16,6 +16,8 @@
 @interface TweetsViewController() //<UIWebViewDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *mainWebView;
 @property (strong, nonatomic) NSDictionary *conferenceMetadata;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *composeButton;
+
 //@property (strong, nonatomic) PBWebViewController* pbwVC;
 
 @end
@@ -44,11 +46,9 @@
     //try https://github.com/dfmuir/KINWebBrowser
     //or https://github.com/kmikael/PBWebViewController
     
-    UIButton *composeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [composeButton setTitle:@"Compose" forState:UIControlStateNormal];
-    composeButton.frame = CGRectMake(0, 0, 60, 30);//CGRectMake(0, 0, 32, 32);
-    [composeButton addTarget:self action:@selector(composeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:composeButton]];
+    //[self.composeButton setTitle:@"Compose" forState:UIControlStateNormal];
+    //self.composeButton.frame = CGRectMake(0, 0, 60, 30);//CGRectMake(0, 0, 32, 32);
+//    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:self.composeButton]];
     
     self.showTweetActions = YES;
     
@@ -57,8 +57,7 @@
     self.dataSource = searchTimelineDataSource;
 }
 
-- (void) composeButtonTapped:(id)sender {
-    //https://docs.fabric.io/ios/twitter/compose-tweets.html
+- (IBAction)composeButtonTapped:(id)sender {
 }
 
 @end

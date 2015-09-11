@@ -515,7 +515,16 @@
                             <outlet property="delegate" destination="QKe-Ad-Efr" id="32P-l9-QiU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="V1I-bn-ZnH"/>
+                    <navigationItem key="navigationItem" id="V1I-bn-ZnH">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="yeD-38-JKS">
+                            <connections>
+                                <action selector="composeButtonTapped:" destination="QKe-Ad-Efr" id="nnJ-FF-n3G"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="composeButton" destination="yeD-38-JKS" id="Vog-dN-fo7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jVc-p0-13W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
