@@ -161,7 +161,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000007" preferredMaxLayoutWidth="580" translatesAutoresizingMaskIntoConstraints="NO" id="E82-nm-33c">
                                                     <rect key="frame" x="10" y="5" width="580" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -227,7 +227,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="580" translatesAutoresizingMaskIntoConstraints="NO" id="uKI-37-ENV">
                                                     <rect key="frame" x="10" y="10" width="580" height="23"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -299,46 +299,6 @@
             </objects>
             <point key="canvasLocation" x="2682" y="400"/>
         </scene>
-        <!--Tweets View Controller-->
-        <scene sceneID="D2L-0g-4Q9">
-            <objects>
-                <viewController id="gkg-x5-eLI" customClass="TweetsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="nWz-Qv-ypM"/>
-                        <viewControllerLayoutGuide type="bottom" id="oPB-qV-bAe"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="FaN-9N-IYk">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egK-BU-HW0">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="egK-BU-HW0" secondAttribute="trailing" id="5hT-2l-gir"/>
-                            <constraint firstItem="oPB-qV-bAe" firstAttribute="top" secondItem="egK-BU-HW0" secondAttribute="bottom" id="6G2-Wh-eaM"/>
-                            <constraint firstAttribute="bottom" secondItem="egK-BU-HW0" secondAttribute="bottom" id="Sht-HV-nq4"/>
-                            <constraint firstItem="egK-BU-HW0" firstAttribute="top" secondItem="FaN-9N-IYk" secondAttribute="top" id="ZdF-jI-ic3"/>
-                            <constraint firstItem="egK-BU-HW0" firstAttribute="leading" secondItem="FaN-9N-IYk" secondAttribute="leading" id="tGF-oo-1BJ"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="6G2-Wh-eaM"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <navigationItem key="navigationItem" id="A0D-PK-Uel"/>
-                    <connections>
-                        <outlet property="mainWebView" destination="egK-BU-HW0" id="xR9-04-JGW"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="73V-ae-PhM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1904" y="1462"/>
-        </scene>
         <!--Sponsors-->
         <scene sceneID="QNS-TT-Ujs">
             <objects>
@@ -366,7 +326,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="gkg-x5-eLI" kind="relationship" relationship="rootViewController" id="jSb-5H-19q"/>
+                        <segue destination="QKe-Ad-Efr" kind="relationship" relationship="rootViewController" id="QrN-wW-7YA"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PUJ-yX-jd9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -533,6 +493,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpc-EO-aIg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1904" y="784"/>
+        </scene>
+        <!--Tweets View Controller-->
+        <scene sceneID="XHL-Rw-bvE">
+            <objects>
+                <tableViewController id="QKe-Ad-Efr" customClass="TweetsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xsP-id-0uw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="n57-aY-7RJ">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n57-aY-7RJ" id="per-Nu-17E">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QKe-Ad-Efr" id="Mu0-DN-oEO"/>
+                            <outlet property="delegate" destination="QKe-Ad-Efr" id="32P-l9-QiU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="V1I-bn-ZnH"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jVc-p0-13W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1904" y="1462"/>
         </scene>
         <!--Sponsors View Controller-->
         <scene sceneID="rsT-Ij-Lsv">

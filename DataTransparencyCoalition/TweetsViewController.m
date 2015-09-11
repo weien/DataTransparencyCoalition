@@ -9,10 +9,9 @@
 #import "TweetsViewController.h"
 #import "DTCUtil.h"
 #import "Constants.h"
+#import "UIColor+Custom.h"
 //#import "PBWebViewController.h"
 //#import "PBSafariActivity.h"
-#import <TwitterKit/TwitterKit.h>
-
 
 @interface TweetsViewController() //<UIWebViewDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *mainWebView;
@@ -21,38 +20,45 @@
 
 @end
 
+@interface TweetsViewController()
+
+@end
+
 @implementation TweetsViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.mainWebView.delegate = self;
-//    
-//    self.pbwVC = [PBWebViewController new];
-//    PBSafariActivity *activity = [PBSafariActivity new];
-//    self.pbwVC.applicationActivities = @[activity];
+    self.navigationItem.title = @"Tweets";
+    
+    //    self.mainWebView.delegate = self;
+    //
+    //    self.pbwVC = [PBWebViewController new];
+    //    PBSafariActivity *activity = [PBSafariActivity new];
+    //    self.pbwVC.applicationActivities = @[activity];
     
     self.conferenceMetadata = [DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata];
-    [self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.conferenceMetadata[@"tweetURL"]]]];
     
+    //[self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.conferenceMetadata[@"tweetURL"]]]];
     //use a custom web lib instead of UIWEbView
     //try https://github.com/dfmuir/KINWebBrowser
     //or https://github.com/kmikael/PBWebViewController
     
-    //or maybe even
-    //https://dev.twitter.com/twitter-kit/ios/show-tweets
-    [[Twitter sharedInstance] logInGuestWithCompletion:^(TWTRGuestSession *guestSession, NSError *error) {
-        [[[Twitter sharedInstance] APIClient] loadTweetWithID:@"20" completion:^(TWTRTweet *tweet, NSError *error) {
-            TWTRTweetView *tweetView = [[TWTRTweetView alloc] initWithTweet:tweet style:TWTRTweetViewStyleRegular];
-            [self.view addSubview:tweetView];
-        }];
-    }];
-
+    UIButton *composeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [composeButton setTitle:@"Compose" forState:UIControlStateNormal];
+    composeButton.frame = CGRectMake(0, 0, 60, 30);//CGRectMake(0, 0, 32, 32);
+    [composeButton addTarget:self action:@selector(composeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:composeButton]];
+    
+    self.showTweetActions = YES;
+    
+    TWTRAPIClient *client = [[TWTRAPIClient alloc] init];
+    TWTRSearchTimelineDataSource *searchTimelineDataSource = [[TWTRSearchTimelineDataSource alloc] initWithSearchQuery:self.conferenceMetadata[@"hashtag"] APIClient:client];
+    self.dataSource = searchTimelineDataSource;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.navigationItem.title = @"Tweets";
+- (void) composeButtonTapped:(id)sender {
+    //https://docs.fabric.io/ios/twitter/compose-tweets.html
 }
 
 @end
