@@ -437,8 +437,8 @@
                                                         <constraint firstAttribute="width" constant="110" id="hzh-9T-hlc"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000007" preferredMaxLayoutWidth="140" translatesAutoresizingMaskIntoConstraints="NO" id="M8k-yi-cOt">
-                                                    <rect key="frame" x="10" y="133" width="140" height="35"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.30000000000000004" preferredMaxLayoutWidth="140" translatesAutoresizingMaskIntoConstraints="NO" id="M8k-yi-cOt">
+                                                    <rect key="frame" x="10" y="133" width="140" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.94509803920000002" green="0.47058823529999999" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -459,7 +459,7 @@
                                             <constraint firstAttribute="trailing" secondItem="mLS-Er-pTs" secondAttribute="trailing" constant="10" id="93M-pD-3fb"/>
                                             <constraint firstAttribute="centerX" secondItem="HuE-te-rkp" secondAttribute="centerX" id="G6c-eE-rK6"/>
                                             <constraint firstItem="HuE-te-rkp" firstAttribute="top" secondItem="6T1-IT-Ewb" secondAttribute="top" constant="5" id="Npj-qP-aDy"/>
-                                            <constraint firstAttribute="bottom" secondItem="M8k-yi-cOt" secondAttribute="bottom" id="ORm-iD-vuy"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="M8k-yi-cOt" secondAttribute="bottom" id="ORm-iD-vuy"/>
                                             <constraint firstItem="M8k-yi-cOt" firstAttribute="leading" secondItem="6T1-IT-Ewb" secondAttribute="leading" constant="10" id="bho-Z0-sPr"/>
                                             <constraint firstAttribute="trailing" secondItem="M8k-yi-cOt" secondAttribute="trailing" constant="10" id="e43-7D-xRY"/>
                                             <constraint firstItem="mLS-Er-pTs" firstAttribute="leading" secondItem="6T1-IT-Ewb" secondAttribute="leading" constant="10" id="hi5-cn-B9p"/>
@@ -626,6 +626,6 @@
         <image name="tweets_icon" width="30" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Did-A5-lnx"/>
+        <segue reference="OXo-rV-7m0"/>
     </inferredMetricsTieBreakers>
 </document>
