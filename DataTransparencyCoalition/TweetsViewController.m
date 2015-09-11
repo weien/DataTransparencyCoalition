@@ -58,6 +58,17 @@
 }
 
 - (IBAction)composeButtonTapped:(id)sender {
+    TWTRComposer *composer = [[TWTRComposer alloc] init]; //apparently we're not allowed to reuse this https://docs.fabric.io/ios/twitter/compose-tweets.html
+    
+    [composer setText:self.conferenceMetadata[@"hashtag"]];
+    [composer showFromViewController:self completion:^(TWTRComposerResult result) {
+        if (result == TWTRComposerResultCancelled) {
+            NSLog(@"Tweet composition cancelled");
+        }
+        else {
+            NSLog(@"Sending Tweet!");
+        }
+    }];
 }
 
 @end
