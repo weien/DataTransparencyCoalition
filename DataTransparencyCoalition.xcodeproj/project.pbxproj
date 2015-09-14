@@ -39,6 +39,7 @@
 		64A00D261A85AE1C00A19F1E /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A00D151A85AE1C00A19F1E /* UIImageView+WebCache.m */; };
 		64A00D271A85AE1C00A19F1E /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A00D171A85AE1C00A19F1E /* UIView+WebCacheOperation.m */; };
 		64A00D2A1A85B43B00A19F1E /* IndividualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A00D291A85B43B00A19F1E /* IndividualViewController.m */; };
+		64CB87481BA748F30058BA7B /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64CB87471BA748F30058BA7B /* ParseUI.framework */; };
 		64D1F47C1A80867800DB6174 /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F47B1A80867800DB6174 /* TweetsViewController.m */; };
 		64D1F4831A811D6500DB6174 /* SpeakersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F4821A811D6500DB6174 /* SpeakersViewController.m */; };
 		64D1F4861A812C9000DB6174 /* ProgramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D1F4851A812C9000DB6174 /* ProgramViewController.m */; };
@@ -151,6 +152,7 @@
 		64A00D171A85AE1C00A19F1E /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		64A00D281A85B43B00A19F1E /* IndividualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualViewController.h; sourceTree = "<group>"; };
 		64A00D291A85B43B00A19F1E /* IndividualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualViewController.m; sourceTree = "<group>"; };
+		64CB87471BA748F30058BA7B /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		64D1F47A1A80867800DB6174 /* TweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
 		64D1F47B1A80867800DB6174 /* TweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
 		64D1F4811A811D6500DB6174 /* SpeakersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakersViewController.h; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				64FE12441A803226005767EA /* CoreGraphics.framework in Frameworks */,
 				64FE12451A803226005767EA /* CoreLocation.framework in Frameworks */,
 				64FE12461A803226005767EA /* MobileCoreServices.framework in Frameworks */,
+				64CB87481BA748F30058BA7B /* ParseUI.framework in Frameworks */,
 				64FE12471A803226005767EA /* QuartzCore.framework in Frameworks */,
 				6415134E1A8C131F00538CEA /* Crashlytics.framework in Frameworks */,
 				64FE12481A803226005767EA /* Security.framework in Frameworks */,
@@ -388,6 +391,7 @@
 		64A4DF0D1A7FFB840071E55B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64CB87471BA748F30058BA7B /* ParseUI.framework */,
 				64230D671B912FCB007F0ED9 /* TwitterKit.framework */,
 				64230D681B912FCB007F0ED9 /* TwitterKitResources.bundle */,
 				64230D691B912FCB007F0ED9 /* TwitterCore.framework */,
