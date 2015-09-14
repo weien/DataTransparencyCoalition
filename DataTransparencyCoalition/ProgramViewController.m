@@ -16,7 +16,7 @@
 #import "CustomProgramCell.h"
 #import "IndividualViewController.h"
 
-#define kProgramSectionHeight 50
+#define kProgramSectionHeight 53
 
 @interface ProgramViewController() <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *mainTableView;
@@ -210,6 +210,7 @@
     [sectionAttributedString addAttribute:NSFontAttributeName value:[DTCUtil currentItalicFontWithSize:sectionHeaderFontSize] range:[sectionText rangeOfString:sponsorText]];
     
     //TODO: http://stackoverflow.com/a/15399767/2284713 for dynamic sizing of these headers
+    //9/14/15 gave the above a shot, not much luck... the widths of the CGRect were all messed up
     UIView* sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.frame), kProgramSectionHeight)];
     sectionHeader.backgroundColor = [UIColor grayColorVeryLight];
     
