@@ -48,19 +48,19 @@
     PBSafariActivity *activity = [PBSafariActivity new];
     self.pbwVC.applicationActivities = @[activity];
     
-    self.sponsorsData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentSponsorsData];
-    if (!self.sponsorsData) {
+//    self.sponsorsData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentSponsorsData];
+//    if (!self.sponsorsData) {
         self.spinner = [self startSpinner:self.spinner inView:self.view];
-    }
-    else {
-        [self sortAndDisplayData];
-    }
+//    }
+//    else {
+//        [self sortAndDisplayData];
+//    }
     
     dispatch_async(dispatch_queue_create("getSponsorsData", NULL), ^{
         NSArray* sponsorsDataFromParse = [[ParseWebService sharedInstance] retrieveSponsorsDataForConference:[DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
-            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSponsorsData andInfo:sponsorsDataFromParse];
+//            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSponsorsData andInfo:sponsorsDataFromParse];
             self.sponsorsData = sponsorsDataFromParse;
             [self sortAndDisplayData];
         });
@@ -105,19 +105,21 @@
     NSDictionary* currentData = currentSection.sectionItems[indexPath.row];
     
     cell.sponsorImage.image = nil;
-    NSString* sponsorURL = currentData[@"picture"];
-
-    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:sponsorURL] options:SDWebImageRetryFailed
-                                                   progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                                                   }
-                                                  completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                                      if (image) {
-                                                          cell.sponsorImage.image = image;
-                                                      }
-                                                      if (error) {
-                                                          NSLog(@"Error getting sponsor image: %@", error);
-                                                      }
-                                                  }];
+    cell.sponsorImage.file = currentData[@"picture"];
+    [cell.sponsorImage loadInBackground];
+    
+//    NSString* sponsorURL = currentData[@"picture"];
+//    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:sponsorURL] options:SDWebImageRetryFailed
+//                                                   progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+//                                                   }
+//                                                  completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+//                                                      if (image) {
+//                                                          cell.sponsorImage.image = image;
+//                                                      }
+//                                                      if (error) {
+//                                                          NSLog(@"Error getting sponsor image: %@", error);
+//                                                      }
+//                                                  }];
     return cell;
 }
 

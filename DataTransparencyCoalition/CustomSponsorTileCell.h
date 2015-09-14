@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ParseUI/ParseUI.h>
 
 @interface CustomSponsorTileCell : UICollectionViewCell
-@property (strong, nonatomic) IBOutlet UIImageView *sponsorImage;
+@property (strong, nonatomic) IBOutlet PFImageView *sponsorImage;
 @end

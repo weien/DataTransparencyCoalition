@@ -558,7 +558,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="205" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cdN-MT-Vip">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cdN-MT-Vip" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="205" height="74"/>
                                                 </imageView>
                                             </subviews>
