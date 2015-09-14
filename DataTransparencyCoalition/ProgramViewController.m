@@ -155,10 +155,16 @@
     NSString* speakerName = cellData[@"speakerName"];
     NSString* speakerTitles = cellData[@"speakerTitles"];
     
-    NSString* speakerText = [NSString stringWithFormat:@"%@, %@", speakerName, speakerTitles];
+    NSString* speakerText = nil;
+    if (speakerTitles) {
+        speakerText = [NSString stringWithFormat:@"%@, %@", speakerName, speakerTitles];
+    }
+    else {
+        speakerText = speakerName;
+    }
+    
     NSMutableAttributedString* attributedString = [[NSMutableAttributedString alloc] initWithString:speakerText];
     NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
-    //    style.lineSpacing = 0;
     style.headIndent = 10;
     [attributedString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [speakerText length])];
     
@@ -166,7 +172,9 @@
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor grayColorVeryDark] range:NSMakeRange(0, [speakerText length])];
     [attributedString addAttribute:NSFontAttributeName value:[DTCUtil currentMainFontWithSize:fontSize] range:NSMakeRange(0, [speakerText length])];
     [attributedString addAttribute:NSFontAttributeName value:[DTCUtil currentBoldFontWithSize:fontSize] range:[speakerText rangeOfString:speakerName]];
-    [attributedString addAttribute:NSFontAttributeName value:[DTCUtil currentMainFontWithSize:fontSize] range:[speakerText rangeOfString:speakerTitles]];
+    if (speakerTitles) {
+        [attributedString addAttribute:NSFontAttributeName value:[DTCUtil currentMainFontWithSize:fontSize] range:[speakerText rangeOfString:speakerTitles]];
+    }
     
     return attributedString;
 }
