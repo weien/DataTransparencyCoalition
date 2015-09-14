@@ -135,7 +135,7 @@
             }
             else if ([subObj isKindOfClass:[PFFile class]]) {
                 PFFile* pfFile = (PFFile*)subObj;
-                [dictToAdd setObject:pfFile.url forKey:key];
+                [dictToAdd setObject:pfFile forKey:key];
             }
             else {
                 [dictToAdd setObject:[obj objectForKey:key] forKey:key];

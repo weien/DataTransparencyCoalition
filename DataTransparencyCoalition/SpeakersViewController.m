@@ -42,19 +42,19 @@
     self.customLayout.minimumInteritemSpacing = 0;
     self.customLayout.minimumLineSpacing = 0;
     
-    self.speakersData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentSpeakersData];
-    if (!self.speakersData) {
+//    self.speakersData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentSpeakersData];
+//    if (!self.speakersData) {
         self.spinner = [self startSpinner:self.spinner inView:self.view];
-    }
-    else {
-        [self sortAndDisplayData];
-    }
+//    }
+//    else {
+//        [self sortAndDisplayData];
+//    }
     
     dispatch_async(dispatch_queue_create("getSpeakersData", NULL), ^{
         NSArray* speakersDataFromParse = [[ParseWebService sharedInstance] retrieveSpeakersDataForConference:[DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
-            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
+//            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
             self.speakersData = speakersDataFromParse;
             [self sortAndDisplayData];
         });
@@ -77,20 +77,13 @@
     NSDictionary* currentData = self.speakersData[[indexPath row]];
     
     cell.speakerImage.image = nil;
+    cell.speakerImage.file = currentData[@"picture"];
+    [cell.speakerImage loadInBackground];
     
-    NSString* speakerURL = currentData[@"picture"];
-//    dispatch_async(dispatch_queue_create("getPicture", NULL), ^{
-//        NSData* pictureData = [NSData dataWithContentsOfURL:[NSURL URLWithString:speakerURL]];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            CustomSpeakerTileCell* updateCell = (CustomSpeakerTileCell*)[collectionView cellForItemAtIndexPath:indexPath];
-//            if (updateCell) {
-//                cell.speakerImage.image = [UIImage imageWithData:pictureData];
-//            }
-//        });
-//    });
-    
+    //NSString* speakerURL = currentData[@"pictureUrl"];
     //cell.speakerImage.image = [UIImage imageNamed:@"gray"];
-    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:speakerURL] options:SDWebImageHighPriority
+    //the old way caused the images to jump around horribly
+    /* [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:speakerURL] options:SDWebImageHighPriority
                                                    progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                                    }
                                                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
@@ -101,16 +94,7 @@
                                                           NSLog(@"Error getting speaker image: %@", error);
                                                           //cell.speakerImage.image = [UIImage imageNamed:@"gray"];
                                                       }
-                                                  }];
-    
-//    [speakerImageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-//        if (!error) {
-//            cell.speakerImage.image = [UIImage imageWithData:data];
-//        }
-//        else {
-//            NSLog(@"Error downloading speaker image: %@", error);
-//        }
-//    }];
+                                                  }]; */
     
     cell.speakerName.text = [[NSString stringWithFormat:@"%@ %@", currentData[@"firstName"], currentData[@"lastName"]] uppercaseString];
     cell.speakerTitle.text = currentData[@"title"];

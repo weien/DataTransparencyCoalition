@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ParseUI/ParseUI.h>
 
 @interface CustomSpeakerTileCell : UICollectionViewCell
-@property (strong, nonatomic) IBOutlet UIImageView *speakerImage;
+@property (strong, nonatomic) IBOutlet PFImageView *speakerImage;
 @property (strong, nonatomic) IBOutlet UILabel *speakerName;
 @property (strong, nonatomic) IBOutlet UILabel *speakerTitle;
 

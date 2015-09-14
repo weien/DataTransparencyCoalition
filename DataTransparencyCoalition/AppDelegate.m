@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "UIColor+Custom.h"
 #import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 #import "PrivateKeys.h"
 #import "DTCUtil.h"
 #import <Crashlytics/Crashlytics.h>
@@ -29,6 +30,7 @@
     [Parse setApplicationId:kPARSE_APPLICATION_ID
                   clientKey:kPARSE_CLIENT_KEY];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    [PFImageView class];
     
     // Register for Push Notitications
     if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
