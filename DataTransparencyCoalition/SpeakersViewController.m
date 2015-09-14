@@ -89,7 +89,8 @@
 //        });
 //    });
     
-    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:speakerURL] options:SDWebImageRetryFailed
+    //cell.speakerImage.image = [UIImage imageNamed:@"gray"];
+    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:speakerURL] options:SDWebImageHighPriority
                                                    progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                                    }
                                                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
@@ -98,6 +99,7 @@
                                                       }
                                                       if (error) {
                                                           NSLog(@"Error getting speaker image: %@", error);
+                                                          //cell.speakerImage.image = [UIImage imageNamed:@"gray"];
                                                       }
                                                   }];
     
