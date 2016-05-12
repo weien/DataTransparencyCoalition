@@ -1,0 +1,10 @@
+PODS:
+  - Backendless (0.0.1)
+
+DEPENDENCIES:
+  - Backendless
+
+SPEC CHECKSUMS:
+  Backendless: a117f832fdbb4fbaf6fd3d66305f758e327cdd6e
+
+COCOAPODS: 0.39.0

@@ -13,7 +13,7 @@
 #import "DTCUtil.h"
 #import "UIColor+Custom.h"
 #import "TLTransitionAnimator.h"
-#import "Reachability.h"
+#import "WWReachability.h"
 
 @interface DeciderViewController() <UIViewControllerTransitioningDelegate>
 @property (strong, nonatomic) UIActivityIndicatorView* spinner;
@@ -32,7 +32,7 @@
     
     //TODO: We should check somewhere if it's a new conference; if so, wipe out the old conference data
     
-    Reachability* reach = [Reachability reachabilityForInternetConnection];
+    WWReachability* reach = [WWReachability reachabilityForInternetConnection];
     if ([reach isReachable]) {
         self.spinner = [self startSpinner:self.spinner inView:self.view];
         dispatch_async(dispatch_queue_create("decideMetaData", NULL), ^{
