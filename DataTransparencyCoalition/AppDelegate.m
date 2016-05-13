@@ -15,7 +15,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
-
+#import "Backendless.h"
 
 @interface AppDelegate ()
 
@@ -31,6 +31,8 @@
                   clientKey:kPARSE_CLIENT_KEY];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     [PFImageView class];
+    
+    [[Backendless sharedInstance] initApp:kBACKENDLESS_APPLICATION_ID secret:kBACKENDLESS_SECRET_KEY version:@"v1"];
     
     // Register for Push Notitications
     if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
