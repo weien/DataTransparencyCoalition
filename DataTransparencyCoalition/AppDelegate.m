@@ -16,6 +16,7 @@
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
 #import "Backendless.h"
+#import "BackendlessWebService.h"
 
 @interface AppDelegate ()
 
@@ -33,6 +34,8 @@
     [PFImageView class];
     
     [[Backendless sharedInstance] initApp:kBACKENDLESS_APPLICATION_ID secret:kBACKENDLESS_SECRET_KEY version:@"v1"];
+    [Backendless sharedInstance].hostURL = @"https://api.backendless.com";
+    NSDictionary* metadata2 = [[BackendlessWebService sharedInstance] retrieveAppMetadata];
     
     // Register for Push Notitications
     if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {

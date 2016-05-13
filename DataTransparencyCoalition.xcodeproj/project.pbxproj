@@ -81,6 +81,9 @@
 		64FE12551A806CF3005767EA /* DeciderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE12541A806CF3005767EA /* DeciderViewController.m */; };
 		64FE12581A806E37005767EA /* UIViewController+DTC.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE12571A806E37005767EA /* UIViewController+DTC.m */; };
 		64FE125B1A807A4D005767EA /* TLTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE125A1A807A4D005767EA /* TLTransitionAnimator.m */; };
+		64FF3BEC1CE65E9400D1982B /* BackendlessWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FF3BEB1CE65E9400D1982B /* BackendlessWebService.m */; };
+		64FF3BEF1CE669B200D1982B /* Metadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FF3BEE1CE669B200D1982B /* Metadata.m */; };
+		64FF3BF21CE6725A00D1982B /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FF3BF11CE6725A00D1982B /* Home.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,6 +218,12 @@
 		64FE12571A806E37005767EA /* UIViewController+DTC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DTC.m"; sourceTree = "<group>"; };
 		64FE12591A807A4D005767EA /* TLTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTransitionAnimator.h; sourceTree = "<group>"; };
 		64FE125A1A807A4D005767EA /* TLTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTransitionAnimator.m; sourceTree = "<group>"; };
+		64FF3BEA1CE65E9400D1982B /* BackendlessWebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackendlessWebService.h; sourceTree = "<group>"; };
+		64FF3BEB1CE65E9400D1982B /* BackendlessWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackendlessWebService.m; sourceTree = "<group>"; };
+		64FF3BED1CE669B200D1982B /* Metadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Metadata.h; sourceTree = "<group>"; };
+		64FF3BEE1CE669B200D1982B /* Metadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Metadata.m; sourceTree = "<group>"; };
+		64FF3BF01CE6725A00D1982B /* Home.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Home.h; sourceTree = "<group>"; };
+		64FF3BF11CE6725A00D1982B /* Home.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Home.m; sourceTree = "<group>"; };
 		D4B60BCFFDCF6717F7B0FA1B /* libPods-DataCoalition.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DataCoalition.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -455,6 +464,12 @@
 				64FE12301A803156005767EA /* PrivateKeys.h */,
 				64FE124F1A804168005767EA /* ParseWebService.h */,
 				64FE12501A804168005767EA /* ParseWebService.m */,
+				64FF3BEA1CE65E9400D1982B /* BackendlessWebService.h */,
+				64FF3BEB1CE65E9400D1982B /* BackendlessWebService.m */,
+				64FF3BED1CE669B200D1982B /* Metadata.h */,
+				64FF3BEE1CE669B200D1982B /* Metadata.m */,
+				64FF3BF01CE6725A00D1982B /* Home.h */,
+				64FF3BF11CE6725A00D1982B /* Home.m */,
 				64FE12521A8062C4005767EA /* Constants.h */,
 				64FE12561A806E37005767EA /* UIViewController+DTC.h */,
 				64FE12571A806E37005767EA /* UIViewController+DTC.m */,
@@ -720,6 +735,7 @@
 			files = (
 				64A00D221A85AE1C00A19F1E /* UIImage+GIF.m in Sources */,
 				64D1F4831A811D6500DB6174 /* SpeakersViewController.m in Sources */,
+				64FF3BF21CE6725A00D1982B /* Home.m in Sources */,
 				64FE122F1A8027ED005767EA /* DTCUtil.m in Sources */,
 				64D1F48E1A814F9400DB6174 /* ProgramSection.m in Sources */,
 				64FE12511A804168005767EA /* ParseWebService.m in Sources */,
@@ -748,6 +764,7 @@
 				64D1F4861A812C9000DB6174 /* ProgramViewController.m in Sources */,
 				64A00D1A1A85AE1C00A19F1E /* SDImageCache.m in Sources */,
 				64A00D1E1A85AE1C00A19F1E /* SDWebImageDownloaderOperation.m in Sources */,
+				64FF3BEF1CE669B200D1982B /* Metadata.m in Sources */,
 				64FE125B1A807A4D005767EA /* TLTransitionAnimator.m in Sources */,
 				64A00D181A85AE1C00A19F1E /* MKAnnotationView+WebCache.m in Sources */,
 				64A00D231A85AE1C00A19F1E /* UIImage+MultiFormat.m in Sources */,
@@ -755,6 +772,7 @@
 				64DC39021A928E6100842FC7 /* PBSafariActivity.m in Sources */,
 				64A00D1B1A85AE1C00A19F1E /* SDWebImageCompat.m in Sources */,
 				64A00CF21A85659E00A19F1E /* CustomProgramCell.m in Sources */,
+				64FF3BEC1CE65E9400D1982B /* BackendlessWebService.m in Sources */,
 				646718CB1A7FE6D40067C433 /* main.m in Sources */,
 				64D532751A8AB17B00617708 /* CustomHomeCell.m in Sources */,
 				64D532611A89C1D000617708 /* SponsorSection.m in Sources */,
