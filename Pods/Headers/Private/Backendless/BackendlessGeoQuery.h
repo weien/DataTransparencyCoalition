@@ -1,1 +1,0 @@
-../../../Backendless/SDK/lib/backendless/include/BackendlessGeoQuery.h

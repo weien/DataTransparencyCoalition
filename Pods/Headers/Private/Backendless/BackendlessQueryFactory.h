@@ -1,1 +1,0 @@
-../../../Backendless/SDK/backendlessAPI/Classes/Persistence/BackendlessQueryFactory.h

@@ -1,6 +1,0 @@
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Backendless"
-LIBRARY_SEARCH_PATHS = "$(SRCROOT)/Pods/Backendless/SDK/lib/backendless" "$(SRCROOT)/Pods/Backendless/SDK/lib/CommLibiOS" "$(SRCROOT)/Pods/Backendless/SDK/lib/MediaLibiOS" "$(SRCROOT)/Pods/Backendless/SDK/lib/libav-v9.1965/lib"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Backendless"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"CommLibiOS" -l"MediaLibiOS" -l"avcodec" -l"avdevice" -l"avfilter" -l"avformat" -l"avresample" -l"avutil" -l"backendless" -l"sqlite3" -l"swscale" -l"z" -framework "AVFoundation" -framework "AudioToolbox" -framework "CFNetwork" -framework "CoreData" -framework "CoreFoundation" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMedia" -framework "CoreVideo" -framework "Foundation" -framework "MapKit" -framework "Security" -framework "SystemConfiguration" -framework "UIKit"
-PODS_ROOT = ${SRCROOT}/Pods

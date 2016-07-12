@@ -4,7 +4,7 @@
 # use_frameworks!
 
 target 'DataCoalition' do
-pod 'Backendless'
+# pod 'Backendless'
 end
 
 target 'DataTransparencyCoalitionTests' do
