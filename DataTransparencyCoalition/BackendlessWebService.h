@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Metadata.h"
+#import "Home.h"
+#import "Conference.h"
 
 @interface BackendlessWebService : NSObject
 + (BackendlessWebService*) sharedInstance;
-- (NSDictionary*) retrieveAppMetadata;
+- (Metadata*) retrieveAppMetadata;
 - (NSArray*) retrieveHomeDataForConference:(NSString*)conferenceId;
 - (NSArray*) retrieveProgramDataForConference:(NSString*)conferenceId;
 - (NSArray*) retrieveSpeakersDataForConference:(NSString*)conferenceId;

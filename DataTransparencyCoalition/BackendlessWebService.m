@@ -8,9 +8,6 @@
 
 #import "BackendlessWebService.h"
 #import "Backendless.h"
-#import "Metadata.h"
-#import "Home.h"
-#import "Conference.h"
 
 @implementation BackendlessWebService
 + (BackendlessWebService*) sharedInstance {
@@ -22,31 +19,11 @@
     return sharedBackendlessUtil;
 }
 
-- (NSDictionary*) retrieveAppMetadata {
+- (Metadata*) retrieveAppMetadata {
     Fault* fault = nil;
     BackendlessCollection *collection = [[Backendless sharedInstance].persistenceService find:[Metadata class] dataQuery:nil error:&fault];
-    
-    NSMutableDictionary* returnDict = [NSMutableDictionary dictionary];
     Metadata* md = collection.data.firstObject;
-    if (md.conferenceModeEnabled) {
-        Conference* conference = md.currentConference;
-        
-        //use setValue instead of setObject in case properties are nil
-        [returnDict setValue:@(YES) forKey:@"conferenceModeEnabled"];
-        [returnDict setValue:conference.coalitionURL forKey:@"coalitionURL"];
-        [returnDict setValue:conference.objectId forKey:@"conferenceId"];
-        [returnDict setValue:conference.conferenceURL forKey:@"conferenceURL"];
-        [returnDict setValue:conference.conferenceDate forKey:@"date"];
-        [returnDict setValue:conference.hashtag forKey:@"hashtag"];
-        [returnDict setValue:conference.location forKey:@"location"];
-        [returnDict setValue:conference.mapURL forKey:@"mapURL"];
-        [returnDict setValue:conference.name forKey:@"name"];
-        [returnDict setValue:conference.tweetURL forKey:@"tweetURL"];
-    }
-    else {
-        [returnDict setObject:@(NO) forKey:@"conferenceModeEnabled"];
-    }
-    return returnDict;
+    return md;
 }
 
 - (NSArray*) retrieveHomeDataForConference:(NSString*)conferenceId {
