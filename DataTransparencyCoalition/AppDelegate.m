@@ -35,7 +35,6 @@
     
     [[Backendless sharedInstance] initApp:kBACKENDLESS_APPLICATION_ID secret:kBACKENDLESS_SECRET_KEY version:@"v1"];
     [Backendless sharedInstance].hostURL = @"https://api.backendless.com";
-    NSDictionary* metadata2 = [[BackendlessWebService sharedInstance] retrieveAppMetadata];
     
     // Register for Push Notitications
     if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
