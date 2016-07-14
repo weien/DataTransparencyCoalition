@@ -10,7 +10,7 @@
 
 @class Conference;
 
-@interface Metadata : NSObject
+@interface Metadata : NSObject <NSCoding>
 @property (nonatomic, strong) Conference *currentConference;
 @property (nonatomic, assign) BOOL conferenceModeEnabled;
 

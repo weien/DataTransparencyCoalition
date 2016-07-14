@@ -22,7 +22,7 @@
 - (void)encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeObject:self.rank forKey:@"rank"];
     [encoder encodeObject:self.title forKey:@"title"];
-    [encoder encodeObject:self.url forKey:@"urld"];
+    [encoder encodeObject:self.url forKey:@"url"];
 }
 
 @end
