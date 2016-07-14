@@ -21,14 +21,6 @@
     return [UIFont fontWithName:@"GloriolaStd-Italic" size:size];
 }
 
-/*    "GloriolaStd-Bold",
- "GloriolaStd-BoldItalic",
- "GloriolaStd-SemiBoldItalic",
- GloriolaStd,
- "GloriolaStd-Italic",
- "GloriolaStd-SemiBold"
- */
-
 + (UIStoryboard*) currentStoryboard {
     return [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 }
@@ -91,14 +83,4 @@
     return destinationPath;
 }
 
-//
-//+ (void) updateCurrentUserImageWithImage:(UIImage*)image {
-//    NSString* key = [kLocalProfileImageDataPrefix stringByAppendingString:[self currentUser][@"email"]];
-//    [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(image) forKey:key];
-//}
-//
-//+ (UIImage*) currentUserImage {
-//    NSString* key = [kLocalProfileImageDataPrefix stringByAppendingString:[self currentUser][@"email"]];
-//    return [UIImage imageWithData:[[NSUserDefaults standardUserDefaults] dataForKey:key]];
-//}
 @end
