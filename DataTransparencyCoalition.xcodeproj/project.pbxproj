@@ -20,6 +20,10 @@
 		646718D61A7FE6D40067C433 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646718D51A7FE6D40067C433 /* Images.xcassets */; };
 		646718D91A7FE6D40067C433 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 646718D71A7FE6D40067C433 /* LaunchScreen.xib */; };
 		646718E51A7FE6D40067C433 /* DataTransparencyCoalitionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 646718E41A7FE6D40067C433 /* DataTransparencyCoalitionTests.m */; };
+		6485A7691D36F5480089685F /* Conference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6485A7621D36F5480089685F /* Conference.m */; };
+		6485A76A1D36F5480089685F /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 6485A7641D36F5480089685F /* Program.m */; };
+		6485A76B1D36F5480089685F /* Speakers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6485A7661D36F5480089685F /* Speakers.m */; };
+		6485A76C1D36F5480089685F /* Sponsors.m in Sources */ = {isa = PBXBuildFile; fileRef = 6485A7681D36F5480089685F /* Sponsors.m */; };
 		64A00CF21A85659E00A19F1E /* CustomProgramCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A00CF11A85659E00A19F1E /* CustomProgramCell.m */; };
 		64A00CF51A857B8D00A19F1E /* CustomSpeakerTileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A00CF41A857B8D00A19F1E /* CustomSpeakerTileCell.m */; };
 		64A00D181A85AE1C00A19F1E /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A00CF81A85AE1C00A19F1E /* MKAnnotationView+WebCache.m */; };
@@ -120,6 +124,14 @@
 		646718DE1A7FE6D40067C433 /* DataTransparencyCoalitionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataTransparencyCoalitionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		646718E31A7FE6D40067C433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		646718E41A7FE6D40067C433 /* DataTransparencyCoalitionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataTransparencyCoalitionTests.m; sourceTree = "<group>"; };
+		6485A7611D36F5480089685F /* Conference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conference.h; sourceTree = "<group>"; };
+		6485A7621D36F5480089685F /* Conference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conference.m; sourceTree = "<group>"; };
+		6485A7631D36F5480089685F /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
+		6485A7641D36F5480089685F /* Program.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Program.m; sourceTree = "<group>"; };
+		6485A7651D36F5480089685F /* Speakers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speakers.h; sourceTree = "<group>"; };
+		6485A7661D36F5480089685F /* Speakers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Speakers.m; sourceTree = "<group>"; };
+		6485A7671D36F5480089685F /* Sponsors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sponsors.h; sourceTree = "<group>"; };
+		6485A7681D36F5480089685F /* Sponsors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sponsors.m; sourceTree = "<group>"; };
 		64A00CF01A85659E00A19F1E /* CustomProgramCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomProgramCell.h; sourceTree = "<group>"; };
 		64A00CF11A85659E00A19F1E /* CustomProgramCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomProgramCell.m; sourceTree = "<group>"; };
 		64A00CF31A857B8D00A19F1E /* CustomSpeakerTileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSpeakerTileCell.h; sourceTree = "<group>"; };
@@ -378,6 +390,7 @@
 			children = (
 				64FE12331A8031C4005767EA /* FrameworksHistory */,
 				64D1F47D1A80870800DB6174 /* Setup */,
+				6485A7601D36E8EC0089685F /* Model */,
 				64A4DF101A801A6C0071E55B /* Util */,
 				64A00CEF1A85657B00A19F1E /* Views and Objects */,
 				646718CC1A7FE6D40067C433 /* AppDelegate.h */,
@@ -429,6 +442,25 @@
 				646718E31A7FE6D40067C433 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6485A7601D36E8EC0089685F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				64FF3BED1CE669B200D1982B /* Metadata.h */,
+				64FF3BEE1CE669B200D1982B /* Metadata.m */,
+				64FF3BF01CE6725A00D1982B /* Home.h */,
+				64FF3BF11CE6725A00D1982B /* Home.m */,
+				6485A7611D36F5480089685F /* Conference.h */,
+				6485A7621D36F5480089685F /* Conference.m */,
+				6485A7631D36F5480089685F /* Program.h */,
+				6485A7641D36F5480089685F /* Program.m */,
+				6485A7651D36F5480089685F /* Speakers.h */,
+				6485A7661D36F5480089685F /* Speakers.m */,
+				6485A7671D36F5480089685F /* Sponsors.h */,
+				6485A7681D36F5480089685F /* Sponsors.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		64A00CEF1A85657B00A19F1E /* Views and Objects */ = {
@@ -555,10 +587,6 @@
 				64FE12501A804168005767EA /* ParseWebService.m */,
 				64FF3BEA1CE65E9400D1982B /* BackendlessWebService.h */,
 				64FF3BEB1CE65E9400D1982B /* BackendlessWebService.m */,
-				64FF3BED1CE669B200D1982B /* Metadata.h */,
-				64FF3BEE1CE669B200D1982B /* Metadata.m */,
-				64FF3BF01CE6725A00D1982B /* Home.h */,
-				64FF3BF11CE6725A00D1982B /* Home.m */,
 				64FE12521A8062C4005767EA /* Constants.h */,
 				64FE12561A806E37005767EA /* UIViewController+DTC.h */,
 				64FE12571A806E37005767EA /* UIViewController+DTC.m */,
@@ -929,8 +957,11 @@
 				64A00D201A85AE1C00A19F1E /* SDWebImagePrefetcher.m in Sources */,
 				64D1F4861A812C9000DB6174 /* ProgramViewController.m in Sources */,
 				64A00D1A1A85AE1C00A19F1E /* SDImageCache.m in Sources */,
+				6485A76A1D36F5480089685F /* Program.m in Sources */,
 				64A00D1E1A85AE1C00A19F1E /* SDWebImageDownloaderOperation.m in Sources */,
 				64FF3BEF1CE669B200D1982B /* Metadata.m in Sources */,
+				6485A76C1D36F5480089685F /* Sponsors.m in Sources */,
+				6485A76B1D36F5480089685F /* Speakers.m in Sources */,
 				64FE125B1A807A4D005767EA /* TLTransitionAnimator.m in Sources */,
 				64A00D181A85AE1C00A19F1E /* MKAnnotationView+WebCache.m in Sources */,
 				64A00D231A85AE1C00A19F1E /* UIImage+MultiFormat.m in Sources */,
@@ -938,6 +969,7 @@
 				64DC39021A928E6100842FC7 /* PBSafariActivity.m in Sources */,
 				64A00D1B1A85AE1C00A19F1E /* SDWebImageCompat.m in Sources */,
 				64A00CF21A85659E00A19F1E /* CustomProgramCell.m in Sources */,
+				6485A7691D36F5480089685F /* Conference.m in Sources */,
 				64FF3BEC1CE65E9400D1982B /* BackendlessWebService.m in Sources */,
 				646718CB1A7FE6D40067C433 /* main.m in Sources */,
 				64D532751A8AB17B00617708 /* CustomHomeCell.m in Sources */,

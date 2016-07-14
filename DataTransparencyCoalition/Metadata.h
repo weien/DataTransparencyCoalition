@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class Conference;
+
 @interface Metadata : NSObject
-@property (nonatomic, strong) NSString *objectId;
-@property (nonatomic, strong) NSDate *created;
-@property (nonatomic, strong) NSDate *updated;
+@property (nonatomic, strong) Conference *currentConference;
 @property (nonatomic, assign) BOOL conferenceModeEnabled;
 
 @end
