@@ -2,7 +2,7 @@
 
 @class Conference;
 
-@interface Speakers : NSObject
+@interface Speakers : NSObject <NSCoding>
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) NSString *picture;
 @property (nonatomic, strong) NSString *bio;

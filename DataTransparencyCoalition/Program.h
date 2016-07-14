@@ -2,7 +2,7 @@
 
 @class Conference;
 
-@interface Program : NSObject
+@interface Program : NSObject <NSCoding>
 @property (nonatomic, strong) NSString *speakerName;
 @property (nonatomic, strong) NSString *eventName;
 @property (nonatomic, strong) NSDate *time;

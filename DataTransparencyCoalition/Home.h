@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Home : NSObject
-@property (nonatomic, assign) NSInteger rank;
+@interface Home : NSObject <NSCoding>
+@property (nonatomic, strong) NSNumber rank;
 @property (nonatomic, strong) NSString* title;
 @property (nonatomic, strong) NSString* url;
 @end

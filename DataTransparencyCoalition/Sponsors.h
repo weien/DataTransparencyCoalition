@@ -2,7 +2,7 @@
 
 @class Conference;
 
-@interface Sponsors : NSObject
+@interface Sponsors : NSObject <NSCoding>
 @property (nonatomic, strong) NSString *category;
 @property (nonatomic, strong) NSString *picture;
 @property (nonatomic, strong) NSNumber *categoryRank;

@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface Conference : NSObject
+@interface Conference : NSObject <NSCoding>
 @property (nonatomic, strong) NSString *objectId;
 
 @property (nonatomic, strong) NSDate *conferenceDate;
