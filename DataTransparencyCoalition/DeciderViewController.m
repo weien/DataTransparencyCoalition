@@ -7,13 +7,15 @@
 //
 
 #import "DeciderViewController.h"
-#import "ParseWebService.h"
+//#import "ParseWebService.h"
 #import "UIViewController+DTC.h"
 #import "Constants.h"
 #import "DTCUtil.h"
 #import "UIColor+Custom.h"
 #import "TLTransitionAnimator.h"
 #import "WWReachability.h"
+#import "Metadata.h"
+#import "BackendlessWebService.h"
 
 @interface DeciderViewController() <UIViewControllerTransitioningDelegate>
 @property (strong, nonatomic) UIActivityIndicatorView* spinner;
@@ -36,10 +38,10 @@
     if ([reach isReachable]) {
         self.spinner = [self startSpinner:self.spinner inView:self.view];
         dispatch_async(dispatch_queue_create("decideMetaData", NULL), ^{
-            NSDictionary* metadata = [[ParseWebService sharedInstance] retrieveMetaData];
+            Metadata* metadata = [[BackendlessWebService sharedInstance] retrieveAppMetadata];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self stopSpinner:self.spinner];
-                if (metadata[@"conferenceModeEnabled"]) {
+                if (metadata.conferenceModeEnabled) {
                     [DTCUtil archiveWithComponent:kComponentForConferenceMetadata andInfo:metadata];
                     [self goToConferenceHome];
                 }
@@ -51,9 +53,9 @@
     }
     else {
         //we're offline. As long as we have old metadata, just run with that.
-        NSDictionary* oldMetadata = [DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata];
+        Metadata* oldMetadata = [DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata];
         if (oldMetadata) {
-            if (oldMetadata[@"conferenceModeEnabled"]) {
+            if (oldMetadata.conferenceModeEnabled) {
                 [self goToConferenceHome];
             }
             else {
