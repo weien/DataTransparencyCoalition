@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Data Transparency Coalition. All rights reserved.
 //
 
-#define kPlistComponentForConferenceMetadata @"conference_metadata.plist"
-#define kPlistComponentForCurrentHomeData @"current_home_metadata.plist"
-#define kPlistComponentForCurrentProgramData @"current_program_metadata.plist"
-#define kPlistComponentForCurrentSpeakersData @"current_speakers_metadata.plist"
-#define kPlistComponentForCurrentSponsorsData @"current_sponsors_metadata.plist"
+#define kComponentForConferenceMetadata @"conference_metadata"
+#define kComponentForCurrentHomeData @"current_home_data"
+#define kComponentForCurrentProgramData @"current_program_data"
+#define kComponentForCurrentSpeakersData @"current_speakers_data"
+#define kComponentForCurrentSponsorsData @"current_sponsors_data"

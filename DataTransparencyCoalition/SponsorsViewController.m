@@ -48,7 +48,7 @@
     PBSafariActivity *activity = [PBSafariActivity new];
     self.pbwVC.applicationActivities = @[activity];
     
-//    self.sponsorsData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentSponsorsData];
+//    self.sponsorsData = [DTCUtil plistDataWithComponent:kComponentForCurrentSponsorsData];
 //    if (!self.sponsorsData) {
         self.spinner = [self startSpinner:self.spinner inView:self.view];
 //    }
@@ -57,10 +57,10 @@
 //    }
     
     dispatch_async(dispatch_queue_create("getSponsorsData", NULL), ^{
-        NSArray* sponsorsDataFromParse = [[ParseWebService sharedInstance] retrieveSponsorsDataForConference:[DTCUtil unarchiveWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
+        NSArray* sponsorsDataFromParse = [[ParseWebService sharedInstance] retrieveSponsorsDataForConference:[DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata][@"conferenceId"]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
-//            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSponsorsData andInfo:sponsorsDataFromParse];
+//            [DTCUtil saveDataToPlistWithComponent:kComponentForCurrentSponsorsData andInfo:sponsorsDataFromParse];
             self.sponsorsData = sponsorsDataFromParse;
             [self sortAndDisplayData];
         });

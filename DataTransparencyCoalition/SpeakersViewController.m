@@ -42,7 +42,7 @@
     self.customLayout.minimumInteritemSpacing = 0;
     self.customLayout.minimumLineSpacing = 0;
     
-//    self.speakersData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentSpeakersData];
+//    self.speakersData = [DTCUtil plistDataWithComponent:kComponentForCurrentSpeakersData];
 //    if (!self.speakersData) {
         self.spinner = [self startSpinner:self.spinner inView:self.view];
 //    }
@@ -51,10 +51,10 @@
 //    }
     
     dispatch_async(dispatch_queue_create("getSpeakersData", NULL), ^{
-        NSArray* speakersDataFromParse = [[ParseWebService sharedInstance] retrieveSpeakersDataForConference:[DTCUtil unarchiveWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
+        NSArray* speakersDataFromParse = [[ParseWebService sharedInstance] retrieveSpeakersDataForConference:[DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata][@"conferenceId"]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
-//            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
+//            [DTCUtil saveDataToPlistWithComponent:kComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
             self.speakersData = speakersDataFromParse;
             [self sortAndDisplayData];
         });

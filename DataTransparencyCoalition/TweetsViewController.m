@@ -39,7 +39,7 @@
     //    PBSafariActivity *activity = [PBSafariActivity new];
     //    self.pbwVC.applicationActivities = @[activity];
     
-    self.conferenceMetadata = [DTCUtil unarchiveWithComponent:kPlistComponentForConferenceMetadata];
+    self.conferenceMetadata = [DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata];
     
     //[self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.conferenceMetadata[@"tweetURL"]]]];
     //use a custom web lib instead of UIWEbView

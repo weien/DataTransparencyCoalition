@@ -40,7 +40,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self stopSpinner:self.spinner];
                 if (metadata[@"conferenceModeEnabled"]) {
-                    [DTCUtil archiveWithComponent:kPlistComponentForConferenceMetadata andInfo:metadata];
+                    [DTCUtil archiveWithComponent:kComponentForConferenceMetadata andInfo:metadata];
                     [self goToConferenceHome];
                 }
                 else {
@@ -51,7 +51,7 @@
     }
     else {
         //we're offline. As long as we have old metadata, just run with that.
-        NSDictionary* oldMetadata = [DTCUtil unarchiveWithComponent:kPlistComponentForConferenceMetadata];
+        NSDictionary* oldMetadata = [DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata];
         if (oldMetadata) {
             if (oldMetadata[@"conferenceModeEnabled"]) {
                 [self goToConferenceHome];

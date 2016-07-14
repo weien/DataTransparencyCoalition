@@ -42,7 +42,7 @@
     self.mainTableView.rowHeight = UITableViewAutomaticDimension;
     self.mainTableView.backgroundColor = [UIColor grayColorVeryLight];
     
-    self.programData = [DTCUtil unarchiveWithComponent:kPlistComponentForCurrentProgramData];
+    self.programData = [DTCUtil unarchiveWithComponent:kComponentForCurrentProgramData];
     if (!self.programData) {
         //spinner, then go get the data
         self.spinner = [self startSpinner:self.spinner inView:self.view];
@@ -52,22 +52,22 @@
         [self sortAndDisplayData];
     }
     dispatch_async(dispatch_queue_create("getProgramData", NULL), ^{
-        NSArray* programDataFromParse = [[ParseWebService sharedInstance] retrieveProgramDataForConference:[DTCUtil unarchiveWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
+        NSArray* programDataFromParse = [[ParseWebService sharedInstance] retrieveProgramDataForConference:[DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata][@"conferenceId"]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
-            [DTCUtil archiveWithComponent:kPlistComponentForCurrentProgramData andInfo:programDataFromParse];
+            [DTCUtil archiveWithComponent:kComponentForCurrentProgramData andInfo:programDataFromParse];
             self.programData = programDataFromParse;
             [self sortAndDisplayData];
         });
     });
     
     //pull speakerData, too
-    //self.speakersData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentSpeakersData];
+    //self.speakersData = [DTCUtil plistDataWithComponent:kComponentForCurrentSpeakersData];
     if (!self.speakersData) {
         dispatch_async(dispatch_queue_create("getSpeakersDataFromProgram", NULL), ^{
-            NSArray* speakersDataFromParse = [[ParseWebService sharedInstance] retrieveSpeakersDataForConference:[DTCUtil unarchiveWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
+            NSArray* speakersDataFromParse = [[ParseWebService sharedInstance] retrieveSpeakersDataForConference:[DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata][@"conferenceId"]];
             dispatch_async(dispatch_get_main_queue(), ^{
-                //[DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
+                //[DTCUtil saveDataToPlistWithComponent:kComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
                 self.speakersData = speakersDataFromParse;
             });
         });
