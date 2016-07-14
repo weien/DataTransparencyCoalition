@@ -21,7 +21,9 @@
 
 - (Metadata*) retrieveAppMetadata {
     Fault* fault = nil;
-    BackendlessCollection *collection = [[Backendless sharedInstance].persistenceService find:[Metadata class] dataQuery:nil error:&fault];
+    BackendlessCollection *collection = [[Backendless sharedInstance].persistenceService find:[Metadata class]
+                                                                                    dataQuery:nil
+                                                                                        error:&fault];
     Metadata* md = collection.data.firstObject;
     return md;
 }
@@ -29,43 +31,13 @@
 - (NSArray*) retrieveHomeDataForConference:(NSString*)conferenceId {
     Fault* fault = nil;
     BackendlessDataQuery *query = [BackendlessDataQuery query];
-    query.whereClause = [NSString stringWithFormat:@"conference = %@", conferenceId];
-    query.queryOptions = [QueryOptions query:999 offset:0];
-    BackendlessCollection *metadata = [[Backendless sharedInstance].persistenceService find:[Home class]
+    query.whereClause = [NSString stringWithFormat:@"conference.objectId = \'%@\'", conferenceId];
+    query.queryOptions = [QueryOptions query:100 offset:0];
+    BackendlessCollection *collection = [[Backendless sharedInstance].persistenceService find:[Home class]
                                                                                   dataQuery:query
                                                                                       error:&fault];
-
-//    PFQuery *query = [PFQuery queryWithClassName:@"Home"];
-//    PFObject *pointerToConference = [PFObject objectWithoutDataWithClassName:@"Conference" objectId:conferenceId];
-//    [query whereKey:@"conference" equalTo:pointerToConference];
-//    
-//    NSError* error = nil;
-//    NSArray* dataFromParse = [query findObjects:&error];
-//    if (error) {
-//        NSLog(@"Error fetching home data: %@", error);
-//    }
-//    
-    NSMutableArray* returnArr = [NSMutableArray array];
-//    for (PFObject* obj in dataFromParse) {
-//        NSMutableDictionary* dictToAdd = [NSMutableDictionary dictionary];
-//        for (NSString * key in [obj allKeys]) {
-//            id subObj = [obj objectForKey:key];
-//            if ([subObj isKindOfClass:[PFObject class]]) {
-//                PFObject* pfObj = (PFObject*)subObj;
-//                [dictToAdd setObject:pfObj.objectId forKey:key];
-//            }
-//            else if ([subObj isKindOfClass:[PFFile class]]) {
-//                PFFile* pfFile = (PFFile*)subObj;
-//                [dictToAdd setObject:pfFile.url forKey:key];
-//            }
-//            else {
-//                [dictToAdd setObject:[obj objectForKey:key] forKey:key];
-//            }
-//        }
-//        [returnArr addObject:dictToAdd];
-//    }
-    
-    return returnArr;
+    //NSLog(@"Collection is %@, fault is %@", collection, fault);
+    return collection.data;
 }
 
 

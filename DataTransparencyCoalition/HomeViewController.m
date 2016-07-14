@@ -10,11 +10,15 @@
 #import "UIColor+Custom.h"
 #import "DTCUtil.h"
 #import "Constants.h"
-#import "ParseWebService.h"
+//#import "ParseWebService.h"
+#import "BackendlessWebService.h"
 #import "UIViewController+DTC.h"
 #import "CustomHomeCell.h"
 #import "PBWebViewController.h"
 #import "PBSafariActivity.h"
+#import "Metadata.h"
+#import "Conference.h"
+#import "Home.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *mainTableView;
@@ -25,7 +29,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *conferenceDate;
 @property (strong, nonatomic) IBOutlet UIButton *conferenceLocation;
 
-@property (strong, nonatomic) NSDictionary *conferenceMetadata;
+@property (strong, nonatomic) Conference *currentConference;
 @property (strong, nonatomic) NSArray *homeData;
 @property (strong, nonatomic) UIActivityIndicatorView* spinner;
 @property (strong, nonatomic) PBWebViewController* pbwVC;
@@ -65,7 +69,8 @@
     PBSafariActivity *activity = [PBSafariActivity new];
     self.pbwVC.applicationActivities = @[activity];
     
-    self.conferenceMetadata = [DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata];
+    Metadata* md = [DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata];
+    self.currentConference = md.currentConference;
     
     self.homeData = [DTCUtil unarchiveWithComponent:kComponentForCurrentHomeData];
     if (!self.homeData) {
@@ -76,11 +81,11 @@
     }
     
     dispatch_async(dispatch_queue_create("getHomeData", NULL), ^{
-        NSArray* homeDataFromParse = [[ParseWebService sharedInstance] retrieveHomeDataForConference:[DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata][@"conferenceId"]];
+        NSArray* homeDataReceived = [[BackendlessWebService sharedInstance] retrieveHomeDataForConference:self.currentConference.objectId];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
-            [DTCUtil archiveWithComponent:kComponentForCurrentHomeData andInfo:homeDataFromParse];
-            self.homeData = homeDataFromParse;
+            [DTCUtil archiveWithComponent:kComponentForCurrentHomeData andInfo:homeDataReceived];
+            self.homeData = homeDataReceived;
             [self sortAndDisplayData];
         });
     });
@@ -94,11 +99,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.navigationItem.title = self.conferenceMetadata[@"hashtag"];
-    [self.conferenceTitle setTitle:[self.conferenceMetadata[@"name"] uppercaseString] forState:UIControlStateNormal];
-    [self.conferenceLocation setTitle:self.conferenceMetadata[@"location"] forState:UIControlStateNormal];
+    self.navigationItem.title = self.currentConference.name;
+    [self.conferenceTitle setTitle:[self.currentConference.name uppercaseString] forState:UIControlStateNormal];
+    [self.conferenceLocation setTitle:self.currentConference.location forState:UIControlStateNormal];
     
-    NSDate* conferenceDate = self.conferenceMetadata[@"date"];
+    NSDate* conferenceDate = self.currentConference.conferenceDate;
     NSDateFormatter* dateFormatter = [DTCUtil sharedDateFormatter];
     dateFormatter.dateFormat = @"MMMM dd";
     NSString* dateSuffix = [DTCUtil daySuffixForDate:conferenceDate];
@@ -115,7 +120,7 @@
     CustomHomeCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.backgroundColor = [UIColor orangeColorSun];
     
-    NSDictionary* currentData = self.homeData[indexPath.row];
+    Home* homeItem = self.homeData[indexPath.row];
     
     cell.itemTitle.backgroundColor = [UIColor whiteColor];
     cell.itemTitle.textColor = [UIColor grayColorVeryDark];
@@ -125,7 +130,7 @@
     cell.itemTitle.layer.shadowRadius = 1;
     cell.itemTitle.layer.shadowOpacity = 1;
     
-    cell.itemTitle.text = [currentData[@"title"] uppercaseString];
+    cell.itemTitle.text = [homeItem.title uppercaseString];
     
     return cell;
 }
@@ -133,23 +138,23 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    NSDictionary* currentData = self.homeData[indexPath.row];
-    self.pbwVC.URL = [NSURL URLWithString:currentData[@"url"]];
+    Home* homeItem = self.homeData[indexPath.row];
+    self.pbwVC.URL = [NSURL URLWithString:homeItem.url];
     [self.navigationController pushViewController:self.pbwVC animated:YES];
 }
 
 - (IBAction)dtcLogoTapped:(id)sender {
-    self.pbwVC.URL = [NSURL URLWithString:self.conferenceMetadata[@"coalitionURL"]];
+    self.pbwVC.URL = [NSURL URLWithString:self.currentConference.coalitionURL];
     [self.navigationController pushViewController:self.pbwVC animated:YES];
 }
 
 - (IBAction)conferenceTitleTapped:(id)sender {
-    self.pbwVC.URL = [NSURL URLWithString:self.conferenceMetadata[@"conferenceURL"]];
+    self.pbwVC.URL = [NSURL URLWithString:self.currentConference.conferenceURL];
     [self.navigationController pushViewController:self.pbwVC animated:YES];
 }
 
 - (IBAction)conferenceLocationTapped:(id)sender {
-    self.pbwVC.URL = [NSURL URLWithString:self.conferenceMetadata[@"mapURL"]];
+    self.pbwVC.URL = [NSURL URLWithString:self.currentConference.mapURL];
     [self.navigationController pushViewController:self.pbwVC animated:YES];
 }
 
