@@ -52,12 +52,12 @@
 }
 
 #pragma mark - archiving
-+ (void) saveDataToPlistWithComponent:(NSString*)component andInfo:(id)info {
++ (void) archiveWithComponent:(NSString*)component andInfo:(id)info {
     NSString *destinationPath = [self destinationPathWithComponent:component];
     [NSKeyedArchiver archiveRootObject:info toFile:destinationPath];
 }
 
-+ (id) plistDataWithComponent:(NSString*)component {
++ (id) unarchiveWithComponent:(NSString*)component {
     NSString *destinationPath = [self destinationPathWithComponent:component];
     return [NSKeyedUnarchiver unarchiveObjectWithFile:destinationPath];
 }

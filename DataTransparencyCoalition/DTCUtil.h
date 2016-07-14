@@ -21,6 +21,6 @@
 + (NSString *)daySuffixForDate:(NSDate *)date;
 
 //plists
-+ (void) saveDataToPlistWithComponent:(NSString*)component andInfo:(id)info;
-+ (id) plistDataWithComponent:(NSString*)component;
++ (void) archiveWithComponent:(NSString*)component andInfo:(id)info;
++ (id) unarchiveWithComponent:(NSString*)component;
 @end

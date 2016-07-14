@@ -65,9 +65,9 @@
     PBSafariActivity *activity = [PBSafariActivity new];
     self.pbwVC.applicationActivities = @[activity];
     
-    self.conferenceMetadata = [DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata];
+    self.conferenceMetadata = [DTCUtil unarchiveWithComponent:kPlistComponentForConferenceMetadata];
     
-    self.homeData = [DTCUtil plistDataWithComponent:kPlistComponentForCurrentHomeData];
+    self.homeData = [DTCUtil unarchiveWithComponent:kPlistComponentForCurrentHomeData];
     if (!self.homeData) {
         self.spinner = [self startSpinner:self.spinner inView:self.view];
     }
@@ -76,10 +76,10 @@
     }
     
     dispatch_async(dispatch_queue_create("getHomeData", NULL), ^{
-        NSArray* homeDataFromParse = [[ParseWebService sharedInstance] retrieveHomeDataForConference:[DTCUtil plistDataWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
+        NSArray* homeDataFromParse = [[ParseWebService sharedInstance] retrieveHomeDataForConference:[DTCUtil unarchiveWithComponent:kPlistComponentForConferenceMetadata][@"conferenceId"]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
-            [DTCUtil saveDataToPlistWithComponent:kPlistComponentForCurrentHomeData andInfo:homeDataFromParse];
+            [DTCUtil archiveWithComponent:kPlistComponentForCurrentHomeData andInfo:homeDataFromParse];
             self.homeData = homeDataFromParse;
             [self sortAndDisplayData];
         });
