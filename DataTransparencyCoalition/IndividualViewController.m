@@ -12,14 +12,14 @@
 #import "UIImageView+WebCache.h"
 #import "PBWebViewController.h"
 #import "PBSafariActivity.h"
-#import <ParseUI/ParseUI.h>
+//#import <ParseUI/ParseUI.h>
 
 #define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 
 
 @interface IndividualViewController() <UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UITextView *mainTextView;
-@property (strong, nonatomic) IBOutlet PFImageView *mainImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *mainImageView;
 @property (strong, nonatomic) PBWebViewController* pbwVC;
 
 @end
@@ -31,7 +31,7 @@
     
     self.mainTextView.backgroundColor = [UIColor grayColorVeryLight];
     
-    self.mainImageView = [[PFImageView alloc] initWithFrame:CGRectMake(0, 0, 140, 140)];
+    self.mainImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 140, 140)];
     [self.mainTextView addSubview:self.mainImageView];
     
     //thanks http://stackoverflow.com/a/20033752/2284713
@@ -58,24 +58,24 @@
     [super viewWillAppear:animated];
     
     
-    self.title = [NSString stringWithFormat:@"%@ %@", self.speakerData[@"firstName"], self.speakerData[@"lastName"]];
+    self.title = [NSString stringWithFormat:@"%@ %@", self.speakerData.firstName, self.speakerData.lastName];
     
     self.mainTextView.text = nil; //necessary because of weird datadetector issue
-    self.mainTextView.text = self.speakerData[@"bio"];
+    self.mainTextView.text = self.speakerData.bio;
     
     if (self.speakerImage) {
         self.mainImageView.image = self.speakerImage;
     }
     else {
         self.mainImageView.image = nil;
-        self.mainImageView.file = self.speakerData[@"picture"];
-        [self.mainImageView loadInBackground];
-//        [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:self.speakerData[@"picture"]] options:SDWebImageRetryFailed
-//                                                       progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-//                                                       }
-//                                                      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-//                                                          self.mainImageView.image = image;
-//                                                      }];
+//        self.mainImageView.file = self.speakerData.picture;
+//        [self.mainImageView loadInBackground];
+        [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:self.speakerData.picture] options:SDWebImageRetryFailed
+                                                       progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                                       }
+                                                      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                                          self.mainImageView.image = image;
+                                                      }];
     }
 }
 
