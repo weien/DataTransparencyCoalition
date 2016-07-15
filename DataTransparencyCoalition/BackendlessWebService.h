@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "Metadata.h"
-#import "Home.h"
 #import "Conference.h"
 
 @interface BackendlessWebService : NSObject

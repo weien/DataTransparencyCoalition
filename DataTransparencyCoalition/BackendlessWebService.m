@@ -8,6 +8,10 @@
 
 #import "BackendlessWebService.h"
 #import "Backendless.h"
+#import "Home.h"
+#import "Program.h"
+#import "Speakers.h"
+#import "Sponsors.h"
 
 @implementation BackendlessWebService
 + (BackendlessWebService*) sharedInstance {
@@ -37,6 +41,39 @@
                                                                                   dataQuery:query
                                                                                       error:&fault];
     //NSLog(@"Collection is %@, fault is %@", collection, fault);
+    return collection.data;
+}
+
+- (NSArray*) retrieveProgramDataForConference:(NSString*)conferenceId {
+    Fault* fault = nil;
+    BackendlessDataQuery *query = [BackendlessDataQuery query];
+    query.whereClause = [NSString stringWithFormat:@"conference.objectId = \'%@\'", conferenceId];
+    query.queryOptions = [QueryOptions query:100 offset:0];
+    BackendlessCollection *collection = [[Backendless sharedInstance].persistenceService find:[Program class]
+                                                                                    dataQuery:query
+                                                                                        error:&fault];
+    return collection.data;
+}
+
+- (NSArray*) retrieveSpeakersDataForConference:(NSString*)conferenceId {
+    Fault* fault = nil;
+    BackendlessDataQuery *query = [BackendlessDataQuery query];
+    query.whereClause = [NSString stringWithFormat:@"conference.objectId = \'%@\'", conferenceId];
+    query.queryOptions = [QueryOptions query:100 offset:0];
+    BackendlessCollection *collection = [[Backendless sharedInstance].persistenceService find:[Speakers class]
+                                                                                    dataQuery:query
+                                                                                        error:&fault];
+    return collection.data;
+}
+
+- (NSArray*) retrieveSponsorsDataForConference:(NSString*)conferenceId {
+    Fault* fault = nil;
+    BackendlessDataQuery *query = [BackendlessDataQuery query];
+    query.whereClause = [NSString stringWithFormat:@"conference.objectId = \'%@\'", conferenceId];
+    query.queryOptions = [QueryOptions query:100 offset:0];
+    BackendlessCollection *collection = [[Backendless sharedInstance].persistenceService find:[Sponsors class]
+                                                                                    dataQuery:query
+                                                                                        error:&fault];
     return collection.data;
 }
 
