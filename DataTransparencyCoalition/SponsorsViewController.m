@@ -10,7 +10,8 @@
 #import "UIColor+Custom.h"
 #import "DTCUtil.h"
 #import "Constants.h"
-#import "ParseWebService.h"
+//#import "ParseWebService.h"
+#import "BackendlessWebService.h"
 #import "UIViewController+DTC.h"
 #import "UIImageView+WebCache.h"
 #import "CustomSponsorTileCell.h"
@@ -18,6 +19,7 @@
 #import "CustomSponsorHeaderView.h"
 #import "PBWebViewController.h"
 #import "PBSafariActivity.h"
+#import "Sponsors.h"
 
 @interface SponsorsViewController() <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UICollectionView *mainCollectionView;
@@ -55,13 +57,14 @@
 //    else {
 //        [self sortAndDisplayData];
 //    }
-    
+    Metadata* md = [DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata];
+    NSString* currentConferenceID = md.currentConference.objectId;
     dispatch_async(dispatch_queue_create("getSponsorsData", NULL), ^{
-        NSArray* sponsorsDataFromParse = [[ParseWebService sharedInstance] retrieveSponsorsDataForConference:[DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata][@"conferenceId"]];
+        NSArray* sponsorsDataReceived = [[BackendlessWebService sharedInstance] retrieveSponsorsDataForConference:currentConferenceID];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
 //            [DTCUtil saveDataToPlistWithComponent:kComponentForCurrentSponsorsData andInfo:sponsorsDataFromParse];
-            self.sponsorsData = sponsorsDataFromParse;
+            self.sponsorsData = sponsorsDataReceived;
             [self sortAndDisplayData];
         });
     });
@@ -77,8 +80,9 @@
         NSArray* sortedMatchingItems = [matchingItems sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
         
         SponsorSection* section = [SponsorSection new];
-        section.sectionName = [sortedMatchingItems firstObject][@"category"];
-        section.sectionRank = [[sortedMatchingItems firstObject][@"categoryRank"] integerValue];
+        Sponsors* exampleSponsor = [sortedMatchingItems firstObject];
+        section.sectionName = exampleSponsor.category;
+        section.sectionRank = [exampleSponsor.categoryRank integerValue];
         section.sectionItems = sortedMatchingItems;
         
         [categoriesToDisplay addObject:section];
@@ -102,24 +106,25 @@
     CustomSponsorTileCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     
     SponsorSection* currentSection = self.sectionData[indexPath.section];
-    NSDictionary* currentData = currentSection.sectionItems[indexPath.row];
+    Sponsors* currentData = currentSection.sectionItems[indexPath.row];
     
-    cell.sponsorImage.image = nil;
-    cell.sponsorImage.file = currentData[@"picture"];
-    [cell.sponsorImage loadInBackground];
+//    cell.sponsorImage.image = nil;
+//    cell.sponsorImage.file = currentData[@"picture"];
+//    [cell.sponsorImage loadInBackground];
     
-//    NSString* sponsorURL = currentData[@"picture"];
-//    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:sponsorURL] options:SDWebImageRetryFailed
-//                                                   progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-//                                                   }
-//                                                  completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-//                                                      if (image) {
-//                                                          cell.sponsorImage.image = image;
-//                                                      }
-//                                                      if (error) {
-//                                                          NSLog(@"Error getting sponsor image: %@", error);
-//                                                      }
-//                                                  }];
+    NSString* sponsorURL = currentData.picture;
+    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:sponsorURL] options:SDWebImageRetryFailed
+                                                   progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                                                   }
+                                                  completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                                      if (image) {
+                                                          cell.sponsorImage.image = image;
+                                                      }
+                                                      if (error) {
+                                                          NSLog(@"Error getting sponsor image: %@", error);
+                                                          cell.sponsorImage.image = nil;
+                                                      }
+                                                  }];
     return cell;
 }
 
@@ -156,9 +161,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     SponsorSection* currentSection = self.sectionData[indexPath.section];
-    NSDictionary* currentData = currentSection.sectionItems[indexPath.row];
+    Sponsors* currentData = currentSection.sectionItems[indexPath.row];
 
-    self.pbwVC.URL = [NSURL URLWithString:currentData[@"url"]];
+    self.pbwVC.URL = [NSURL URLWithString:currentData.url];
     [self.navigationController pushViewController:self.pbwVC animated:YES];
 }
 
