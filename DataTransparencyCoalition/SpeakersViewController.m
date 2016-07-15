@@ -10,11 +10,13 @@
 #import "UIColor+Custom.h"
 #import "DTCUtil.h"
 #import "Constants.h"
-#import "ParseWebService.h"
+//#import "ParseWebService.h"
+#import "BackendlessWebService.h"
 #import "UIViewController+DTC.h"
 #import "CustomSpeakerTileCell.h"
 #import "UIImageView+WebCache.h"
 #import "IndividualViewController.h"
+#import "Speakers.h"
 
 //#import <Parse/Parse.h>
 
@@ -50,12 +52,14 @@
 //        [self sortAndDisplayData];
 //    }
     
+    Metadata* md = [DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata];
+    NSString* currentConferenceID = md.currentConference.objectId;
     dispatch_async(dispatch_queue_create("getSpeakersData", NULL), ^{
-        NSArray* speakersDataFromParse = [[ParseWebService sharedInstance] retrieveSpeakersDataForConference:[DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata][@"conferenceId"]];
+        NSArray* speakersDataReceived = [[BackendlessWebService sharedInstance] retrieveSpeakersDataForConference:currentConferenceID];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
 //            [DTCUtil saveDataToPlistWithComponent:kComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
-            self.speakersData = speakersDataFromParse;
+            self.speakersData = speakersDataReceived;
             [self sortAndDisplayData];
         });
     });
@@ -74,16 +78,15 @@
     CustomSpeakerTileCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     //cell.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    NSDictionary* currentData = self.speakersData[[indexPath row]];
+    Speakers* currentData = self.speakersData[[indexPath row]];
     
-    cell.speakerImage.image = nil;
-    cell.speakerImage.file = currentData[@"picture"];
-    [cell.speakerImage loadInBackground];
+//    cell.speakerImage.image = nil;
+//    cell.speakerImage.file = currentData[@"picture"];
+//    [cell.speakerImage loadInBackground];
     
-    //NSString* speakerURL = currentData[@"pictureUrl"];
-    //cell.speakerImage.image = [UIImage imageNamed:@"gray"];
-    //the old way caused the images to jump around horribly
-    /* [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:speakerURL] options:SDWebImageHighPriority
+    cell.speakerImage.image = [UIImage imageNamed:@"gray"];
+    NSString* speakerURL = currentData.picture;
+    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:speakerURL] options:SDWebImageHighPriority
                                                    progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                                    }
                                                   completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
@@ -92,12 +95,12 @@
                                                       }
                                                       if (error) {
                                                           NSLog(@"Error getting speaker image: %@", error);
-                                                          //cell.speakerImage.image = [UIImage imageNamed:@"gray"];
+                                                          cell.speakerImage.image = [UIImage imageNamed:@"gray"];
                                                       }
-                                                  }]; */
+                                                  }];
     
-    cell.speakerName.text = [[NSString stringWithFormat:@"%@ %@", currentData[@"firstName"], currentData[@"lastName"]] uppercaseString];
-    cell.speakerTitle.text = currentData[@"title"];
+    cell.speakerName.text = [[NSString stringWithFormat:@"%@ %@", currentData.firstName, currentData.lastName] uppercaseString];
+    cell.speakerTitle.text = currentData.title;
     
     return cell;
 }
@@ -113,7 +116,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary* currentData = self.speakersData[[indexPath row]];
+    Speakers* currentData = self.speakersData[[indexPath row]];
     CustomSpeakerTileCell* currentCell = (CustomSpeakerTileCell*)[collectionView cellForItemAtIndexPath:indexPath];
     
     if (!self.individualVC) {
