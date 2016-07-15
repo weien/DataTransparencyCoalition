@@ -10,11 +10,15 @@
 #import "UIColor+Custom.h"
 #import "DTCUtil.h"
 #import "Constants.h"
-#import "ParseWebService.h"
+//#import "ParseWebService.h"
+#import "BackendlessWebService.h"
 #import "UIViewController+DTC.h"
 #import "ProgramSection.h"
 #import "CustomProgramCell.h"
 #import "IndividualViewController.h"
+#import "Metadata.h"
+#import "Program.h"
+#import "Speakers.h"
 
 #define kProgramSectionHeight 53
 
@@ -42,6 +46,9 @@
     self.mainTableView.rowHeight = UITableViewAutomaticDimension;
     self.mainTableView.backgroundColor = [UIColor grayColorVeryLight];
     
+    Metadata* md = [DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata];
+    NSString* currentConferenceID = md.currentConference.objectId;
+    
     self.programData = [DTCUtil unarchiveWithComponent:kComponentForCurrentProgramData];
     if (!self.programData) {
         //spinner, then go get the data
@@ -52,11 +59,11 @@
         [self sortAndDisplayData];
     }
     dispatch_async(dispatch_queue_create("getProgramData", NULL), ^{
-        NSArray* programDataFromParse = [[ParseWebService sharedInstance] retrieveProgramDataForConference:[DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata][@"conferenceId"]];
+        NSArray* programDataReceived = [[BackendlessWebService sharedInstance] retrieveProgramDataForConference:currentConferenceID];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
-            [DTCUtil archiveWithComponent:kComponentForCurrentProgramData andInfo:programDataFromParse];
-            self.programData = programDataFromParse;
+            [DTCUtil archiveWithComponent:kComponentForCurrentProgramData andInfo:programDataReceived];
+            self.programData = programDataReceived;
             [self sortAndDisplayData];
         });
     });
@@ -65,36 +72,38 @@
     //self.speakersData = [DTCUtil plistDataWithComponent:kComponentForCurrentSpeakersData];
     if (!self.speakersData) {
         dispatch_async(dispatch_queue_create("getSpeakersDataFromProgram", NULL), ^{
-            NSArray* speakersDataFromParse = [[ParseWebService sharedInstance] retrieveSpeakersDataForConference:[DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata][@"conferenceId"]];
+            NSArray* speakersDataReceived = [[BackendlessWebService sharedInstance] retrieveSpeakersDataForConference:currentConferenceID];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //[DTCUtil saveDataToPlistWithComponent:kComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
-                self.speakersData = speakersDataFromParse;
+                self.speakersData = speakersDataReceived;
             });
         });
     }
 }
 
 - (void) sortAndDisplayData {
-    NSArray* programDataFromParse = self.programData;
-    NSArray* allEventNames = [programDataFromParse valueForKey:@"eventName"];
+    NSArray* programDataReceived = self.programData;
+    NSArray* allEventNames = [programDataReceived valueForKey:@"eventName"];
     NSArray* uniqueEventNames = [[NSSet setWithArray:allEventNames] allObjects];
     
     NSMutableArray* sectionsToDisplay = [NSMutableArray array];
     for (NSString* eventName in uniqueEventNames) {
-        NSArray* matchingItems = [programDataFromParse filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(eventName == %@)", eventName]];
+        NSArray* matchingItems = [programDataReceived filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(eventName == %@)", eventName]];
         NSArray* sortedMatchingItems = [matchingItems sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"speakerName" ascending:YES]]];
-        NSMutableArray* peopleInSection = [NSMutableArray array];
         
         NSArray* normalSpeakers = [sortedMatchingItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"((isSponsor == nil || isSponsor == NO) && (isSupport == nil || isSupport == NO))"]];
         NSArray* supportSpeakers = [sortedMatchingItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(isSupport == YES)"]];
         NSArray* sponsorSpeakers = [sortedMatchingItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(isSponsor == YES)"]];
         
+        NSMutableArray* peopleInSection = [NSMutableArray array];
         peopleInSection = [[normalSpeakers arrayByAddingObjectsFromArray:supportSpeakers] mutableCopy]; //combine, with normal speakers first
         
         ProgramSection* section = [ProgramSection new];
-        section.sectionTime = [peopleInSection firstObject][@"time"];
+        Program* exampleSectionItem = [peopleInSection firstObject];
+        Program* sponsorSectionItem = [sponsorSpeakers firstObject];
+        section.sectionTime = exampleSectionItem.time;
         section.sectionName = eventName;
-        section.sectionSponsor = [sponsorSpeakers firstObject][@"speakerName"];
+        section.sectionSponsor = sponsorSectionItem.speakerName;
         //remove any empty speakers (e.g. no speaker for "Registration")
         [peopleInSection removeObjectsInArray:[peopleInSection filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(speakerName == nil)"]]];
         section.sectionItems = peopleInSection;
@@ -126,7 +135,7 @@
     CustomProgramCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     ProgramSection* currentSection = self.sectionData[indexPath.section];
-    NSDictionary* currentSpeaker = currentSection.sectionItems[indexPath.row];
+    Program* currentSpeaker = currentSection.sectionItems[indexPath.row];
     
     cell.mainLabel.attributedText = [self attributedStringForCellWithData:currentSpeaker];
 //    cell.layer.borderColor = [UIColor purpleColor].CGColor;
@@ -143,7 +152,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     ProgramSection* currentSection = self.sectionData[indexPath.section];
-    NSDictionary* currentSpeaker = currentSection.sectionItems[indexPath.row];
+    Program* currentSpeaker = currentSection.sectionItems[indexPath.row];
     
     CGRect paragraphRect = [[self attributedStringForCellWithData:currentSpeaker] boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.view.frame)-20, CGFLOAT_MAX)
                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
@@ -151,9 +160,9 @@
     return CGRectGetHeight(paragraphRect)+20+1; //+1 to avoid rounding errors
 }
 
-- (NSAttributedString*) attributedStringForCellWithData:(NSDictionary*)cellData {
-    NSString* speakerName = cellData[@"speakerName"];
-    NSString* speakerTitles = cellData[@"speakerTitles"];
+- (NSAttributedString*) attributedStringForCellWithData:(Program*)speaker {
+    NSString* speakerName = speaker.speakerName;
+    NSString* speakerTitles = speaker.speakerTitles;
     
     NSString* speakerText = nil;
     if (speakerTitles) {
@@ -231,11 +240,11 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     ProgramSection* currentSection = self.sectionData[indexPath.section];
-    NSDictionary* currentSpeaker = currentSection.sectionItems[indexPath.row];
-    NSString* programSpeakerName = currentSpeaker[@"speakerName"];
+    Program* currentSpeaker = currentSection.sectionItems[indexPath.row];
+    NSString* programSpeakerName = currentSpeaker.speakerName;
 
-    for (NSDictionary* speaker in self.speakersData) {
-        NSString* speakersSpeakerName = [NSString stringWithFormat:@"%@ %@", speaker[@"firstName"], speaker[@"lastName"]];
+    for (Speakers* speaker in self.speakersData) {
+        NSString* speakersSpeakerName = [NSString stringWithFormat:@"%@ %@", speaker.firstName, speaker.lastName];
         if ([speakersSpeakerName isEqualToString:programSpeakerName]) {
             if (!self.individualVC) {
                 NSString* identifier = @"IndividualViewController";
