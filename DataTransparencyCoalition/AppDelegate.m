@@ -8,8 +8,8 @@
 
 #import "AppDelegate.h"
 #import "UIColor+Custom.h"
-#import <Parse/Parse.h>
-#import <ParseUI/ParseUI.h>
+//#import <Parse/Parse.h>
+//#import <ParseUI/ParseUI.h>
 #import "PrivateKeys.h"
 #import "DTCUtil.h"
 #import <Crashlytics/Crashlytics.h>
@@ -25,13 +25,7 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //[Crashlytics startWithAPIKey:kCRASHLYTICS_API_KEY];
     [Fabric with:@[[Crashlytics class], [Twitter class]]];
-    
-    [Parse setApplicationId:kPARSE_APPLICATION_ID
-                  clientKey:kPARSE_CLIENT_KEY];
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    [PFImageView class];
     
     [[Backendless sharedInstance] initApp:kBACKENDLESS_APPLICATION_ID secret:kBACKENDLESS_SECRET_KEY version:@"v1"];
     [Backendless sharedInstance].hostURL = @"https://api.backendless.com";
@@ -61,24 +55,13 @@
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    // Store the deviceToken in the current installation and save it to Parse.
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    [currentInstallation setDeviceTokenFromData:deviceToken];
-    currentInstallation.channels = @[@"global"];
-    [currentInstallation saveInBackground];
+    [[Backendless sharedInstance].messaging registerDeviceToken:deviceToken];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    //we'll do some "smart push" later
-    [PFPush handlePush:userInfo];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    if (currentInstallation.badge != 0) {
-        currentInstallation.badge = 0;
-        [currentInstallation saveEventually];
-    }
 }
 
 @end
