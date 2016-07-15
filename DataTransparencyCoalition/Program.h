@@ -8,4 +8,6 @@
 @property (nonatomic, strong) NSDate *time;
 @property (nonatomic, strong) NSString *speakerTitles;
 @property (nonatomic, strong) Conference *conference;
+@property (nonatomic, assign) BOOL isSupport;
+@property (nonatomic, assign) BOOL isSponsor;
 @end

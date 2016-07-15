@@ -10,6 +10,8 @@
         self.time = [decoder decodeObjectForKey:@"time"];
         self.speakerTitles = [decoder decodeObjectForKey:@"speakerTitles"];
         self.conference = [decoder decodeObjectForKey:@"conference"];
+        self.isSupport = [decoder decodeBoolForKey:@"isSupport"];
+        self.isSponsor = [decoder decodeBoolForKey:@"isSponsor"];
     }
     return self;
 }
@@ -20,6 +22,8 @@
     [encoder encodeObject:self.time forKey:@"time"];
     [encoder encodeObject:self.speakerTitles forKey:@"speakerTitles"];
     [encoder encodeObject:self.conference forKey:@"conference"];
+    [encoder encodeBool:self.isSupport forKey:@"isSupport"];
+    [encoder encodeBool:self.isSponsor forKey:@"isSponsor"];
 }
 
 @end
