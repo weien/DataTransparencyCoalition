@@ -10,12 +10,14 @@
 #import "DTCUtil.h"
 #import "Constants.h"
 #import "UIColor+Custom.h"
+#import "Metadata.h"
+#import "Conference.h"
 //#import "PBWebViewController.h"
 //#import "PBSafariActivity.h"
 
 @interface TweetsViewController() //<UIWebViewDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *mainWebView;
-@property (strong, nonatomic) NSDictionary *conferenceMetadata;
+@property (strong, nonatomic) Conference *conferenceMetadata;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *composeButton;
 
 //@property (strong, nonatomic) PBWebViewController* pbwVC;
@@ -38,8 +40,8 @@
     //    self.pbwVC = [PBWebViewController new];
     //    PBSafariActivity *activity = [PBSafariActivity new];
     //    self.pbwVC.applicationActivities = @[activity];
-    
-    self.conferenceMetadata = [DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata];
+    Metadata* md = [DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata];
+    self.conferenceMetadata = md.currentConference;
     
     //[self.mainWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.conferenceMetadata[@"tweetURL"]]]];
     //use a custom web lib instead of UIWEbView
@@ -53,14 +55,14 @@
     self.showTweetActions = YES;
     
     TWTRAPIClient *client = [[TWTRAPIClient alloc] init];
-    TWTRSearchTimelineDataSource *searchTimelineDataSource = [[TWTRSearchTimelineDataSource alloc] initWithSearchQuery:self.conferenceMetadata[@"hashtag"] APIClient:client];
+    TWTRSearchTimelineDataSource *searchTimelineDataSource = [[TWTRSearchTimelineDataSource alloc] initWithSearchQuery:self.conferenceMetadata.hashtag APIClient:client];
     self.dataSource = searchTimelineDataSource;
 }
 
 - (IBAction)composeButtonTapped:(id)sender {
     TWTRComposer *composer = [[TWTRComposer alloc] init]; //apparently we're not allowed to reuse this https://docs.fabric.io/ios/twitter/compose-tweets.html
     
-    [composer setText:self.conferenceMetadata[@"hashtag"]];
+    [composer setText:self.conferenceMetadata.hashtag];
     [composer showFromViewController:self completion:^(TWTRComposerResult result) {
         if (result == TWTRComposerResultCancelled) {
             NSLog(@"Tweet composition cancelled");
