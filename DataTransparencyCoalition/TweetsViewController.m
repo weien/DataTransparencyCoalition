@@ -34,6 +34,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"Tweets";
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     //    self.mainWebView.delegate = self;
     //
