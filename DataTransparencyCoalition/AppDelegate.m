@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 #import "UIColor+Custom.h"
-//#import <Parse/Parse.h>
-//#import <ParseUI/ParseUI.h>
 #import "PrivateKeys.h"
 #import "DTCUtil.h"
 #import <Crashlytics/Crashlytics.h>

@@ -12,7 +12,6 @@
 #import "UIImageView+WebCache.h"
 #import "PBWebViewController.h"
 #import "PBSafariActivity.h"
-//#import <ParseUI/ParseUI.h>
 
 #define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 
@@ -68,8 +67,6 @@
     }
     else {
         self.mainImageView.image = nil;
-//        self.mainImageView.file = self.speakerData.picture;
-//        [self.mainImageView loadInBackground];
         [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:self.speakerData.picture] options:SDWebImageRetryFailed
                                                        progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                                        }

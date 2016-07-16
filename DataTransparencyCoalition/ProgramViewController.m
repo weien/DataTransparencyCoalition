@@ -10,7 +10,6 @@
 #import "UIColor+Custom.h"
 #import "DTCUtil.h"
 #import "Constants.h"
-//#import "ParseWebService.h"
 #import "BackendlessWebService.h"
 #import "UIViewController+DTC.h"
 #import "ProgramSection.h"
@@ -138,8 +137,6 @@
     Program* currentSpeaker = currentSection.sectionItems[indexPath.row];
     
     cell.mainLabel.attributedText = [self attributedStringForCellWithData:currentSpeaker];
-//    cell.layer.borderColor = [UIColor purpleColor].CGColor;
-//    cell.layer.borderWidth = 1;
     
     //thanks https://gist.github.com/maicki/8d7b1cfb31733df51406
     cell.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
@@ -207,7 +204,7 @@
     NSString* sectionText = [NSString stringWithFormat:@"%@ %@%@", sectionDateString, currentSection.sectionName, sponsorText];
     NSMutableAttributedString* sectionAttributedString = [[NSMutableAttributedString alloc] initWithString:sectionText];
     NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
-//    style.lineSpacing = 0;
+    //    style.lineSpacing = 0;
     style.headIndent = 10;
     [sectionAttributedString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [sectionText length])];
 

@@ -10,7 +10,6 @@
 #import "UIColor+Custom.h"
 #import "DTCUtil.h"
 #import "Constants.h"
-//#import "ParseWebService.h"
 #import "BackendlessWebService.h"
 #import "UIViewController+DTC.h"
 #import "UIImageView+WebCache.h"
@@ -107,10 +106,6 @@
     
     SponsorSection* currentSection = self.sectionData[indexPath.section];
     Sponsors* currentData = currentSection.sectionItems[indexPath.row];
-    
-//    cell.sponsorImage.image = nil;
-//    cell.sponsorImage.file = currentData[@"picture"];
-//    [cell.sponsorImage loadInBackground];
     
     NSString* sponsorURL = currentData.picture;
     [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:sponsorURL] options:SDWebImageRetryFailed

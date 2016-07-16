@@ -10,15 +10,12 @@
 #import "UIColor+Custom.h"
 #import "DTCUtil.h"
 #import "Constants.h"
-//#import "ParseWebService.h"
 #import "BackendlessWebService.h"
 #import "UIViewController+DTC.h"
 #import "CustomSpeakerTileCell.h"
 #import "UIImageView+WebCache.h"
 #import "IndividualViewController.h"
 #import "Speakers.h"
-
-//#import <Parse/Parse.h>
 
 @interface SpeakersViewController() <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UICollectionView *mainCollectionView;
@@ -79,10 +76,6 @@
     //cell.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     
     Speakers* currentData = self.speakersData[[indexPath row]];
-    
-//    cell.speakerImage.image = nil;
-//    cell.speakerImage.file = currentData[@"picture"];
-//    [cell.speakerImage loadInBackground];
     
     cell.speakerImage.image = [UIImage imageNamed:@"gray"];
     NSString* speakerURL = currentData.picture;
