@@ -109,7 +109,7 @@
         
         [sectionsToDisplay addObject:section];
     }
-    sectionsToDisplay = [[sectionsToDisplay sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"sectionTime" ascending:YES]]] mutableCopy];
+    sectionsToDisplay = [[sectionsToDisplay sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"sectionTime" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"sectionName" ascending:YES]]] mutableCopy];
     
     self.sectionData = sectionsToDisplay;
     [self.mainTableView reloadData];
