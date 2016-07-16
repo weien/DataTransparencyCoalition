@@ -8,10 +8,6 @@
 
 #import "BackendlessWebService.h"
 #import "Backendless.h"
-#import "Home.h"
-#import "Program.h"
-#import "Speakers.h"
-#import "Sponsors.h"
 
 @implementation BackendlessWebService
 + (BackendlessWebService*) sharedInstance {
@@ -41,6 +37,17 @@
                                                                                     dataQuery:query
                                                                                         error:&fault];
     //NSLog(@"Collection is %@, fault is %@", collection, fault);
-    return collection.data;
+    NSMutableArray* allData = [NSMutableArray arrayWithArray:collection.data];
+    
+    while (collection.totalObjects.integerValue > allData.count) {
+        query.queryOptions = [QueryOptions query:100 offset:(int)allData.count];
+        collection = [[Backendless sharedInstance].persistenceService find:class
+                                                                 dataQuery:query
+                                                                     error:&fault];
+        //NSLog(@"Collection is %@, fault is %@", collection, fault);
+        [allData addObjectsFromArray:collection.data];
+    }
+    
+    return allData;
 }
 @end
