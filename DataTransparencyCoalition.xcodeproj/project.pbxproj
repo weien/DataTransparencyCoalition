@@ -1116,7 +1116,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.datacoalition.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1d0388f9-c1ce-4197-aece-25107dfd4957";
 			};
 			name = Debug;
 		};
@@ -1142,7 +1142,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.datacoalition.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "61cf3d85-5574-43a8-afa3-1bb71f4d80b8";
 			};
 			name = Release;
 		};
