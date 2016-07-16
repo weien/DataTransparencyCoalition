@@ -52,7 +52,7 @@
     Metadata* md = [DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata];
     NSString* currentConferenceID = md.currentConference.objectId;
     dispatch_async(dispatch_queue_create("getSpeakersData", NULL), ^{
-        NSArray* speakersDataReceived = [[BackendlessWebService sharedInstance] retrieveSpeakersDataForConference:currentConferenceID];
+        NSArray* speakersDataReceived = [[BackendlessWebService sharedInstance] retrieveDataForClass:[Speakers class] andConference:currentConferenceID];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
 //            [DTCUtil saveDataToPlistWithComponent:kComponentForCurrentSpeakersData andInfo:speakersDataFromParse];

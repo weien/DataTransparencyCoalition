@@ -59,7 +59,7 @@
     Metadata* md = [DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata];
     NSString* currentConferenceID = md.currentConference.objectId;
     dispatch_async(dispatch_queue_create("getSponsorsData", NULL), ^{
-        NSArray* sponsorsDataReceived = [[BackendlessWebService sharedInstance] retrieveSponsorsDataForConference:currentConferenceID];
+        NSArray* sponsorsDataReceived = [[BackendlessWebService sharedInstance] retrieveDataForClass:[Sponsors class] andConference:currentConferenceID];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
 //            [DTCUtil saveDataToPlistWithComponent:kComponentForCurrentSponsorsData andInfo:sponsorsDataFromParse];

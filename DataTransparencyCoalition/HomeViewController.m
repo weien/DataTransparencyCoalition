@@ -80,7 +80,7 @@
     }
     
     dispatch_async(dispatch_queue_create("getHomeData", NULL), ^{
-        NSArray* homeDataReceived = [[BackendlessWebService sharedInstance] retrieveHomeDataForConference:self.currentConference.objectId];
+        NSArray* homeDataReceived = [[BackendlessWebService sharedInstance] retrieveDataForClass:[Home class] andConference:self.currentConference.objectId];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
             [DTCUtil archiveWithComponent:kComponentForCurrentHomeData andInfo:homeDataReceived];

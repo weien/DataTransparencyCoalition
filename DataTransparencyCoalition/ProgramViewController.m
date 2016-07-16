@@ -58,7 +58,7 @@
         [self sortAndDisplayData];
     }
     dispatch_async(dispatch_queue_create("getProgramData", NULL), ^{
-        NSArray* programDataReceived = [[BackendlessWebService sharedInstance] retrieveProgramDataForConference:currentConferenceID];
+        NSArray* programDataReceived = [[BackendlessWebService sharedInstance] retrieveDataForClass:[Program class] andConference:currentConferenceID];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
             [DTCUtil archiveWithComponent:kComponentForCurrentProgramData andInfo:programDataReceived];
@@ -71,7 +71,7 @@
     //self.speakersData = [DTCUtil plistDataWithComponent:kComponentForCurrentSpeakersData];
     if (!self.speakersData) {
         dispatch_async(dispatch_queue_create("getSpeakersDataFromProgram", NULL), ^{
-            NSArray* speakersDataReceived = [[BackendlessWebService sharedInstance] retrieveSpeakersDataForConference:currentConferenceID];
+            NSArray* speakersDataReceived = [[BackendlessWebService sharedInstance] retrieveDataForClass:[Speakers class] andConference:currentConferenceID];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //[DTCUtil saveDataToPlistWithComponent:kComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
                 self.speakersData = speakersDataReceived;

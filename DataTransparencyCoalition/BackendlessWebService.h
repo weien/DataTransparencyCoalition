@@ -13,8 +13,5 @@
 @interface BackendlessWebService : NSObject
 + (BackendlessWebService*) sharedInstance;
 - (Metadata*) retrieveAppMetadata;
-- (NSArray*) retrieveHomeDataForConference:(NSString*)conferenceId;
-- (NSArray*) retrieveProgramDataForConference:(NSString*)conferenceId;
-- (NSArray*) retrieveSpeakersDataForConference:(NSString*)conferenceId;
-- (NSArray*) retrieveSponsorsDataForConference:(NSString*)conferenceId;
+- (NSArray*) retrieveDataForClass:(Class)class andConference:(NSString*)conferenceId;
 @end
