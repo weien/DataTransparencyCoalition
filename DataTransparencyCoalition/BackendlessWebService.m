@@ -36,7 +36,6 @@
     BackendlessCollection *collection = [[Backendless sharedInstance].persistenceService find:class
                                                                                     dataQuery:query
                                                                                         error:&fault];
-    //NSLog(@"Collection is %@, fault is %@", collection, fault);
     NSMutableArray* allData = [NSMutableArray arrayWithArray:collection.data];
     
     while (collection.totalObjects.integerValue > allData.count) {
@@ -44,7 +43,6 @@
         collection = [[Backendless sharedInstance].persistenceService find:class
                                                                  dataQuery:query
                                                                      error:&fault];
-        //NSLog(@"Collection is %@, fault is %@", collection, fault);
         [allData addObjectsFromArray:collection.data];
     }
     
