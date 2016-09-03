@@ -12,7 +12,6 @@
 - (UIActivityIndicatorView*) startSpinner:(UIActivityIndicatorView*)spinner inView:(UIView*)view {
     if (!spinner) {
         spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        //spinner.backgroundColor = [UIColor blackColor];
         spinner.hidesWhenStopped = YES;
     }
     UIView* desiredSuperview = view;

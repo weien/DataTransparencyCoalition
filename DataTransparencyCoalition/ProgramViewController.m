@@ -68,12 +68,10 @@
     });
     
     //pull speakerData, too
-    //self.speakersData = [DTCUtil plistDataWithComponent:kComponentForCurrentSpeakersData];
     if (!self.speakersData) {
         dispatch_async(dispatch_queue_create("getSpeakersDataFromProgram", NULL), ^{
             NSArray* speakersDataReceived = [[BackendlessWebService sharedInstance] retrieveDataForClass:[Speakers class] andConference:currentConferenceID];
             dispatch_async(dispatch_get_main_queue(), ^{
-                //[DTCUtil saveDataToPlistWithComponent:kComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
                 self.speakersData = speakersDataReceived;
             });
         });

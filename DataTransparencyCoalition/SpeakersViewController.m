@@ -41,13 +41,8 @@
     self.customLayout.minimumInteritemSpacing = 0;
     self.customLayout.minimumLineSpacing = 0;
     
-//    self.speakersData = [DTCUtil plistDataWithComponent:kComponentForCurrentSpeakersData];
-//    if (!self.speakersData) {
-        self.spinner = [self startSpinner:self.spinner inView:self.view];
-//    }
-//    else {
-//        [self sortAndDisplayData];
-//    }
+    //optional/later: store and fetch speaker data, also (see previous revisions)
+    self.spinner = [self startSpinner:self.spinner inView:self.view];
     
     Metadata* md = [DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata];
     NSString* currentConferenceID = md.currentConference.objectId;
@@ -55,7 +50,6 @@
         NSArray* speakersDataReceived = [[BackendlessWebService sharedInstance] retrieveDataForClass:[Speakers class] andConference:currentConferenceID];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
-//            [DTCUtil saveDataToPlistWithComponent:kComponentForCurrentSpeakersData andInfo:speakersDataFromParse];
             self.speakersData = speakersDataReceived;
             [self sortAndDisplayData];
         });
@@ -73,7 +67,6 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CustomSpeakerTileCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    //cell.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     
     Speakers* currentData = self.speakersData[[indexPath row]];
     

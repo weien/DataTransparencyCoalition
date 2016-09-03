@@ -11,7 +11,6 @@
 @interface ProgramSection : NSObject
 @property (nonatomic, strong) NSString* sectionName;
 @property (nonatomic, strong) NSDate* sectionTime;
-//@property (nonatomic, strong) NSString* sectionTitleText;
 @property (nonatomic, strong) NSArray* sectionItems;
 @property (nonatomic, strong) NSString* sectionSponsor;
 

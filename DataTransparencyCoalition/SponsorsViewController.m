@@ -49,20 +49,15 @@
     PBSafariActivity *activity = [PBSafariActivity new];
     self.pbwVC.applicationActivities = @[activity];
     
-//    self.sponsorsData = [DTCUtil plistDataWithComponent:kComponentForCurrentSponsorsData];
-//    if (!self.sponsorsData) {
-        self.spinner = [self startSpinner:self.spinner inView:self.view];
-//    }
-//    else {
-//        [self sortAndDisplayData];
-//    }
+    //optional/later: store and fetch speaker data, also (see previous revisions)
+    self.spinner = [self startSpinner:self.spinner inView:self.view];
+
     Metadata* md = [DTCUtil unarchiveWithComponent:kComponentForConferenceMetadata];
     NSString* currentConferenceID = md.currentConference.objectId;
     dispatch_async(dispatch_queue_create("getSponsorsData", NULL), ^{
         NSArray* sponsorsDataReceived = [[BackendlessWebService sharedInstance] retrieveDataForClass:[Sponsors class] andConference:currentConferenceID];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopSpinner:self.spinner];
-//            [DTCUtil saveDataToPlistWithComponent:kComponentForCurrentSponsorsData andInfo:sponsorsDataFromParse];
             self.sponsorsData = sponsorsDataReceived;
             [self sortAndDisplayData];
         });
