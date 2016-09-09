@@ -12,6 +12,7 @@
 
 @implementation CustomSpeakerTileCell
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.speakerImage.clipsToBounds = NO;
     self.speakerImage.layer.cornerRadius = CGRectGetWidth(self.speakerImage.frame)/2;
     self.speakerImage.layer.masksToBounds = YES;
